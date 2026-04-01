@@ -101,7 +101,7 @@ export function BlogIndex() {
           {blogs.map(post => (
             <Link to={`/blog/${post.slug}`} key={post.slug} style={{ textDecoration: "none", color: "inherit", display: "block" }}>
               <div style={{ padding: "2rem", borderRadius: "1rem", background: "white", border: "1px solid var(--slate-200)", height: "100%", transition: "all 0.3s ease" }}>
-                <h3 style={{ fontSize: "1.25rem", fontWeight: 700, marginBottom: "1rem", color: "var(--bg-page)", lineHeight: 1.4 }}>{post.title}</h3>
+                <h3 style={{ fontSize: "1.25rem", fontWeight: 700, marginBottom: "1rem", color: "#111", lineHeight: 1.4 }}>{post.title}</h3>
                 <p style={{ color: "var(--slate-500)", fontSize: "0.875rem", marginBottom: "1.5rem", lineHeight: 1.6 }}>{post.description}</p>
                 
                 <div style={{ display: "flex", gap: "1rem", color: "var(--slate-400)", fontSize: "0.75rem", alignItems: "center" }}>
