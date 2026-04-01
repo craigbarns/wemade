@@ -1,0 +1,136 @@
+/* ===== WEMADE — Design System ===== */
+
+:root {
+  /* Core palette — refined neutral */
+  --slate-50: #faf9f7;
+  --slate-100: #f3f1ee;
+  --slate-200: #e4e2dd;
+  --slate-300: #c8c5be;
+  --slate-400: #8e8b84;
+  --slate-500: #6b6860;
+  --slate-600: #4d4a43;
+  --slate-700: #37342e;
+  --slate-800: #1c1a16;
+  --slate-900: #12110e;
+  --slate-950: #0a0908;
+
+  /* Accent — warm champagne gold */
+  --accent-500: #c4a265;
+  --accent-600: #a68846;
+  --accent-700: #8a7038;
+
+  --bg-page: #f5f4f0;
+  --bg-dark: #0e0d0b;
+  --bg-dark-mid: #14130f;
+  --bg-dark-alt: #1a1815;
+  --bg-dark-lighter: #252320;
+
+  /* Typography */
+  --font-heading: 'Outfit', sans-serif;
+  --font-body: 'Inter', sans-serif;
+
+  /* Radius */
+  --r-sm: 1rem;
+  --r-md: 1.35rem;
+  --r-lg: 1.6rem;
+  --r-xl: 1.7rem;
+  --r-2xl: 2rem;
+  --r-3xl: 2.5rem;
+  --r-full: 9999px;
+
+  /* Shadows */
+  --shadow-card: 0 20px 60px rgba(10, 9, 8, 0.06);
+  --shadow-card-hover: 0 24px 80px rgba(10, 9, 8, 0.13);
+  --shadow-dark: 0 30px 100px rgba(10, 9, 8, 0.25);
+  --shadow-hero: 0 40px 120px rgba(0, 0, 0, 0.4);
+  --shadow-btn-light: 0 20px 60px rgba(255, 255, 255, 0.18);
+  --shadow-btn-dark: 0 18px 60px rgba(255, 255, 255, 0.16);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--bg-page);
+  color: var(--slate-900);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  line-height: 1.15;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-family: inherit;
+}
+
+input, textarea {
+  font-family: inherit;
+}
+
+/* ===== Layout ===== */
+.container {
+  max-width: 80rem;
+  margin: 0 auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+  }
+}
+
+/* ===== Scrollbar ===== */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-page);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--slate-300);
+  border-radius: 8px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--slate-400);
+}
+
+/* ===== Selection ===== */
+::selection {
+  background: rgba(196, 162, 101, 0.2);
+  color: var(--slate-950);
+}
