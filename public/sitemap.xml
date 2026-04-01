@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+
+  <!-- Home (French Default) -->
+  <url>
+    <loc>https://wemade.fr/</loc>
+    <lastmod>2026-04-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://wemade.fr/?lang=en" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://wemade.fr/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wemade.fr/" />
+  </url>
+
+  <!-- Blog Index -->
+  <url>
+    <loc>https://wemade.fr/blog</loc>
+    <lastmod>2026-04-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Blog Post 1 -->
+  <url>
+    <loc>https://wemade.fr/blog/comment-trouver-usine-fiable-chine</loc>
+    <lastmod>2025-10-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Blog Post 2 -->
+  <url>
+    <loc>https://wemade.fr/blog/sourcing-premium-vs-agents-chine</loc>
+    <lastmod>2025-10-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Blog Post 3 -->
+  <url>
+    <loc>https://wemade.fr/blog/controle-qualite-securiser-production-chine</loc>
+    <lastmod>2025-11-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+</urlset>

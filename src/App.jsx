@@ -12,8 +12,12 @@ import {
   PackageCheck,
   X,
   Globe,
-  MapPin
+  MapPin,
+  TimerReset,
+  UserRound
 } from "lucide-react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BlogIndex, BlogPost } from "./Blog";
 import { content } from "./content";
 import "./App.css";
 
@@ -65,8 +69,20 @@ function Particles() {
   );
 }
 
-/* ===== Main Component ===== */
 export default function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<MainSite />} />
+        <Route path="/blog" element={<BlogIndex />} />
+        <Route path="/blog/:slug" element={<BlogPost />} />
+      </Routes>
+    </BrowserRouter>
+  );
+}
+
+/* ===== Main Component ===== */
+function MainSite() {
   const getInitialLang = () => {
     const params = new URLSearchParams(window.location.search);
     return params.get("lang") === "en" ? "en" : "fr";
