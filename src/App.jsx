@@ -456,8 +456,11 @@ export default function App() {
                   <p style={{ color: "var(--slate-300)" }}>{lang === "fr" ? "Nous reviendrons vers vous très rapidement." : "We will get back to you shortly."}</p>
                 </div>
               ) : (
-                <form className="contact-form" name="contact" method="POST" data-netlify="true" onSubmit={handleFormSubmit}>
+                <form className="contact-form" name="contact" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" onSubmit={handleFormSubmit}>
                   <input type="hidden" name="form-name" value="contact" />
+                  <p style={{ display: "none" }}>
+                    <label>Don’t fill this out if you're human: <input name="bot-field" /></label>
+                  </p>
                   <input className="contact-input" placeholder={t.contact_section.form.name} name="name" required />
                   <input className="contact-input" placeholder={t.contact_section.form.company} name="company" />
                   <input className="contact-input" placeholder={t.contact_section.form.email} type="email" name="email" required />
