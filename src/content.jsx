@@ -240,10 +240,10 @@ export const content = {
       { icon: ShipWheel, title: "Logistics & Export Coordination", text: "Support for logistical communication, smooth exchanges, and the alignment of steps right up to cargo departure." }
     ],
     stats: [
-      { value: "15+", label: "years experience in China" },
+      { value: "15+", label: "years of experience in China" },
       { value: "2", label: "operational hubs: Shanghai & Hangzhou" },
-      { value: "EU / CN", label: "Europe / China steering" },
-      { value: "To Z", label: "from brief to shipment" }
+      { value: "EU / CN", label: "Europe / China management" },
+      { value: "A to Z", label: "from brief to shipment" }
     ],
     pillars: [
       { title: "European Management", text: "Clear, structured, and results-oriented management, with the communication standards expected by European clients." },
