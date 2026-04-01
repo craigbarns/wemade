@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
 
-  <!-- Home (French Default) -->
+  <!-- Home -->
   <url>
     <loc>https://wemade.fr/</loc>
     <lastmod>2026-04-01</lastmod>
@@ -19,29 +19,52 @@
     <lastmod>2026-04-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://wemade.fr/blog?lang=en" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://wemade.fr/blog" />
   </url>
 
-  <!-- Blog Post 1 -->
+  <!-- Blog Post 1 (FR) -->
   <url>
     <loc>https://wemade.fr/blog/comment-trouver-usine-fiable-chine</loc>
     <lastmod>2025-10-14</lastmod>
-    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://wemade.fr/blog/comment-trouver-usine-fiable-chine?lang=en" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://wemade.fr/blog/comment-trouver-usine-fiable-chine" />
+  </url>
+  <!-- Blog Post 1 (EN) -->
+  <url>
+    <loc>https://wemade.fr/blog/comment-trouver-usine-fiable-chine?lang=en</loc>
+    <lastmod>2025-10-14</lastmod>
     <priority>0.7</priority>
   </url>
 
-  <!-- Blog Post 2 -->
+  <!-- Blog Post 2 (FR) -->
   <url>
     <loc>https://wemade.fr/blog/sourcing-premium-vs-agents-chine</loc>
     <lastmod>2025-10-28</lastmod>
-    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://wemade.fr/blog/sourcing-premium-vs-agents-chine?lang=en" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://wemade.fr/blog/sourcing-premium-vs-agents-chine" />
+  </url>
+  <!-- Blog Post 2 (EN) -->
+  <url>
+    <loc>https://wemade.fr/blog/sourcing-premium-vs-agents-chine?lang=en</loc>
+    <lastmod>2025-10-28</lastmod>
     <priority>0.7</priority>
   </url>
 
-  <!-- Blog Post 3 -->
+  <!-- Blog Post 3 (FR) -->
   <url>
     <loc>https://wemade.fr/blog/controle-qualite-securiser-production-chine</loc>
     <lastmod>2025-11-05</lastmod>
-    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://wemade.fr/blog/controle-qualite-securiser-production-chine?lang=en" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://wemade.fr/blog/controle-qualite-securiser-production-chine" />
+  </url>
+  <!-- Blog Post 3 (EN) -->
+  <url>
+    <loc>https://wemade.fr/blog/controle-qualite-securiser-production-chine?lang=en</loc>
+    <lastmod>2025-11-05</lastmod>
     <priority>0.7</priority>
   </url>
 
