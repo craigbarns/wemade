@@ -20,6 +20,7 @@ export const content = {
       why: "Pourquoi nous",
       process: "Méthode",
       faq: "FAQ",
+      blog: "Blog / SEO",
       contact: "Contact"
     },
     hero: {
@@ -162,6 +163,7 @@ export const content = {
       why: "Why Us",
       process: "Method",
       faq: "FAQ",
+      blog: "Blog / Insights",
       contact: "Contact"
     },
     hero: {

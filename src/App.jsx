@@ -16,7 +16,7 @@ import {
   TimerReset,
   UserRound
 } from "lucide-react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import { BlogIndex, BlogPost } from "./Blog";
 import { content } from "./content";
 import "./App.css";
@@ -167,6 +167,7 @@ function MainSite() {
             <a href="#why">{t.nav.why}</a>
             <a href="#process">{t.nav.process}</a>
             <a href="#faq">{t.nav.faq}</a>
+            <Link to="/blog">{t.nav.blog}</Link>
             <a href="#contact">{t.nav.contact}</a>
             <button className="lang-toggle-btn" onClick={toggleLang} aria-label="Toggle language">
               <Globe size={16} />
@@ -194,6 +195,7 @@ function MainSite() {
         <a href="#why" onClick={closeMobileMenu}>{t.nav.why}</a>
         <a href="#process" onClick={closeMobileMenu}>{t.nav.process}</a>
         <a href="#faq" onClick={closeMobileMenu}>{t.nav.faq}</a>
+        <Link to="/blog" onClick={closeMobileMenu}>{t.nav.blog}</Link>
         <a href="#contact" onClick={closeMobileMenu}>{t.nav.contact}</a>
         <button className="lang-toggle-btn-mobile" onClick={() => { toggleLang(); closeMobileMenu(); }}>
           <Globe size={20} /> Switch to {lang === "fr" ? "English" : "Français"}
