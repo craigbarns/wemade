@@ -154,6 +154,16 @@ export function BlogIndex() {
       ? "Articles et analyses exclusifs de WEMADE sur le sourcing, l'import et l'industrie en Chine face au marché européen."
       : "Exclusive insights from WEMADE on sourcing, importing, and industry in China for the European market.";
     document.querySelector('meta[name="description"]')?.setAttribute("content", desc);
+    
+    // Dynamic Canonical
+    let canonical = document.querySelector('link[rel="canonical"]');
+    if (!canonical) {
+      canonical = document.createElement("link");
+      canonical.rel = "canonical";
+      document.head.appendChild(canonical);
+    }
+    canonical.href = lang === "fr" ? "https://wemade.fr/blog" : "https://wemade.fr/blog?lang=en";
+
     window.scrollTo(0, 0);
   }, [lang]);
 
@@ -208,6 +218,17 @@ export function BlogPost() {
       document.title = post.title + " | WEMADE";
       document.querySelector('meta[name="description"]')?.setAttribute("content", post.description);
       window.scrollTo(0, 0);
+
+      // Dynamic Canonical
+      let canonical = document.querySelector('link[rel="canonical"]');
+      if (!canonical) {
+        canonical = document.createElement("link");
+        canonical.rel = "canonical";
+        document.head.appendChild(canonical);
+      }
+      canonical.href = lang === "fr" 
+        ? `https://wemade.fr/blog/${slug}` 
+        : `https://wemade.fr/blog/${slug}?lang=en`;
 
       // Inject dynamically JSON-LD for the Article logic (GEO focus)
       let ldJson = document.getElementById("json-ld-article");

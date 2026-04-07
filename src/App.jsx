@@ -106,6 +106,15 @@ function MainSite() {
       document.title = "WEMADE | Sourcing Premium (France / Europe / China)";
       document.querySelector('meta[name="description"]')?.setAttribute("content", "WEMADE est une société française de sourcing premium. Forts de 15 ans d'expérience, nous accompagnons les marques européennes avec nos équipes locales à Shanghai et Hangzhou.");
     }
+
+    // Dynamic Canonical
+    let canonical = document.querySelector('link[rel="canonical"]');
+    if (!canonical) {
+      canonical = document.createElement("link");
+      canonical.rel = "canonical";
+      document.head.appendChild(canonical);
+    }
+    canonical.href = lang === "fr" ? "https://wemade.fr/" : "https://wemade.fr/?lang=en";
   }, [lang]);
 
   useEffect(() => {
