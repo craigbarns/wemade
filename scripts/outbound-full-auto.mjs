@@ -5,7 +5,15 @@ import path from "node:path";
 
 const ROOT = process.cwd();
 const AUTOMATION_DIR = path.join(ROOT, "automation");
-const SEED_FILE = path.join(AUTOMATION_DIR, "prospects-v1.csv");
+const DEFAULT_SEED_FILES = [
+  "prospects-v1.csv",
+  "prospects-eu-us-v2.csv",
+];
+const SEED_FILES = (process.env.OUTREACH_SEED_FILES || DEFAULT_SEED_FILES.join(","))
+  .split(",")
+  .map((v) => v.trim())
+  .filter(Boolean)
+  .map((file) => (path.isAbsolute(file) ? file : path.join(AUTOMATION_DIR, file)));
 const MASTER_FILE = path.join(AUTOMATION_DIR, "prospects-master.csv");
 const REPORT_DIR = path.join(AUTOMATION_DIR, "outbound-reports");
 const DAILY_LIMIT = Number.parseInt(process.env.OUTREACH_DAILY_LIMIT || "20", 10);
@@ -202,12 +210,13 @@ async function run() {
   ensureDir(AUTOMATION_DIR);
   ensureDir(REPORT_DIR);
 
-  if (!fs.existsSync(SEED_FILE)) {
-    throw new Error(`Fichier seed absent: ${SEED_FILE}`);
+  const existingSeedFiles = SEED_FILES.filter((f) => fs.existsSync(f));
+  if (!existingSeedFiles.length) {
+    throw new Error(`Aucun fichier seed trouve. Seeds attendus: ${SEED_FILES.join(", ")}`);
   }
 
   const nowIso = new Date().toISOString();
-  const seedRows = parseCsv(fs.readFileSync(SEED_FILE, "utf8"));
+  const seedRows = existingSeedFiles.flatMap((seedFile) => parseCsv(fs.readFileSync(seedFile, "utf8")));
   const masterRows = fs.existsSync(MASTER_FILE) ? parseCsv(fs.readFileSync(MASTER_FILE, "utf8")) : [];
 
   const byId = new Map(masterRows.map((row) => [row.lead_id, row]));
@@ -298,6 +307,7 @@ async function run() {
   lines.push(`# Outbound Daily Report - ${nowIso}`);
   lines.push("");
   lines.push(`- Dry run: ${DRY_RUN ? "yes" : "no"}`);
+  lines.push(`- Seed files: ${existingSeedFiles.map((p) => path.basename(p)).join(", ")}`);
   lines.push(`- Daily limit: ${DAILY_LIMIT}`);
   lines.push(`- Leads in master: ${allLeads.length}`);
   lines.push(`- Leads without email: ${skippedMissingEmail}`);

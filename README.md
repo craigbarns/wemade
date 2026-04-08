@@ -97,8 +97,9 @@ Secrets GitHub necessaires:
 
 Variables de controle:
 
-- `OUTREACH_DAILY_LIMIT` (defaut 20)
+- `OUTREACH_DAILY_LIMIT` (defaut 50)
 - `OUTREACH_DRY_RUN` (`false` pour envoi reel)
+- `OUTREACH_SEED_FILES` (ex: `prospects-v1.csv,prospects-eu-us-v2.csv`)
 
 Important:
 

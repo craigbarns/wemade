@@ -29,7 +29,7 @@ jobs:
           RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
           OUTREACH_FROM_EMAIL: ${{ secrets.OUTREACH_FROM_EMAIL }}
           OUTREACH_REPLY_TO: ${{ secrets.OUTREACH_REPLY_TO }}
-          OUTREACH_DAILY_LIMIT: "20"
+          OUTREACH_DAILY_LIMIT: "50"
           OUTREACH_DRY_RUN: "false"
 
       - name: Upload outbound report
