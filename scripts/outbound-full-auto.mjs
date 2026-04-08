@@ -206,6 +206,12 @@ async function sendWithResend({ to, subject, text }) {
   return { ok: true, id: data.id || "" };
 }
 
+function sleep(ms) {
+  return new Promise((resolve) => {
+    setTimeout(resolve, ms);
+  });
+}
+
 async function run() {
   ensureDir(AUTOMATION_DIR);
   ensureDir(REPORT_DIR);
@@ -267,7 +273,12 @@ async function run() {
       continue;
     }
 
-    const res = await sendWithResend({ to: lead.contact_email, subject, text: body });
+    await sleep(250);
+    let res = await sendWithResend({ to: lead.contact_email, subject, text: body });
+    if (!res.ok && String(res.error || "").includes("429")) {
+      await sleep(1200);
+      res = await sendWithResend({ to: lead.contact_email, subject, text: body });
+    }
     if (res.ok) {
       lead.status = stage === "j0" ? "j0_sent" : "j3_sent";
       lead.last_contacted_at = nowIso;
