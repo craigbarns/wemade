@@ -5,7 +5,7 @@
   <!-- Home -->
   <url>
     <loc>https://wemade.fr/</loc>
-    <lastmod>2026-04-01</lastmod>
+    <lastmod>2026-04-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://wemade.fr/?lang=en" />
@@ -16,7 +16,7 @@
   <!-- Blog Index -->
   <url>
     <loc>https://wemade.fr/blog</loc>
-    <lastmod>2026-04-01</lastmod>
+    <lastmod>2026-04-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://wemade.fr/blog?lang=en" />

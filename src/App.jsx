@@ -118,6 +118,35 @@ function MainSite() {
   }, [lang]);
 
   useEffect(() => {
+    // FAQ schema for GEO/AI engines
+    let faqScript = document.getElementById("json-ld-faq");
+    if (!faqScript) {
+      faqScript = document.createElement("script");
+      faqScript.type = "application/ld+json";
+      faqScript.id = "json-ld-faq";
+      document.head.appendChild(faqScript);
+    }
+
+    faqScript.textContent = JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": t.faqs.map((item) => ({
+        "@type": "Question",
+        "name": item.q,
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": item.a,
+        },
+      })),
+    });
+
+    return () => {
+      const node = document.getElementById("json-ld-faq");
+      if (node) node.remove();
+    };
+  }, [lang, t.faqs]);
+
+  useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 40);
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
@@ -454,6 +483,24 @@ function MainSite() {
       </section>
 
       {/* ===== CONTACT ===== */}
+      <section className="container section">
+        <motion.div {...fadeUp} className="positioning-card" style={{ background: "linear-gradient(135deg,#fff,#f7f5ef)" }}>
+          <div className="section-label">{t.offer_section.label}</div>
+          <h2 className="section-title">{t.offer_section.title}</h2>
+          <p className="section-description">{t.offer_section.desc}</p>
+          <div className="trust-grid">
+            {t.offer_section.bullets.map((item) => (
+              <div key={item} className="trust-item">{item}</div>
+            ))}
+          </div>
+          <a href="#contact" className="btn-primary" style={{ marginTop: "1.25rem", display: "inline-flex" }}>
+            {t.offer_section.cta}
+            <ArrowRight />
+          </a>
+        </motion.div>
+      </section>
+
+      {/* ===== CONTACT ===== */}
       <section className="container section" id="contact">
         <motion.div {...fadeUp} className="contact-wrapper">
           <div className="contact-grid">
@@ -489,14 +536,12 @@ function MainSite() {
                     <label>Don’t fill this out if you're human: <input name="bot-field" /></label>
                   </p>
                   <input className="contact-input" placeholder={t.contact_section.form.name} name="name" required />
-                  <input className="contact-input" placeholder={t.contact_section.form.company} name="company" />
                   <input className="contact-input" placeholder={t.contact_section.form.email} type="email" name="email" required />
                   <input className="contact-input" placeholder={t.contact_section.form.phone} type="tel" name="phone" />
                   <textarea
                     className="contact-input contact-textarea"
                     placeholder={t.contact_section.form.message}
                     name="message"
-                    required
                   />
                   <button type="submit" className="btn-submit">
                     {t.contact_section.form.submit}

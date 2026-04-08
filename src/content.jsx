@@ -79,12 +79,22 @@ export const content = {
       desc: "Décrivez-nous votre produit, vos volumes, vos contraintes qualité, votre prix cible ou votre besoin de développement. Nous reviendrons vers vous avec une approche claire et professionnelle.",
       form: {
         name: "Nom",
-        company: "Société",
         email: "Email",
         phone: "Téléphone",
-        message: "Décrivez votre besoin : produit, quantités, personnalisation, prix cible, délai, difficulté actuelle",
+        message: "Besoin principal (optionnel) : sourcing LED, packaging, contrôle qualité, import FOB...",
         submit: "Envoyer la demande"
       }
+    },
+    offer_section: {
+      label: "Offre",
+      title: "Audit import gratuit (20 min)",
+      desc: "En 20 minutes, vous repartez avec un plan d'action clair pour sécuriser vos achats en Chine.",
+      bullets: [
+        "Estimation réaliste du coût complet (pas seulement prix usine)",
+        "3 risques majeurs à corriger immédiatement",
+        "Plan d'action concret sur 30 jours"
+      ],
+      cta: "Réserver mon audit gratuit"
     },
     footer_tag: "Sourcing premium entre l'Europe et la Chine",
     footer: "WeMade SASU • RCS Marseille 832 419 428 • Marseille, France / Shanghai / Hangzhou",
@@ -222,12 +232,22 @@ export const content = {
       desc: "Describe your product, volumes, quality constraints, target price, or development needs. We will get back to you with a clear and professional approach.",
       form: {
         name: "Name",
-        company: "Company",
         email: "Email",
         phone: "Phone",
-        message: "Describe your needs: product, quantities, customization, target price, deadline, current challenges",
+        message: "Primary need (optional): LED sourcing, packaging, quality control, FOB import...",
         submit: "Send Request"
       }
+    },
+    offer_section: {
+      label: "Offer",
+      title: "Free import audit (20 min)",
+      desc: "In 20 minutes, you get a clear action plan to secure your China sourcing.",
+      bullets: [
+        "Realistic landed-cost estimate (not only ex-factory price)",
+        "Top 3 risks to fix first",
+        "Concrete 30-day action plan"
+      ],
+      cta: "Book my free audit"
     },
     footer_tag: "Premium sourcing between Europe and China",
     footer: "WeMade SASU • RCS Marseille 832 419 428 • Marseille, France / Shanghai / Hangzhou",
