@@ -41,7 +41,3 @@ jobs:
         with:
           title: "SEO Weekly Content Plan - ${{ github.run_id }}"
           content-filepath: seo-weekly-content-plan.md
-          labels: |
-            seo
-            content
-            weekly-plan
