@@ -1,0 +1,41 @@
+name: SEO Weekly Content Agent
+
+on:
+  schedule:
+    - cron: "0 7 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  seo-content-plan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Generate weekly SEO content plan
+        run: node scripts/seo-weekly-content.mjs > seo-weekly-content-plan.md
+
+      - name: Upload content plan artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: seo-weekly-content-plan
+          path: seo-weekly-content-plan.md
+
+      - name: Create weekly content issue
+        uses: peter-evans/create-issue-from-file@v5
+        with:
+          title: "SEO Weekly Content Plan - ${{ github.run_id }}"
+          content-filepath: seo-weekly-content-plan.md
+          labels: |
+            seo
+            content
+            weekly-plan

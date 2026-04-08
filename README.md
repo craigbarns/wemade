@@ -24,6 +24,22 @@ Un agent automatise tourne via GitHub Actions :
   - artefact `seo-report.md`
   - issue GitHub quotidienne avec recommandations prioritaires
 
+## Agent SEO Content hebdomadaire
+
+Un second agent genere un plan editorial SEO chaque semaine:
+
+- Workflow: `.github/workflows/seo-weekly-content-agent.yml`
+- Frequence: tous les lundis + lancement manuel
+- Sortie:
+  - 5 sujets business SEO
+  - mots-cles cibles
+  - intention de recherche
+  - structure H2 recommandee
+  - CTA de conversion
+- Publication:
+  - artefact `seo-weekly-content-plan.md`
+  - issue GitHub hebdomadaire
+
 ## Variables utiles (workflow/script)
 
 - `SITE_URL` (defaut: `https://wemade.fr`)
