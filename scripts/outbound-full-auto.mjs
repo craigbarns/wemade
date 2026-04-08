@@ -86,35 +86,88 @@ function daysSince(isoDate) {
 
 function pickTemplate(lead, stage) {
   const firstName = (lead.contact_name || "").split(" ")[0] || "Bonjour";
+  const isFrench = !(lead.target_persona || "").toLowerCase().includes("head");
+  const callToActionFr = "Seriez-vous disponible pour un échange de 20 minutes cette semaine ?";
+  const callToActionEn = "Would you be open to a 20-minute call this week?";
   const subject =
     stage === "j3"
-      ? `Relance rapide - ${lead.company} x WEMADE`
-      : `${lead.company}: sourcing Chine plus fiable et rentable`;
+      ? isFrench
+        ? `Relance - piste d'optimisation sourcing pour ${lead.company}`
+        : `Follow-up - sourcing optimization idea for ${lead.company}`
+      : isFrench
+        ? `${lead.company} - fiabiliser sourcing, qualite et delais en Chine`
+        : `${lead.company} - improve sourcing reliability, quality and lead times`;
 
   const body =
     stage === "j3"
-      ? [
-          `${firstName},`,
-          "",
-          `Je me permets une relance courte concernant ${lead.company}.`,
-          `WEMADE aide les équipes achats à sécuriser sourcing, qualité et délais en Chine (Shanghai/Hangzhou).`,
-          "",
-          `Si utile, je peux vous partager un mini plan d'action en 20 minutes adapté à votre contexte.`,
-          "",
-          "Si vous ne souhaitez plus recevoir ce type de message, répondez simplement STOP.",
-        ].join("\n")
-      : [
-          `${firstName},`,
-          "",
-          `Je vous contacte car ${lead.company} semble aligné avec ce que nous faisons chez WEMADE.`,
-          `Nous aidons les équipes à fiabiliser leurs achats en Chine: sélection usine, négociation, contrôle qualité et exécution locale.`,
-          "",
-          `Angle possible pour vous: ${lead.offer_angle || "optimisation coût/qualité/délais"}.`,
-          "",
-          "Souhaitez-vous un échange de 20 minutes cette semaine ?",
-          "",
-          "Si vous ne souhaitez plus recevoir ce type de message, répondez simplement STOP.",
-        ].join("\n");
+      ? isFrench
+        ? [
+            `${firstName},`,
+            "",
+            `Je me permets une relance rapide concernant ${lead.company}.`,
+            "Chez WEMADE, nous accompagnons les equipes achats europeennes avec une execution locale en Chine (Shanghai/Hangzhou):",
+            "- validation fournisseurs",
+            "- negociations orientees cout complet",
+            "- controle qualite avant expedition",
+            "",
+            "Si utile, je peux vous partager une feuille de route concrete en 20 minutes, basee sur votre contexte.",
+            "",
+            callToActionFr,
+            "",
+            "Si vous ne souhaitez plus recevoir ce type de message, repondez STOP.",
+          ].join("\n")
+        : [
+            `${firstName},`,
+            "",
+            `Quick follow-up regarding ${lead.company}.`,
+            "At WEMADE, we support European buying teams with local execution in China (Shanghai/Hangzhou):",
+            "- supplier validation",
+            "- total landed cost negotiations",
+            "- pre-shipment quality control",
+            "",
+            "If useful, I can share a concrete 20-minute action plan tailored to your context.",
+            "",
+            callToActionEn,
+            "",
+            "If you do not want to receive these messages anymore, reply STOP.",
+          ].join("\n")
+      : isFrench
+        ? [
+            `${firstName},`,
+            "",
+            `Je vous contacte car ${lead.company} semble tres bien correspondre aux missions que nous menons chez WEMADE.`,
+            "",
+            "Nous aidons les marques et importateurs europeens a securiser leurs achats en Chine, avec un pilotage business en France et une execution locale en Chine.",
+            "",
+            `Piste concrete pour ${lead.company}: ${lead.offer_angle || "optimisation cout/qualite/delais"}.`,
+            "",
+            "Notre approche se concentre sur 3 leviers:",
+            "- fournisseurs fiables et verifies",
+            "- qualite stabilisee avant paiement final",
+            "- delais plus previsibles pour vos equipes",
+            "",
+            callToActionFr,
+            "",
+            "Si vous ne souhaitez plus recevoir ce type de message, repondez STOP.",
+          ].join("\n")
+        : [
+            `${firstName},`,
+            "",
+            `I am reaching out because ${lead.company} seems highly aligned with what we deliver at WEMADE.`,
+            "",
+            "We help European brands and importers secure sourcing in China with business management from France and local execution in China.",
+            "",
+            `Concrete angle for ${lead.company}: ${lead.offer_angle || "cost/quality/lead-time optimization"}.`,
+            "",
+            "Our approach focuses on 3 levers:",
+            "- verified and reliable suppliers",
+            "- stabilized quality before final payment",
+            "- more predictable lead times for your teams",
+            "",
+            callToActionEn,
+            "",
+            "If you do not want to receive these messages anymore, reply STOP.",
+          ].join("\n");
 
   return { subject, body };
 }
