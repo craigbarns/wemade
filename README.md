@@ -1,16 +1,31 @@
-# React + Vite
+# WEMADE Website
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Site marketing WEMADE (Vite + React), optimise pour conversion, SEO et GEO.
 
-Currently, two official plugins are available:
+## Scripts
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- `npm run dev` : serveur local
+- `npm run build` : build production
+- `npm run preview` : preview local du build
+- `npm run seo:daily` : audit SEO quotidien (script local)
 
-## React Compiler
+## Agent SEO quotidien
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Un agent automatise tourne via GitHub Actions :
 
-## Expanding the ESLint configuration
+- Workflow : `.github/workflows/seo-daily-agent.yml`
+- Frequence : tous les jours (cron) + lancement manuel
+- Audit :
+  - lecture du sitemap
+  - verifications title/meta description/h1/canonical/noindex
+  - detection des pages HTTP en erreur
+  - score SEO par URL
+- Sortie :
+  - artefact `seo-report.md`
+  - issue GitHub quotidienne avec recommandations prioritaires
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Variables utiles (workflow/script)
+
+- `SITE_URL` (defaut: `https://wemade.fr`)
+- `SITEMAP_URL` (defaut: `https://wemade.fr/sitemap.xml`)
+- `MAX_URLS` (defaut: `100`)

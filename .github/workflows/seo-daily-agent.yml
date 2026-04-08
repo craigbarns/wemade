@@ -1,0 +1,44 @@
+name: SEO Daily Agent
+
+on:
+  schedule:
+    - cron: "0 6 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  seo-audit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Run SEO audit
+        run: node scripts/seo-daily-audit.mjs > seo-report.md
+        env:
+          SITE_URL: https://wemade.fr
+          SITEMAP_URL: https://wemade.fr/sitemap.xml
+          MAX_URLS: "100"
+
+      - name: Upload report artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: seo-daily-report
+          path: seo-report.md
+
+      - name: Create daily SEO issue
+        uses: peter-evans/create-issue-from-file@v5
+        with:
+          title: "SEO Daily Report - ${{ github.run_id }}"
+          content-filepath: seo-report.md
+          labels: |
+            seo
+            daily-audit
