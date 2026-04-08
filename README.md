@@ -93,6 +93,7 @@ Secrets GitHub necessaires:
 
 - `RESEND_API_KEY`
 - `OUTREACH_FROM_EMAIL` (ex: `Gregory <contact@mail.wemade.fr>`)
+- `OUTREACH_REPLY_TO` (ex: `gregory@wemade.fr`)
 
 Variables de controle:
 

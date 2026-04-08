@@ -10,6 +10,7 @@ const MASTER_FILE = path.join(AUTOMATION_DIR, "prospects-master.csv");
 const REPORT_DIR = path.join(AUTOMATION_DIR, "outbound-reports");
 const DAILY_LIMIT = Number.parseInt(process.env.OUTREACH_DAILY_LIMIT || "20", 10);
 const FROM_EMAIL = process.env.OUTREACH_FROM_EMAIL || "";
+const REPLY_TO_EMAIL = process.env.OUTREACH_REPLY_TO || "";
 const RESEND_API_KEY = process.env.RESEND_API_KEY || "";
 const DRY_RUN = (process.env.OUTREACH_DRY_RUN || "true").toLowerCase() !== "false";
 
@@ -119,18 +120,23 @@ function pickTemplate(lead, stage) {
 }
 
 async function sendWithResend({ to, subject, text }) {
+  const payload = {
+    from: FROM_EMAIL,
+    to: [to],
+    subject,
+    text,
+  };
+  if (REPLY_TO_EMAIL) {
+    payload.reply_to = REPLY_TO_EMAIL;
+  }
+
   const resp = await fetch("https://api.resend.com/emails", {
     method: "POST",
     headers: {
       Authorization: `Bearer ${RESEND_API_KEY}`,
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({
-      from: FROM_EMAIL,
-      to: [to],
-      subject,
-      text,
-    }),
+    body: JSON.stringify(payload),
   });
   const data = await resp.json().catch(() => ({}));
   if (!resp.ok) {
