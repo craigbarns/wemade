@@ -1,0 +1,72 @@
+name: SEO Tech Maintenance
+
+on:
+  schedule:
+    - cron: "0 9 * * 0"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  technical-checks:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build production
+        run: npm run build
+
+      - name: Check internal links (lychee)
+        uses: lycheeverse/lychee-action@v1
+        with:
+          args: --verbose --no-progress ./public/sitemap.xml ./README.md
+          fail: false
+
+      - name: Run lighthouse (home)
+        uses: treosh/lighthouse-ci-action@v12
+        with:
+          urls: |
+            https://wemade.fr/
+            https://wemade.fr/blog
+          uploadArtifacts: true
+          temporaryPublicStorage: true
+
+      - name: Build maintenance report
+        if: always()
+        run: |
+          cat > seo-tech-maintenance-report.md <<'EOF'
+          # SEO Tech Maintenance Report
+
+          Workflow run: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
+
+          Checks executed:
+          - Build production (`npm run build`)
+          - Link check (lychee)
+          - Lighthouse audit (`/` and `/blog`)
+
+          Next actions:
+          - Corriger les erreurs de liens detectees
+          - Surveiller les scores Lighthouse et stabiliser > 90
+          - Prioriser CWV sur mobile
+          EOF
+
+      - name: Create maintenance issue
+        if: always()
+        uses: peter-evans/create-issue-from-file@v5
+        with:
+          title: "SEO Tech Maintenance - ${{ github.run_id }}"
+          content-filepath: seo-tech-maintenance-report.md
+          labels: |
+            seo
+            technical

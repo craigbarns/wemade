@@ -40,6 +40,22 @@ Un second agent genere un plan editorial SEO chaque semaine:
   - artefact `seo-weekly-content-plan.md`
   - issue GitHub hebdomadaire
 
+## Autopilot SEO avance
+
+Le repo inclut maintenant une automatisation SEO quasi complete:
+
+1. **Audit quotidien** (`seo-daily-agent.yml`)
+   - sante SEO page par page
+   - score + recommandations
+2. **Plan contenu hebdomadaire** (`seo-weekly-content-agent.yml`)
+   - 5 sujets business SEO / semaine
+3. **Generation de drafts en PR** (`seo-weekly-drafts-pr.yml`)
+   - genere des brouillons dans `automation/seo-drafts/`
+   - ouvre un Pull Request automatiquement
+4. **Maintenance technique hebdo** (`seo-tech-maintenance.yml`)
+   - build, controle liens, Lighthouse
+   - issue de suivi technique
+
 ## Variables utiles (workflow/script)
 
 - `SITE_URL` (defaut: `https://wemade.fr`)

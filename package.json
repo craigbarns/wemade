@@ -9,7 +9,8 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "seo:daily": "node scripts/seo-daily-audit.mjs",
-    "seo:weekly-content": "node scripts/seo-weekly-content.mjs"
+    "seo:weekly-content": "node scripts/seo-weekly-content.mjs",
+    "seo:drafts": "node scripts/seo-generate-drafts.mjs"
   },
   "dependencies": {
     "framer-motion": "^12.38.0",
