@@ -16,9 +16,10 @@ import {
   TimerReset,
   UserRound
 } from "lucide-react";
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Link, useParams } from "react-router-dom";
 import { BlogIndex, BlogPost } from "./Blog";
 import { content } from "./content";
+import { seoPages, seoPagesMap } from "./seoPages";
 import "./App.css";
 
 /* ===== Animation Variants ===== */
@@ -74,10 +75,57 @@ export default function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<MainSite />} />
+        <Route path="/:slug" element={<SeoLandingPage />} />
         <Route path="/blog" element={<BlogIndex />} />
         <Route path="/blog/:slug" element={<BlogPost />} />
       </Routes>
     </BrowserRouter>
+  );
+}
+
+function SeoLandingPage() {
+  const { slug } = useParams();
+  const page = seoPagesMap[slug || ""];
+
+  useEffect(() => {
+    if (!page) return;
+    document.title = page.title;
+    document.querySelector('meta[name="description"]')?.setAttribute("content", page.description);
+    let canonical = document.querySelector('link[rel="canonical"]');
+    if (!canonical) {
+      canonical = document.createElement("link");
+      canonical.rel = "canonical";
+      document.head.appendChild(canonical);
+    }
+    canonical.href = `https://wemade.fr/${page.slug}`;
+    window.scrollTo(0, 0);
+  }, [page]);
+
+  if (!page) return <MainSite />;
+
+  return (
+    <div style={{ minHeight: "100vh", background: "var(--bg-page)", color: "var(--slate-900)" }}>
+      <section className="container section" style={{ paddingTop: "7.5rem" }}>
+        <div className="section-label">Guide expert</div>
+        <h1 className="section-title">{page.h1}</h1>
+        <p className="section-description" style={{ maxWidth: "54rem" }}>{page.intro}</p>
+        <div className="faq-grid" style={{ marginTop: "1.5rem" }}>
+          {page.points.map((item) => (
+            <div key={item} className="faq-card">
+              <div className="faq-answer">{item}</div>
+            </div>
+          ))}
+        </div>
+        <div style={{ marginTop: "1.5rem", display: "flex", gap: "0.75rem", flexWrap: "wrap" }}>
+          <a href="/#contact" className="btn-primary">
+            Demander un audit gratuit <ArrowRight />
+          </a>
+          <a href="/blog" className="btn-secondary">
+            Lire les analyses <ChevronRight />
+          </a>
+        </div>
+      </section>
+    </div>
   );
 }
 
@@ -472,6 +520,27 @@ function MainSite() {
             ))}
           </div>
         </motion.div>
+      </section>
+
+      {/* ===== SEO LANDING PAGES ===== */}
+      <section className="container" style={{ paddingBottom: "5rem" }}>
+        <motion.div {...fadeUp}>
+          <div className="section-label">Pages expertes</div>
+          <h2 className="section-title">Guides SEO par besoin et par ville</h2>
+          <p className="section-description">
+            Ces pages répondent aux requêtes les plus recherchées pour maximiser votre visibilité Google.
+          </p>
+        </motion.div>
+        <div className="faq-grid" style={{ marginTop: "1.5rem" }}>
+          {seoPages.map((p) => (
+            <Link key={p.slug} to={`/${p.slug}`} style={{ textDecoration: "none", color: "inherit" }}>
+              <motion.div {...fadeUp} className="faq-card" style={{ height: "100%" }}>
+                <div className="faq-question">{p.h1}</div>
+                <div className="faq-answer">{p.description}</div>
+              </motion.div>
+            </Link>
+          ))}
+        </div>
       </section>
 
       {/* ===== FAQ ===== */}
