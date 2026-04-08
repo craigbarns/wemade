@@ -1,0 +1,38 @@
+name: Outbound Full Auto
+
+on:
+  schedule:
+    - cron: "30 6 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  outbound-daily:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run outbound full auto
+        run: npm run outbound:daily > outbound-report.md
+        env:
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          OUTREACH_FROM_EMAIL: ${{ secrets.OUTREACH_FROM_EMAIL }}
+          OUTREACH_DAILY_LIMIT: "20"
+          OUTREACH_DRY_RUN: "false"
+
+      - name: Upload outbound report
+        uses: actions/upload-artifact@v4
+        with:
+          name: outbound-daily-report
+          path: outbound-report.md

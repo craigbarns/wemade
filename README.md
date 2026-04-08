@@ -73,3 +73,33 @@ Pre-requis:
 1. Le secret GitHub `GSC_SERVICE_ACCOUNT_JSON` est configure.
 2. Le compte de service est ajoute comme proprietaire du site dans Search Console.
 3. La propriete utilisee est `sc-domain:wemade.fr` (modifiable via `GSC_SITE_URL`).
+
+## Agent Outbound Full Auto (prospects + emails)
+
+Le repo inclut un agent quotidien pour prospection et envoi email:
+
+- Script: `scripts/outbound-full-auto.mjs`
+- Commande: `npm run outbound:daily`
+- Workflow: `.github/workflows/outbound-full-auto.yml`
+- Frequence: tous les jours + lancement manuel
+
+Fichiers utilises:
+
+- Seed prospects: `automation/prospects-v1.csv`
+- Base leads vivante: `automation/prospects-master.csv`
+- Rapports: `automation/outbound-reports/outbound-YYYY-MM-DD.md`
+
+Secrets GitHub necessaires:
+
+- `RESEND_API_KEY`
+- `OUTREACH_FROM_EMAIL` (ex: `Gregory <contact@mail.wemade.fr>`)
+
+Variables de controle:
+
+- `OUTREACH_DAILY_LIMIT` (defaut 20)
+- `OUTREACH_DRY_RUN` (`false` pour envoi reel)
+
+Important:
+
+- Les leads sans `contact_email` sont ignores a l'envoi.
+- Ajouter les emails decisionnaires dans `automation/prospects-master.csv`.

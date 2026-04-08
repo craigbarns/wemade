@@ -10,7 +10,8 @@
     "preview": "vite preview",
     "seo:daily": "node scripts/seo-daily-audit.mjs",
     "seo:weekly-content": "node scripts/seo-weekly-content.mjs",
-    "seo:drafts": "node scripts/seo-generate-drafts.mjs"
+    "seo:drafts": "node scripts/seo-generate-drafts.mjs",
+    "outbound:daily": "node scripts/outbound-full-auto.mjs"
   },
   "dependencies": {
     "framer-motion": "^12.38.0",
