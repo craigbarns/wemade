@@ -69,6 +69,21 @@ export const content = {
       label: "Pour qui nous travaillons",
       title: "Pour les marques, importateurs et distributeurs qui veulent monter d'un niveau."
     },
+    brands_section: {
+      label: "Références",
+      title: "Marques accompagnées",
+      intro: "Nous avons accompagné des marques et groupes comme :",
+      items: [
+        "HARIBO",
+        "ZADIG ET VOLTAIRE",
+        "EKOI",
+        "SWEET PANTS",
+        "ELHEE",
+        "SIROKO",
+        "MAISON DAMSEL",
+        "FIDUCIAL"
+      ]
+    },
     faq_section: {
       label: "FAQ",
       title: "Questions fréquentes"
@@ -221,6 +236,21 @@ export const content = {
     clients_section: {
       label: "Who we work for",
       title: "For brands, importers, and distributors who want to level up."
+    },
+    brands_section: {
+      label: "References",
+      title: "Brands we have supported",
+      intro: "We have supported brands and groups such as:",
+      items: [
+        "HARIBO",
+        "ZADIG ET VOLTAIRE",
+        "EKOI",
+        "SWEET PANTS",
+        "ELHEE",
+        "SIROKO",
+        "MAISON DAMSEL",
+        "FIDUCIAL"
+      ]
     },
     faq_section: {
       label: "FAQ",

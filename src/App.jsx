@@ -461,6 +461,17 @@ function MainSite() {
             </div>
           </motion.div>
         </div>
+
+        <motion.div {...fadeUp} className="positioning-card" style={{ marginTop: "1.25rem" }}>
+          <div className="section-label">{t.brands_section.label}</div>
+          <h2 className="section-title">{t.brands_section.title}</h2>
+          <p className="section-description">{t.brands_section.intro}</p>
+          <div className="trust-grid">
+            {t.brands_section.items.map((brand) => (
+              <div key={brand} className="trust-item">{brand}</div>
+            ))}
+          </div>
+        </motion.div>
       </section>
 
       {/* ===== FAQ ===== */}
