@@ -180,7 +180,7 @@ async function sendWithResend({ to, subject, text }) {
     text,
   };
   if (REPLY_TO_EMAIL) {
-    payload.reply_to = REPLY_TO_EMAIL;
+    payload.reply_to = [REPLY_TO_EMAIL];
   }
 
   const resp = await fetch("https://api.resend.com/emails", {
