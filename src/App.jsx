@@ -22,6 +22,36 @@ import { content } from "./content";
 import { seoPages, seoPagesMap } from "./seoPages";
 import "./App.css";
 
+function ensureMeta(selector, attrName, attrValue) {
+  let node = document.querySelector(selector);
+  if (!node) {
+    node = document.createElement("meta");
+    node.setAttribute(attrName, attrValue);
+    document.head.appendChild(node);
+  }
+  return node;
+}
+
+function upsertSeoTags({ title, description, canonicalUrl }) {
+  document.title = title;
+  document.querySelector('meta[name="description"]')?.setAttribute("content", description);
+  document.querySelector('meta[name="title"]')?.setAttribute("content", title);
+
+  let canonical = document.querySelector('link[rel="canonical"]');
+  if (!canonical) {
+    canonical = document.createElement("link");
+    canonical.rel = "canonical";
+    document.head.appendChild(canonical);
+  }
+  canonical.href = canonicalUrl;
+
+  ensureMeta('meta[property="og:title"]', "property", "og:title").setAttribute("content", title);
+  ensureMeta('meta[property="og:description"]', "property", "og:description").setAttribute("content", description);
+  ensureMeta('meta[property="og:url"]', "property", "og:url").setAttribute("content", canonicalUrl);
+  ensureMeta('meta[property="twitter:title"]', "property", "twitter:title").setAttribute("content", title);
+  ensureMeta('meta[property="twitter:description"]', "property", "twitter:description").setAttribute("content", description);
+}
+
 /* ===== Animation Variants ===== */
 const fadeUp = {
   initial: { opacity: 0, y: 30 },
@@ -89,15 +119,11 @@ function SeoLandingPage() {
 
   useEffect(() => {
     if (!page) return;
-    document.title = page.title;
-    document.querySelector('meta[name="description"]')?.setAttribute("content", page.description);
-    let canonical = document.querySelector('link[rel="canonical"]');
-    if (!canonical) {
-      canonical = document.createElement("link");
-      canonical.rel = "canonical";
-      document.head.appendChild(canonical);
-    }
-    canonical.href = `https://wemade.fr/${page.slug}`;
+    upsertSeoTags({
+      title: page.title,
+      description: page.description,
+      canonicalUrl: `https://wemade.fr/${page.slug}`,
+    });
     window.scrollTo(0, 0);
   }, [page]);
 
@@ -146,23 +172,17 @@ function MainSite() {
   useEffect(() => {
     // Dynamic SEO / GEO updates
     document.documentElement.lang = lang;
-    
-    if (lang === "en") {
-      document.title = "WEMADE | Premium Sourcing (France / Europe / China)";
-      document.querySelector('meta[name="description"]')?.setAttribute("content", "WEMADE is a French premium sourcing company. With 15 years of experience, we support European brands with our local teams in Shanghai and Hangzhou. Buy better in China.");
-    } else {
-      document.title = "WEMADE | Sourcing Premium (France / Europe / China)";
-      document.querySelector('meta[name="description"]')?.setAttribute("content", "WEMADE est une société française de sourcing premium. Forts de 15 ans d'expérience, nous accompagnons les marques européennes avec nos équipes locales à Shanghai et Hangzhou.");
-    }
 
-    // Dynamic Canonical
-    let canonical = document.querySelector('link[rel="canonical"]');
-    if (!canonical) {
-      canonical = document.createElement("link");
-      canonical.rel = "canonical";
-      document.head.appendChild(canonical);
-    }
-    canonical.href = lang === "fr" ? "https://wemade.fr/" : "https://wemade.fr/?lang=en";
+    const isEn = lang === "en";
+    upsertSeoTags({
+      title: isEn
+        ? "WEMADE | Premium Sourcing (France / Europe / China)"
+        : "WEMADE | Sourcing Premium (France / Europe / Chine)",
+      description: isEn
+        ? "French sourcing company helping European brands secure factories, negotiate costs, and control quality in China with teams in Shanghai and Hangzhou."
+        : "Société française de sourcing premium : sélection d'usines, négociation des coûts, contrôle qualité et pilotage opérationnel en Chine pour les marques européennes.",
+      canonicalUrl: isEn ? "https://wemade.fr/?lang=en" : "https://wemade.fr/",
+    });
   }, [lang]);
 
   useEffect(() => {

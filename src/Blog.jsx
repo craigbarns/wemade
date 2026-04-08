@@ -2,6 +2,36 @@ import { useEffect } from "react";
 import { Link, useParams, useSearchParams } from "react-router-dom";
 import { ArrowLeft, Clock, Calendar } from "lucide-react";
 
+function ensureMeta(selector, attrName, attrValue) {
+  let node = document.querySelector(selector);
+  if (!node) {
+    node = document.createElement("meta");
+    node.setAttribute(attrName, attrValue);
+    document.head.appendChild(node);
+  }
+  return node;
+}
+
+function upsertSeoTags({ title, description, canonicalUrl }) {
+  document.title = title;
+  document.querySelector('meta[name="description"]')?.setAttribute("content", description);
+  document.querySelector('meta[name="title"]')?.setAttribute("content", title);
+
+  let canonical = document.querySelector('link[rel="canonical"]');
+  if (!canonical) {
+    canonical = document.createElement("link");
+    canonical.rel = "canonical";
+    document.head.appendChild(canonical);
+  }
+  canonical.href = canonicalUrl;
+
+  ensureMeta('meta[property="og:title"]', "property", "og:title").setAttribute("content", title);
+  ensureMeta('meta[property="og:description"]', "property", "og:description").setAttribute("content", description);
+  ensureMeta('meta[property="og:url"]', "property", "og:url").setAttribute("content", canonicalUrl);
+  ensureMeta('meta[property="twitter:title"]', "property", "twitter:title").setAttribute("content", title);
+  ensureMeta('meta[property="twitter:description"]', "property", "twitter:description").setAttribute("content", description);
+}
+
 export const blogsData = {
   fr: [
     {
@@ -24,6 +54,8 @@ export const blogsData = {
         <p>Une bonne usine ne dit pas "Oui" à tout. Elle challenge votre cahier des charges, propose des optimisations matérielles et anticipe les problèmes de production. WEMADE pilote cette communication pour s'assurer qu'aucun détail crucial n'est perdu dans la traduction.</p>
         
         <blockquote>Le sourcing ne s'arrête pas à trouver une ligne de production. Il s'agit de trouver un partenaire stratégique de long terme.</blockquote>
+        <h2>Liens utiles pour aller plus loin</h2>
+        <p>Consultez aussi nos ressources métier : <a href="/fournisseur-chine-fiable">trouver un fournisseur fiable</a>, <a href="/audit-usine-chine">audit usine en Chine</a>, et <a href="/controle-qualite-chine">contrôle qualité avant expédition</a>.</p>
       `
     },
     {
@@ -46,6 +78,8 @@ export const blogsData = {
         
         <h2>Sécuriser ses achats internationaux</h2>
         <p>Passer d'un simple agent à un véritable bureau d'achat comme WEMADE, c'est reprendre le contrôle total de sa supply chain en Chine, garantissant conformité, qualité et délais face à l'Europe.</p>
+        <h2>Pages clés à consulter</h2>
+        <p>Pour comparer les approches, lisez nos pages : <a href="/agent-sourcing-chine-france">agent sourcing Chine en France</a>, <a href="/import-chine-pme">import Chine PME</a> et <a href="/sourcing-chine-paris">sourcing Chine à Paris</a>.</p>
       `
     },
     {
@@ -69,6 +103,44 @@ export const blogsData = {
 
         <h2>4. Container Loading Monitoring (CLM)</h2>
         <p>Le dernier maillon de la chaîne : la supervision physique du chargement du container. Nous garantissons que le nombre de cartons est exact, que les produits sont manipulés avec soin et que scellé final (plomb) correspond aux documents douaniers.</p>
+        <h2>Compléments recommandés</h2>
+        <p>Approfondissez avec nos guides : <a href="/controle-qualite-chine">inspection qualité en Chine</a>, <a href="/import-emballage-chine">import emballage</a> et <a href="/sourcing-led-chine">sourcing LED</a>.</p>
+      `
+    },
+    {
+      slug: "how-to-find-factories-in-china",
+      title: "How to Find Factories in China: méthode terrain pour PME européennes",
+      description: "Guide opérationnel pour identifier des usines fiables en Chine : préqualification, audit terrain, tests qualité et négociation des conditions.",
+      date: "10 Avril 2026",
+      readTime: "6 min",
+      content: `
+        <h2>Pourquoi cette requête est stratégique</h2>
+        <p>La requête "how to find factories in china" est typique d'une intention d'achat concrète. Les entreprises qui la tapent veulent une méthode fiable, pas une simple liste de fournisseurs.</p>
+        <h2>Étape 1 : filtrer les usines avant contact</h2>
+        <p>Commencez par vérifier le type de société, l'ancienneté, les certifications, et la cohérence entre catalogue et capacité de production annoncée.</p>
+        <h2>Étape 2 : auditer la réalité opérationnelle</h2>
+        <p>Un audit usine évite les erreurs coûteuses. Il valide les équipements, la structure qualité, la traçabilité et la capacité à tenir vos délais.</p>
+        <h2>Étape 3 : négocier le coût complet</h2>
+        <p>Ne négociez pas uniquement le prix unitaire. Intégrez MOQ, qualité, délais, emballage, Incoterms et coûts logistiques pour un vrai coût rendu.</p>
+        <h2>Ressources WEMADE</h2>
+        <p>Pour sécuriser votre recherche : <a href="/fournisseur-chine-fiable">fournisseur fiable en Chine</a>, <a href="/audit-usine-chine">audit usine</a>, <a href="/agent-sourcing-chine-france">agent sourcing en France</a>.</p>
+      `
+    },
+    {
+      slug: "wemade-sourcing-france-china",
+      title: "WEMADE sourcing France / Chine : notre méthode pour sécuriser marge et qualité",
+      description: "Découvrez comment WEMADE structure le sourcing entre la France et la Chine pour les marques et importateurs : process, contrôle et exécution locale.",
+      date: "11 Avril 2026",
+      readTime: "5 min",
+      content: `
+        <h2>Un modèle conçu pour les décideurs européens</h2>
+        <p>WEMADE combine pilotage en France et exécution en Chine pour réduire les risques de sourcing, accélérer les décisions et fiabiliser les achats.</p>
+        <h2>Ce que nous sécurisons en priorité</h2>
+        <p>Nous cadrons les besoins, sélectionnons des usines pertinentes, négocions les conditions, puis contrôlons la qualité avant expédition.</p>
+        <h2>Résultat attendu</h2>
+        <p>Une meilleure visibilité coûts/délais/qualité, moins d'aléas opérationnels, et un meilleur contrôle de votre marge.</p>
+        <h2>Aller plus loin</h2>
+        <p>Consultez nos pages business : <a href="/import-chine-pme">import Chine PME</a>, <a href="/controle-qualite-chine">contrôle qualité Chine</a>, <a href="/sourcing-chine-marseille">sourcing Chine Marseille</a>.</p>
       `
     }
   ],
@@ -93,6 +165,8 @@ export const blogsData = {
         <p>A good factory doesn't say "Yes" to everything. They challenge your specifications, suggest material optimizations, and anticipate production issues. WEMADE leads this communication to ensure no crucial detail is lost in translation.</p>
         
         <blockquote>Sourcing doesn't stop at finding a production line. It's about finding a long-term strategic partner.</blockquote>
+        <h2>Useful links</h2>
+        <p>Explore our related resources: <a href="/fournisseur-chine-fiable">reliable China supplier guide</a>, <a href="/audit-usine-chine">factory audit</a>, and <a href="/controle-qualite-chine">quality control in China</a>.</p>
       `
     },
     {
@@ -115,6 +189,8 @@ export const blogsData = {
         
         <h2>Securing international purchases</h2>
         <p>Moving from a simple agent to a true buying office like WEMADE means taking full control of your supply chain in China, guaranteeing compliance, quality, and deadlines for Europe.</p>
+        <h2>Related pages</h2>
+        <p>Read more on <a href="/agent-sourcing-chine-france">China sourcing agent in France</a>, <a href="/import-chine-pme">China import for SMEs</a>, and <a href="/sourcing-chine-paris">China sourcing in Paris</a>.</p>
       `
     },
     {
@@ -138,6 +214,44 @@ export const blogsData = {
 
         <h2>4. Container Loading Monitoring (CLM)</h2>
         <p>The last link in the chain: physical supervision of container loading. We guarantee that the number of boxes is exact, that products are handled with care, and that the final seal (lead) matches customs documents.</p>
+        <h2>Recommended next reads</h2>
+        <p>See also <a href="/controle-qualite-chine">quality control in China</a>, <a href="/import-emballage-chine">packaging import</a>, and <a href="/sourcing-led-chine">LED sourcing</a>.</p>
+      `
+    },
+    {
+      slug: "how-to-find-factories-in-china",
+      title: "How to Find Factories in China (2026 Playbook for European SMEs)",
+      description: "Actionable framework to find reliable Chinese factories: filtering, on-site audits, quality validation, and total landed cost negotiation.",
+      date: "April 10, 2026",
+      readTime: "6 min",
+      content: `
+        <h2>Why this query matters</h2>
+        <p>The query "how to find factories in china" reflects high commercial intent. Buyers are looking for a reliable process, not random supplier lists.</p>
+        <h2>Step 1: pre-qualify before contacting</h2>
+        <p>Check company type, age, certifications, and whether the product portfolio matches actual manufacturing capability.</p>
+        <h2>Step 2: validate on-site operations</h2>
+        <p>An on-site factory audit confirms machinery, QA system, traceability, and operational discipline before financial commitment.</p>
+        <h2>Step 3: negotiate total landed cost</h2>
+        <p>Negotiate beyond unit price: MOQs, quality thresholds, lead times, packaging, Incoterms, and logistics costs.</p>
+        <h2>WEMADE resources</h2>
+        <p>Start with <a href="/fournisseur-chine-fiable">reliable supplier framework</a>, <a href="/audit-usine-chine">factory audit guide</a>, and <a href="/agent-sourcing-chine-france">China sourcing agent criteria</a>.</p>
+      `
+    },
+    {
+      slug: "wemade-sourcing-france-china",
+      title: "WEMADE France / China sourcing model: secure margin and quality",
+      description: "How WEMADE structures sourcing between France and China for brands and importers: qualification, negotiation, quality control, and execution.",
+      date: "April 11, 2026",
+      readTime: "5 min",
+      content: `
+        <h2>A model built for European decision-makers</h2>
+        <p>WEMADE combines European management and China execution to reduce sourcing risk, speed up decisions, and improve buying reliability.</p>
+        <h2>What we secure first</h2>
+        <p>We define specs, shortlist relevant factories, negotiate core terms, then enforce quality checks before shipment.</p>
+        <h2>Expected outcome</h2>
+        <p>Better visibility on costs, lead times, and quality, with fewer operational surprises and stronger margins.</p>
+        <h2>Business pages</h2>
+        <p>See <a href="/import-chine-pme">China import for SMEs</a>, <a href="/controle-qualite-chine">quality control in China</a>, and <a href="/sourcing-chine-marseille">China sourcing Marseille</a>.</p>
       `
     }
   ]
@@ -149,20 +263,12 @@ export function BlogIndex() {
   const blogs = blogsData[lang];
 
   useEffect(() => {
-    document.title = lang === "fr" ? "WEMADE | Le Blog Sourcing Europe / Chine" : "WEMADE | Sourcing Europe / China Blog";
-    const desc = lang === "fr" 
+    const title = lang === "fr" ? "WEMADE | Blog sourcing Europe / Chine" : "WEMADE | Sourcing Europe / China Blog";
+    const desc = lang === "fr"
       ? "Articles et analyses exclusifs de WEMADE sur le sourcing, l'import et l'industrie en Chine face au marché européen."
       : "Exclusive insights from WEMADE on sourcing, importing, and industry in China for the European market.";
-    document.querySelector('meta[name="description"]')?.setAttribute("content", desc);
-    
-    // Dynamic Canonical
-    let canonical = document.querySelector('link[rel="canonical"]');
-    if (!canonical) {
-      canonical = document.createElement("link");
-      canonical.rel = "canonical";
-      document.head.appendChild(canonical);
-    }
-    canonical.href = lang === "fr" ? "https://wemade.fr/blog" : "https://wemade.fr/blog?lang=en";
+    const canonicalUrl = lang === "fr" ? "https://wemade.fr/blog" : "https://wemade.fr/blog?lang=en";
+    upsertSeoTags({ title, description: desc, canonicalUrl });
 
     window.scrollTo(0, 0);
   }, [lang]);
@@ -215,20 +321,15 @@ export function BlogPost() {
 
   useEffect(() => {
     if (post) {
-      document.title = post.title + " | WEMADE";
-      document.querySelector('meta[name="description"]')?.setAttribute("content", post.description);
-      window.scrollTo(0, 0);
-
-      // Dynamic Canonical
-      let canonical = document.querySelector('link[rel="canonical"]');
-      if (!canonical) {
-        canonical = document.createElement("link");
-        canonical.rel = "canonical";
-        document.head.appendChild(canonical);
-      }
-      canonical.href = lang === "fr" 
-        ? `https://wemade.fr/blog/${slug}` 
+      const canonicalUrl = lang === "fr"
+        ? `https://wemade.fr/blog/${slug}`
         : `https://wemade.fr/blog/${slug}?lang=en`;
+      upsertSeoTags({
+        title: `${post.title} | WEMADE`,
+        description: post.description,
+        canonicalUrl,
+      });
+      window.scrollTo(0, 0);
 
       // Inject dynamically JSON-LD for the Article logic (GEO focus)
       let ldJson = document.getElementById("json-ld-article");
@@ -255,7 +356,7 @@ export function BlogPost() {
         "datePublished": "2025-10-01",
         "mainEntityOfPage": {
           "@type": "WebPage",
-          "@id": `https://wemade.fr/blog/${slug}?lang=${lang}`
+          "@id": canonicalUrl
         }
       });
     }
