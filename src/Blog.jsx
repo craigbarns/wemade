@@ -122,6 +122,15 @@ export const blogsData = {
         <p>Un audit usine évite les erreurs coûteuses. Il valide les équipements, la structure qualité, la traçabilité et la capacité à tenir vos délais.</p>
         <h2>Étape 3 : négocier le coût complet</h2>
         <p>Ne négociez pas uniquement le prix unitaire. Intégrez MOQ, qualité, délais, emballage, Incoterms et coûts logistiques pour un vrai coût rendu.</p>
+        <h2>Preuve terrain WEMADE</h2>
+        <p>Nos équipes basées à Shanghai et Hangzhou réalisent les vérifications opérationnelles directement sur place. Vous avancez avec des données concrètes, pas des promesses commerciales.</p>
+        <ul>
+          <li>Vérification documentaire fournisseur</li>
+          <li>Audit capacité + process qualité</li>
+          <li>Plan d'action achat sur 30 jours</li>
+        </ul>
+        <h2>CTA: sécurisez votre projet en 20 minutes</h2>
+        <p>Réservez un échange rapide et repartez avec une feuille de route claire : <a href="/#contact">demander un audit import gratuit</a>.</p>
         <h2>Ressources WEMADE</h2>
         <p>Pour sécuriser votre recherche : <a href="/fournisseur-chine-fiable">fournisseur fiable en Chine</a>, <a href="/audit-usine-chine">audit usine</a>, <a href="/agent-sourcing-chine-france">agent sourcing en France</a>.</p>
       `
@@ -139,6 +148,14 @@ export const blogsData = {
         <p>Nous cadrons les besoins, sélectionnons des usines pertinentes, négocions les conditions, puis contrôlons la qualité avant expédition.</p>
         <h2>Résultat attendu</h2>
         <p>Une meilleure visibilité coûts/délais/qualité, moins d'aléas opérationnels, et un meilleur contrôle de votre marge.</p>
+        <h2>Pourquoi les décideurs passent par WEMADE</h2>
+        <ul>
+          <li>Interlocuteur business en France</li>
+          <li>Exécution locale en Chine (Shanghai / Hangzhou)</li>
+          <li>Contrôle qualité avant paiement final</li>
+        </ul>
+        <h2>CTA: activez votre plan sourcing</h2>
+        <p>Vous pouvez lancer une première mission dès cette semaine via <a href="/#contact">notre formulaire de contact</a>.</p>
         <h2>Aller plus loin</h2>
         <p>Consultez nos pages business : <a href="/import-chine-pme">import Chine PME</a>, <a href="/controle-qualite-chine">contrôle qualité Chine</a>, <a href="/sourcing-chine-marseille">sourcing Chine Marseille</a>.</p>
       `
@@ -233,6 +250,15 @@ export const blogsData = {
         <p>An on-site factory audit confirms machinery, QA system, traceability, and operational discipline before financial commitment.</p>
         <h2>Step 3: negotiate total landed cost</h2>
         <p>Negotiate beyond unit price: MOQs, quality thresholds, lead times, packaging, Incoterms, and logistics costs.</p>
+        <h2>WEMADE field proof</h2>
+        <p>Our Shanghai and Hangzhou teams run on-site checks, so decisions are based on operational facts rather than supplier promises.</p>
+        <ul>
+          <li>Supplier documentation validation</li>
+          <li>Capacity and QA audit</li>
+          <li>30-day sourcing action plan</li>
+        </ul>
+        <h2>CTA: get a fast sourcing review</h2>
+        <p>Book a short call and leave with a concrete roadmap: <a href="/#contact">request a free import audit</a>.</p>
         <h2>WEMADE resources</h2>
         <p>Start with <a href="/fournisseur-chine-fiable">reliable supplier framework</a>, <a href="/audit-usine-chine">factory audit guide</a>, and <a href="/agent-sourcing-chine-france">China sourcing agent criteria</a>.</p>
       `
@@ -250,6 +276,14 @@ export const blogsData = {
         <p>We define specs, shortlist relevant factories, negotiate core terms, then enforce quality checks before shipment.</p>
         <h2>Expected outcome</h2>
         <p>Better visibility on costs, lead times, and quality, with fewer operational surprises and stronger margins.</p>
+        <h2>Why decision-makers choose WEMADE</h2>
+        <ul>
+          <li>Business management from France</li>
+          <li>Local execution in China (Shanghai / Hangzhou)</li>
+          <li>Quality control before final payment</li>
+        </ul>
+        <h2>CTA: launch your sourcing plan</h2>
+        <p>You can start this week through <a href="/#contact">our contact form</a>.</p>
         <h2>Business pages</h2>
         <p>See <a href="/import-chine-pme">China import for SMEs</a>, <a href="/controle-qualite-chine">quality control in China</a>, and <a href="/sourcing-chine-marseille">China sourcing Marseille</a>.</p>
       `
@@ -396,6 +430,19 @@ export function BlogPost() {
           style={{ fontSize: "1.125rem", lineHeight: 1.8, color: "var(--slate-800)" }}
           dangerouslySetInnerHTML={{ __html: post.content }} 
         />
+        <div style={{ marginTop: "2rem", padding: "1.25rem", borderRadius: "0.9rem", background: "#fff", border: "1px solid var(--slate-200)" }}>
+          <h2 style={{ fontSize: "1.35rem", marginBottom: "0.75rem", color: "#111" }}>
+            {lang === "fr" ? "Prêt à sécuriser vos achats en Chine ?" : "Ready to secure your China sourcing?"}
+          </h2>
+          <p style={{ marginBottom: "1rem", color: "var(--slate-700)" }}>
+            {lang === "fr"
+              ? "Parlez-nous de votre besoin en 2 minutes, nous revenons avec un plan clair."
+              : "Tell us your sourcing need in 2 minutes and we will come back with a clear plan."}
+          </p>
+          <a href={`/#contact${lang === "en" ? "?lang=en" : ""}`} className="btn-primary">
+            {lang === "fr" ? "Demander un audit gratuit" : "Request a free audit"}
+          </a>
+        </div>
       </article>
 
       <style>{`
@@ -404,6 +451,7 @@ export function BlogPost() {
         .blog-content blockquote { padding-left: 1.5rem; border-left: 4px solid var(--accent-500); font-style: italic; color: var(--slate-600); margin: 2rem 0; font-size: 1.25rem; }
         .blog-content ol { padding-left: 1.5rem; margin-bottom: 1.5rem; }
         .blog-content li { margin-bottom: 0.5rem; }
+        .blog-content ul { padding-left: 1.5rem; margin-bottom: 1.5rem; }
       `}</style>
     </div>
   );
