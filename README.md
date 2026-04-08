@@ -61,3 +61,15 @@ Le repo inclut maintenant une automatisation SEO quasi complete:
 - `SITE_URL` (defaut: `https://wemade.fr`)
 - `SITEMAP_URL` (defaut: `https://wemade.fr/sitemap.xml`)
 - `MAX_URLS` (defaut: `100`)
+- `GSC_SERVICE_ACCOUNT_JSON` (GitHub Secret requis pour connecter Search Console)
+- `GSC_SITE_URL` (defaut recommande: `sc-domain:wemade.fr`)
+
+## Branchement Search Console
+
+Les workflows `seo-daily-agent.yml` et `seo-weekly-content-agent.yml` consomment maintenant les donnees Google Search Console.
+
+Pre-requis:
+
+1. Le secret GitHub `GSC_SERVICE_ACCOUNT_JSON` est configure.
+2. Le compte de service est ajoute comme proprietaire du site dans Search Console.
+3. La propriete utilisee est `sc-domain:wemade.fr` (modifiable via `GSC_SITE_URL`).

@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { google } from "googleapis";
 
 /**
  * SEO Daily Agent Audit
@@ -11,6 +12,47 @@
 const SITE_URL = process.env.SITE_URL || "https://wemade.fr";
 const SITEMAP_URL = process.env.SITEMAP_URL || `${SITE_URL}/sitemap.xml`;
 const MAX_URLS = Number.parseInt(process.env.MAX_URLS || "100", 10);
+const GSC_SITE_URL = process.env.GSC_SITE_URL || "sc-domain:wemade.fr";
+
+function parseServiceAccountFromEnv() {
+  const raw = process.env.GSC_SERVICE_ACCOUNT_JSON;
+  if (!raw) return null;
+  try {
+    return JSON.parse(raw);
+  } catch {
+    return null;
+  }
+}
+
+async function getGscTopQueries({ siteUrl, serviceAccount, limit = 15 }) {
+  if (!serviceAccount) return { rows: [], error: "Secret GSC_SERVICE_ACCOUNT_JSON absent ou invalide." };
+  try {
+    const auth = new google.auth.JWT({
+      email: serviceAccount.client_email,
+      key: serviceAccount.private_key,
+      scopes: ["https://www.googleapis.com/auth/webmasters.readonly"],
+    });
+    const webmasters = google.webmasters({ version: "v3", auth });
+    const end = new Date();
+    const start = new Date();
+    start.setDate(end.getDate() - 28);
+    const toIso = (d) => d.toISOString().slice(0, 10);
+
+    const resp = await webmasters.searchanalytics.query({
+      siteUrl,
+      requestBody: {
+        startDate: toIso(start),
+        endDate: toIso(end),
+        dimensions: ["query"],
+        rowLimit: limit,
+      },
+    });
+
+    return { rows: resp.data.rows || [], error: null };
+  } catch (error) {
+    return { rows: [], error: error.message };
+  }
+}
 
 function extractLocsFromSitemap(xml) {
   const matches = [...xml.matchAll(/<loc>(.*?)<\/loc>/gim)];
@@ -151,6 +193,8 @@ async function run() {
   const avgScore = Math.round(withScore.reduce((acc, p) => acc + p.score, 0) / withScore.length);
   const broken = withScore.filter((p) => p.status >= 400 || p.status === 0);
   const lowScore = withScore.filter((p) => p.score < 80);
+  const serviceAccount = parseServiceAccountFromEnv();
+  const gsc = await getGscTopQueries({ siteUrl: GSC_SITE_URL, serviceAccount, limit: 15 });
 
   const lines = [];
   lines.push(`# Rapport SEO quotidien - ${now}`);
@@ -161,6 +205,24 @@ async function run() {
   lines.push(`- Score SEO moyen: **${avgScore}/100**`);
   lines.push(`- Pages en erreur HTTP: **${broken.length}**`);
   lines.push(`- Pages sous 80/100: **${lowScore.length}**`);
+  lines.push(`- Propriete GSC cible: \`${GSC_SITE_URL}\``);
+  lines.push("");
+
+  lines.push("## Top requetes Search Console (28 jours)");
+  lines.push("");
+  if (gsc.error) {
+    lines.push(`- Impossible de recuperer les donnees GSC: ${gsc.error}`);
+  } else if (!gsc.rows.length) {
+    lines.push("- Aucune requete retournee.");
+  } else {
+    lines.push("| Requete | Clics | Impressions | CTR | Position |");
+    lines.push("|---|---:|---:|---:|---:|");
+    for (const r of gsc.rows) {
+      const q = r.keys?.[0] || "(n/a)";
+      const ctr = `${((r.ctr || 0) * 100).toFixed(2)}%`;
+      lines.push(`| ${q} | ${Math.round(r.clicks || 0)} | ${Math.round(r.impressions || 0)} | ${ctr} | ${(r.position || 0).toFixed(2)} |`);
+    }
+  }
   lines.push("");
 
   if (broken.length) {
@@ -190,7 +252,7 @@ async function run() {
   lines.push("## JSON brut (pour exploitation)");
   lines.push("");
   lines.push("```json");
-  lines.push(JSON.stringify(withScore, null, 2));
+  lines.push(JSON.stringify({ pages: withScore, gscTopQueries: gsc.rows, gscError: gsc.error }, null, 2));
   lines.push("```");
   lines.push("");
   lines.push(`_Genere en ${Date.now() - start} ms._`);

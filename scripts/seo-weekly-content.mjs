@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { google } from "googleapis";
 
 /**
  * SEO Weekly Content Agent
@@ -12,6 +13,7 @@
 
 const BRAND = "WEMADE";
 const SITE = "https://wemade.fr";
+const GSC_SITE_URL = process.env.GSC_SITE_URL || "sc-domain:wemade.fr";
 
 const TOPICS = [
   {
@@ -76,14 +78,75 @@ const TOPICS = [
   },
 ];
 
-function run() {
+function parseServiceAccountFromEnv() {
+  const raw = process.env.GSC_SERVICE_ACCOUNT_JSON;
+  if (!raw) return null;
+  try {
+    return JSON.parse(raw);
+  } catch {
+    return null;
+  }
+}
+
+async function getGscQueries(serviceAccount, siteUrl, limit = 20) {
+  if (!serviceAccount) return { rows: [], error: "Secret GSC_SERVICE_ACCOUNT_JSON absent ou invalide." };
+  try {
+    const auth = new google.auth.JWT({
+      email: serviceAccount.client_email,
+      key: serviceAccount.private_key,
+      scopes: ["https://www.googleapis.com/auth/webmasters.readonly"],
+    });
+    const webmasters = google.webmasters({ version: "v3", auth });
+    const end = new Date();
+    const start = new Date();
+    start.setDate(end.getDate() - 28);
+    const toIso = (d) => d.toISOString().slice(0, 10);
+
+    const resp = await webmasters.searchanalytics.query({
+      siteUrl,
+      requestBody: {
+        startDate: toIso(start),
+        endDate: toIso(end),
+        dimensions: ["query"],
+        rowLimit: limit,
+      },
+    });
+    return { rows: resp.data.rows || [], error: null };
+  } catch (error) {
+    return { rows: [], error: error.message };
+  }
+}
+
+async function run() {
   const now = new Date().toISOString();
+  const serviceAccount = parseServiceAccountFromEnv();
+  const gsc = await getGscQueries(serviceAccount, GSC_SITE_URL, 20);
+  const opportunities = gsc.rows
+    .filter((r) => (r.impressions || 0) > 100 && (r.position || 0) > 8 && (r.position || 0) < 30)
+    .slice(0, 10);
+
   const lines = [];
   lines.push(`# SEO Weekly Content Plan - ${now}`);
   lines.push("");
   lines.push(`- Marque: ${BRAND}`);
   lines.push(`- Site: ${SITE}`);
   lines.push(`- Objectif: produire 5 contenus SEO a forte intention business cette semaine.`);
+  lines.push(`- Propriete GSC cible: \`${GSC_SITE_URL}\``);
+  lines.push("");
+
+  lines.push("## Opportunites Search Console (positions 8-30)");
+  lines.push("");
+  if (gsc.error) {
+    lines.push(`- Impossible de recuperer les donnees GSC: ${gsc.error}`);
+  } else if (!opportunities.length) {
+    lines.push("- Pas d'opportunites detectees sur ce critere cette semaine.");
+  } else {
+    lines.push("| Requete | Clics | Impressions | Position |");
+    lines.push("|---|---:|---:|---:|");
+    opportunities.forEach((r) => {
+      lines.push(`| ${r.keys?.[0] || "(n/a)"} | ${Math.round(r.clicks || 0)} | ${Math.round(r.impressions || 0)} | ${(r.position || 0).toFixed(2)} |`);
+    });
+  }
   lines.push("");
   lines.push("## Plan editorial (5 contenus)");
   lines.push("");
@@ -116,4 +179,7 @@ function run() {
   process.stdout.write(lines.join("\n"));
 }
 
-run();
+run().catch((error) => {
+  console.error(error);
+  process.exit(1);
+});
