@@ -78,7 +78,7 @@ export const content = {
         "ZADIG ET VOLTAIRE",
         "EKOI",
         "SWEET PANTS",
-        "ELHEE",
+        "ELEHEE",
         "SIROKO",
         "MAISON DAMSEL",
         "FIDUCIAL"
@@ -246,7 +246,7 @@ export const content = {
         "ZADIG ET VOLTAIRE",
         "EKOI",
         "SWEET PANTS",
-        "ELHEE",
+        "ELEHEE",
         "SIROKO",
         "MAISON DAMSEL",
         "FIDUCIAL"
