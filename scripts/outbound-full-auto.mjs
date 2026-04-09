@@ -21,6 +21,7 @@ const FROM_EMAIL = process.env.OUTREACH_FROM_EMAIL || "";
 const REPLY_TO_EMAIL = process.env.OUTREACH_REPLY_TO || "";
 const RESEND_API_KEY = process.env.RESEND_API_KEY || "";
 const DRY_RUN = (process.env.OUTREACH_DRY_RUN || "true").toLowerCase() !== "false";
+const OUTREACH_ONLY_NEW = (process.env.OUTREACH_ONLY_NEW || "true").toLowerCase() !== "false";
 
 function ensureDir(dir) {
   if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
@@ -92,9 +93,33 @@ function daysSince(isoDate) {
   return Math.floor((now.getTime() - past.getTime()) / (1000 * 60 * 60 * 24));
 }
 
+function detectLanguage(lead) {
+  const explicit = (lead.preferred_language || "").trim().toLowerCase();
+  if (explicit === "fr" || explicit === "en") return explicit;
+
+  const website = (lead.website || "").toLowerCase();
+  if (website.includes(".fr")) return "fr";
+
+  const region = (lead.region || "").toLowerCase();
+  if (region === "us") return "en";
+
+  const persona = (lead.target_persona || "").toLowerCase();
+  const frenchSignals = [
+    "directeur",
+    "responsable",
+    "achats",
+    "operations",
+    "industrielle",
+    "commercial",
+  ];
+  if (frenchSignals.some((token) => persona.includes(token))) return "fr";
+
+  return "en";
+}
+
 function pickTemplate(lead, stage) {
   const firstName = (lead.contact_name || "").split(" ")[0] || "Bonjour";
-  const isFrench = !(lead.target_persona || "").toLowerCase().includes("head");
+  const isFrench = detectLanguage(lead) === "fr";
   const callToActionFr = "Seriez-vous disponible pour un échange de 20 minutes cette semaine ?";
   const callToActionEn = "Would you be open to a 20-minute call this week?";
   const subject =
@@ -237,6 +262,8 @@ async function run() {
       lead_id: leadId,
       company: seed.company || "",
       website: seed.website || "",
+      region: (existing && existing.region) || seed.region || "",
+      preferred_language: (existing && existing.preferred_language) || seed.preferred_language || "",
       segment: seed.segment || "",
       target_persona: seed.target_persona || "",
       offer_angle: seed.offer_angle || "",
@@ -258,8 +285,8 @@ async function run() {
   const allLeads = [...byId.values()].sort((a, b) => (a.priority < b.priority ? 1 : -1));
   const candidates = allLeads
     .filter((l) => l.contact_email)
-    .filter((l) => ["to_contact", "j0_sent"].includes(l.status))
-    .filter((l) => (l.status === "j0_sent" ? daysSince(l.last_contacted_at) >= 3 : true))
+    .filter((l) => (OUTREACH_ONLY_NEW ? l.status === "to_contact" : ["to_contact", "j0_sent"].includes(l.status)))
+    .filter((l) => (OUTREACH_ONLY_NEW ? true : (l.status === "j0_sent" ? daysSince(l.last_contacted_at) >= 3 : true)))
     .slice(0, DAILY_LIMIT);
 
   const sent = [];
@@ -300,6 +327,8 @@ async function run() {
     "lead_id",
     "company",
     "website",
+    "region",
+    "preferred_language",
     "segment",
     "target_persona",
     "offer_angle",
@@ -323,6 +352,7 @@ async function run() {
   lines.push("");
   lines.push(`- Dry run: ${DRY_RUN ? "yes" : "no"}`);
   lines.push(`- Seed files: ${existingSeedFiles.map((p) => path.basename(p)).join(", ")}`);
+  lines.push(`- Only new prospects: ${OUTREACH_ONLY_NEW ? "yes" : "no"}`);
   lines.push(`- Daily limit: ${DAILY_LIMIT}`);
   lines.push(`- Leads in master: ${allLeads.length}`);
   lines.push(`- Leads without email: ${skippedMissingEmail}`);

@@ -31,6 +31,7 @@ jobs:
           OUTREACH_REPLY_TO: ${{ secrets.OUTREACH_REPLY_TO }}
           OUTREACH_DAILY_LIMIT: "50"
           OUTREACH_DRY_RUN: "false"
+          OUTREACH_ONLY_NEW: "true"
 
       - name: Upload outbound report
         uses: actions/upload-artifact@v4

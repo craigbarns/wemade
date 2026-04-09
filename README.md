@@ -100,6 +100,7 @@ Variables de controle:
 - `OUTREACH_DAILY_LIMIT` (defaut 50)
 - `OUTREACH_DRY_RUN` (`false` pour envoi reel)
 - `OUTREACH_SEED_FILES` (ex: `prospects-v1.csv,prospects-eu-us-v2.csv`)
+- `OUTREACH_ONLY_NEW` (`true` pour envoyer uniquement aux nouveaux prospects)
 
 Important:
 
