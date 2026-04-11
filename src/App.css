@@ -1353,3 +1353,30 @@
 .seo-related-list a:hover {
   color: #8b6914;
 }
+
+/* SEO pillar — long-form */
+.seo-deep-content {
+  font-size: 1.0625rem;
+  line-height: 1.82;
+  color: var(--slate-800);
+}
+
+.seo-deep-block {
+  margin-bottom: 2.25rem;
+}
+
+.seo-deep-block h2 {
+  font-size: clamp(1.35rem, 2.5vw, 1.65rem);
+  font-weight: 700;
+  color: var(--slate-900);
+  margin-bottom: 1rem;
+  line-height: 1.3;
+}
+
+.seo-deep-block p {
+  margin: 0 0 1rem;
+}
+
+.seo-deep-block p:last-child {
+  margin-bottom: 0;
+}

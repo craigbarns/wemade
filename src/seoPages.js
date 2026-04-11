@@ -7,19 +7,106 @@ export const seoPages = [
   /* --- Pilier : agent sourcing --- */
   {
     slug: "agent-sourcing-chine-france",
-    title: "Agent sourcing Chine en France : comment choisir ? | WEMADE",
+    title: "Agent sourcing Chine en France : guide complet 2026 | WEMADE",
     description:
-      "Guide pour choisir un agent sourcing Chine en France : critères, risques, modèle de rémunération et garanties. Interlocuteur FR, exécution Shanghai / Hangzhou.",
-    h1: "Agent sourcing Chine en France : les critères clés",
+      "Comment choisir un agent sourcing Chine en France : critères, contrat, rémunération, qualité, risques. Guide long avec checklist, FAQ et méthode WEMADE (France + Shanghai / Hangzhou).",
+    h1: "Agent sourcing Chine en France : guide complet pour décider sans vous tromper",
     intro:
-      "Tous les agents ne se valent pas. Pour éviter les mauvaises surprises, il faut vérifier la transparence, la présence terrain et la capacité d'exécution jusqu'à l'expédition.",
+      "Un bon agent ne se limite pas à transmettre des devis : il structure votre sourcing, sécurise la qualité et rend visibles les coûts réels. Ce guide détaille ce qu'il faut exiger avant de signer — et comment aligner intérêts, risques et exécution terrain.",
     points: [
       "Modèle de rémunération clair (pas de commissions cachées avec l'usine)",
       "Présence opérationnelle en Chine (contrôles, inspections, arbitrages)",
       "Process qualité documenté et reporting exploitable",
       "Responsabilité contractuelle explicite côté Europe et exécution locale",
     ],
+    deepSections: [
+      {
+        h2: "Qu'est-ce qu'un agent de sourcing Chine (et ce qu'il n'est pas) ?",
+        paragraphs: [
+          "Un agent de sourcing agit comme prolongement de votre équipe achats : il identifie des usines pertinentes, qualifie la capacité réelle, pilote les échanges techniques et commerciaux, et souvent coordonne les étapes jusqu'à l'expédition. Il n'est ni un simple traducteur, ni un catalogue de contacts : son rôle est opérationnel.",
+          "En pratique, la valeur se joue sur trois niveaux : la qualité de la short-list (éviter trading companies mal identifiées ou usines sous-dimensionnées), la qualité de la négociation (prix mais aussi MOQ, Incoterms, délais, pénalités, emballage) et la capacité à faire respecter le cahier des charges jusqu'au contrôle avant paiement final.",
+          "Si votre « agent » ne peut pas expliquer comment il tranche en cas d'écart qualité, ou comment il est rémunéré par rapport à l'usine, vous n'avez probablement pas un partenaire de sourcing — vous avez un apporteur d'affaires.",
+        ],
+      },
+      {
+        h2: "Pourquoi passer par un interlocuteur en France pour la Chine ?",
+        paragraphs: [
+          "La France et l'Europe imposent une lecture business précise : conformité produit, responsabilité, assurance, cash-flow et relation avec la direction. Un interlocuteur local facilite le cadrage du besoin, la contractualisation et le suivi de projet avec le bon niveau d'exigence.",
+          "Mais un bureau « France only » sans exécution en Chine manque souvent de pression opérationnelle au bon moment : sur la ligne, lors des ajustements de série, ou au chargement. Le modèle le plus robuste combine pilotage européen et présence terrain en Chine — c'est exactement la logique WEMADE entre Marseille et les hubs Shanghai / Hangzhou.",
+        ],
+      },
+      {
+        h2: "Les 7 critères non négociables avant de choisir votre agent",
+        paragraphs: [
+          "1) Transparence économique : honoraires et frais doivent être identifiables ; le prix négocié avec l'usine doit être traçable. 2) Preuve de présence terrain : visites, inspections, photos/vidéos, comptes rendus datés. 3) Méthode qualité : quand inspecter (amont, ligne, final), selon quels critères, avec quel standard d'acceptation.",
+          "4) Gouvernance : qui décide en cas de litige technique, qui porte la relation contractuelle avec l'usine. 5) Compétences produit : votre catégorie (packaging, textile, électronique, etc.) nécessite des réflexes différents. 6) Références vérifiables sur des dossiers comparables en volumes et en complexité. 7) Plan de continuité : alternative fournisseur ou scénario de reprise si l'usine dérape.",
+          "Pour une checklist imprimable et des questions à poser en réunion, utilisez notre article dédié : checklist agent sourcing (lien en bas de page).",
+        ],
+      },
+      {
+        h2: "Commission cachée, marge usine et conflit d'intérêts",
+        paragraphs: [
+          "Le cas le plus fréquent de dérapage n'est pas « une mauvaise usine », c'est un modèle où l'agent est rémunéré par l'usine sans transparence. Résultat : l'agent peut être incité à pousser un fournisseur qui paie mieux la commission, pas celui qui offre le meilleur rapport qualité / coût / délai pour vous.",
+          "La règle simple : toute rémunération liée à l'usine doit être connue et contractualisée, ou exclue. Sinon, vous optimisez un indicateur (prix affiché) au détriment du coût réel et de la sécurité qualité. Notre page « transparence sourcing Chine » détaille comment lire un devis et isoler les postes de coût.",
+        ],
+      },
+      {
+        h2: "Qualité : le rôle de l'agent jusqu'à l'inspection finale",
+        paragraphs: [
+          "Le sourcing sans contrôle qualité structuré est une loterie. Un agent utile définit avec vous les critères d'acceptation avant production, aligne l'usine sur un golden sample clair, programme des points de contrôle et tranche sur la base de preuves (rapport, photos, mesures), idéalement selon une logique d'échantillonnage type AQL lorsque c'est pertinent.",
+          "L'enjeu n'est pas seulement « passer une inspection », c'est éviter que des écarts massifs arrivent à l'arrivée en Europe, où les options de correction sont chères ou impossibles. Pour la méthode complète, voir notre guide contrôle qualité Chine et la page AQL.",
+        ],
+      },
+      {
+        h2: "Contrat et responsabilité : ce qui doit figurer noir sur blanc",
+        paragraphs: [
+          "Même avec un bon feeling, sans cadre écrit vous déplacez le risque sur votre trésorerie. Le minimum : périmètre de mission, livrables (short-list, rapports, planning), modalités de rémunération, confidentialité, propriété intellectuelle / outillage si applicable, et procédure en cas de non-conformité.",
+          "Si l'agent refuse la transparence sur les lignes de coût ou sur son lien contractuel avec l'usine, considérez cela comme un signal d'alarme — pas comme une « coutume locale ».",
+        ],
+      },
+      {
+        h2: "Les erreurs qui coûtent cher (et comment les éviter)",
+        paragraphs: [
+          "Erreur n°1 : choisir uniquement sur le prix du service sans modéliser le coût rendu. Erreur n°2 : valider une production sans inspection finale alignée sur vos critères. Erreur n°3 : mélanger audit usine et négociation commerciale sans chronologie claire. Erreur n°4 : sous-estimer délais d'échantillons, tooling et pics de production.",
+          "La bonne approche est itérative : cadrage serré, préqualification, échantillon, petit lot ou pilote si possible, puis montée en cadence avec jalons qualité. Voir aussi notre guide sourcing Chine PME pour une vue d'ensemble budget et risques.",
+        ],
+      },
+      {
+        h2: "Feuille de route type sur 30 jours avec un agent structuré",
+        paragraphs: [
+          "Semaine 1 : brief produit, cible coût rendu, contraintes légales / packaging, définition des critères d'acceptation. Semaine 2 : short-list fournisseurs, revue documentaire, décision d'audit ou visite si l'enjeu le justifie. Semaine 3 : négociation des termes, échantillons, validation des incoterms et du planning qualité.",
+          "Semaine 4 : lancement encadré, premiers contrôles si production démarrée, alignement logistique. Ce rythme varie selon complexité, mais l'important est la présence de jalons décisionnels clairs — pas une course au devis le plus rapide.",
+        ],
+      },
+      {
+        h2: "Quand WEMADE est le bon format de partenaire",
+        paragraphs: [
+          "WEMADE s'adresse aux marques et importateurs qui veulent un niveau premium : transparence, exécution en Chine, et pilotage business depuis la France. Nous ne sommes pas une place de marché ni un intermédiaire opaque : nous structurons une opération sourcing avec des points de contrôle qualité au bon moment.",
+          "Si votre besoin est sérieux (volumes, récurrence, exigence qualité, développement produit), un échange de 20 minutes suffit souvent à cadrer la faisabilité et les prochaines étapes — demandez un audit import gratuit via le formulaire en bas de page d'accueil.",
+        ],
+      },
+    ],
+    pillarFaqs: [
+      {
+        q: "Un agent sourcing Chine en France peut-il travailler sans bureau en Chine ?",
+        a: "Oui, mais le risque opérationnel augmente : moins de pression sur la ligne, inspections tardives ou absentes, et arbitrages plus lents. Le modèle le plus fiable combine un interlocuteur en Europe et une équipe locale en Chine.",
+      },
+      {
+        q: "Comment savoir si mon agent prend une commission côté usine ?",
+        a: "Exigez l'écriture des flux financiers : qui facture quoi, à qui, et comment est fixé le prix usine. Si la transparence est refusée ou floue, traitez le risque comme réel et pas seulement théorique.",
+      },
+      {
+        q: "Agent de sourcing ou bureau d'achat : quelle différence ?",
+        a: "Les frontières sont floues sur le marché. Retenez le critère pratique : le partenaire porte-t-il une méthode complète (sélection, négociation, qualité, suivi) avec des livrables traçables, ou se contente-t-il de mettre en relation ?",
+      },
+      {
+        q: "À quel moment prévoir un contrôle qualité en Chine ?",
+        a: "Au minimum avant le solde et l'expédition ; souvent aussi en amont (matières / préproduction) et en cours de production pour les volumes sensibles. La stratégie dépend du risque produit et du coût d'une non-conformité.",
+      },
+    ],
     relatedLinks: [
+      { href: "/blog/checklist-agent-sourcing-chine-2026", label: "Checklist 2026 : choisir son agent sourcing Chine" },
+      { href: "/blog/honoraires-agent-sourcing-chine-risques", label: "Honoraires, commissions et risques : modèles expliqués" },
       { slug: "transparence-sourcing-chine", label: "Transparence des coûts et commissions" },
       { slug: "sourcing-chine-pme", label: "Guide sourcing Chine pour PME" },
       { slug: "import-chine-pme", label: "Import Chine PME : méthode complète" },
@@ -93,7 +180,9 @@ export const seoPages = [
       "Éviter les modèles où l'usine « paie » l'intermédiaire sans visibilité client",
     ],
     relatedLinks: [
-      { slug: "agent-sourcing-chine-france", label: "Choisir un agent sourcing fiable" },
+      { slug: "agent-sourcing-chine-france", label: "Guide complet agent sourcing Chine en France" },
+      { href: "/blog/checklist-agent-sourcing-chine-2026", label: "Checklist 2026 agent sourcing" },
+      { href: "/blog/honoraires-agent-sourcing-chine-risques", label: "Honoraires et risques (article)" },
       { slug: "import-chine-pme", label: "Import Chine PME" },
       { slug: "sourcing-chine-pme", label: "Sourcing Chine PME : méthode" },
       { href: "/blog/sourcing-premium-vs-agents-chine", label: "Premium vs agents classiques" },

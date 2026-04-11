@@ -127,6 +127,27 @@ function SeoLandingPage() {
     window.scrollTo(0, 0);
   }, [page]);
 
+  useEffect(() => {
+    document.getElementById("json-ld-pillar-faq")?.remove();
+    if (!page?.pillarFaqs?.length) return;
+    const node = document.createElement("script");
+    node.type = "application/ld+json";
+    node.id = "json-ld-pillar-faq";
+    node.textContent = JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: page.pillarFaqs.map((item) => ({
+        "@type": "Question",
+        name: item.q,
+        acceptedAnswer: { "@type": "Answer", text: item.a },
+      })),
+    });
+    document.head.appendChild(node);
+    return () => {
+      document.getElementById("json-ld-pillar-faq")?.remove();
+    };
+  }, [page]);
+
   if (!page) return <MainSite />;
 
   return (
@@ -154,6 +175,18 @@ function SeoLandingPage() {
             </div>
           ))}
         </div>
+        {page.deepSections?.length ? (
+          <article className="seo-deep-content" style={{ maxWidth: "48rem", marginTop: "2.75rem" }}>
+            {page.deepSections.map((sec) => (
+              <div key={sec.h2} className="seo-deep-block">
+                <h2>{sec.h2}</h2>
+                {sec.paragraphs.map((para, idx) => (
+                  <p key={idx}>{para}</p>
+                ))}
+              </div>
+            ))}
+          </article>
+        ) : null}
         {page.relatedLinks?.length ? (
           <div style={{ marginTop: "2rem", maxWidth: "42rem" }}>
             <div className="section-label" style={{ marginBottom: "0.75rem" }}>
