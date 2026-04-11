@@ -31,21 +31,54 @@
     <meta property="twitter:title" content="WEMADE | Sourcing Premium (France / Europe / China)" />
     <meta property="twitter:description" content="Achetez mieux en Chine grâce à un pilotage structuré en France et une exécution locale." />
 
+    <!-- GEO: fichiers dédiés assistants IA (citation & contexte) -->
+    <link rel="alternate" type="text/plain" title="WEMADE — contexte IA (court)" href="https://wemade.fr/llms.txt" />
+    <link rel="alternate" type="text/plain" title="WEMADE — contexte IA (étendu)" href="https://wemade.fr/llms-full.txt" />
+    <link rel="alternate" type="text/plain" title="WEMADE — pointeur AI" href="https://wemade.fr/ai.txt" />
+
     <!-- GEO (Generative Engine Optimization) - JSON-LD Schema (Bilingual) -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@graph": [
         {
+          "@type": "WebSite",
+          "@id": "https://wemade.fr/#website",
+          "url": "https://wemade.fr",
+          "name": "WEMADE",
+          "inLanguage": ["fr-FR", "en-US"],
+          "description": "Sourcing premium France / Europe / Chine — sélection d'usines, négociation, contrôle qualité, Shanghai & Hangzhou.",
+          "publisher": { "@id": "https://wemade.fr/#organization" }
+        },
+        {
           "@type": "Organization",
           "@id": "https://wemade.fr/#organization",
           "name": "WEMADE",
+          "legalName": "WeMade SASU",
           "url": "https://wemade.fr",
           "logo": "https://wemade.fr/favicon.svg",
           "description": "Société française de sourcing (France / Europe / China). Pilotage européen, exécution locale. WEMADE accompagne les marques et importateurs européens pour acheter mieux en Chine. French sourcing company with European management and local China execution.",
           "foundingDate": "2009",
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "contactType": "sales",
+            "email": "gregory@wemade.fr",
+            "availableLanguage": ["French", "English"]
+          },
+          "knowsAbout": [
+            "sourcing Chine",
+            "import Chine",
+            "agent sourcing",
+            "contrôle qualité Chine",
+            "audit usine Chine",
+            "fournisseur Chine",
+            "supply chain",
+            "packaging premium",
+            "OEM ODM"
+          ],
           "sameAs": [
-            "https://wemade.fr"
+            "https://wemade.fr",
+            "https://wemade.fr/llms.txt"
           ],
           "location": [
             {

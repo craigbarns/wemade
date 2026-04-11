@@ -21,6 +21,26 @@
     <xhtml:link rel="alternate" hreflang="fr" href="https://wemade.fr/blog" />
   </url>
 
+  <!-- GEO / LLM (contexte pour assistants) -->
+  <url>
+    <loc>https://wemade.fr/llms.txt</loc>
+    <lastmod>2026-04-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://wemade.fr/llms-full.txt</loc>
+    <lastmod>2026-04-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.45</priority>
+  </url>
+  <url>
+    <loc>https://wemade.fr/ai.txt</loc>
+    <lastmod>2026-04-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.45</priority>
+  </url>
+
   <!-- Blog posts -->
   <url>
     <loc>https://wemade.fr/blog/sourcing-chine-pme-7-erreurs</loc>
