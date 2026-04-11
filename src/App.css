@@ -1332,3 +1332,24 @@
 .animate-count {
   animation: count-up 0.6s ease-out forwards;
 }
+
+/* SEO landing — maillage interne */
+.seo-related-list {
+  margin: 0;
+  padding-left: 1.25rem;
+  color: var(--slate-700);
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+.seo-related-list a {
+  color: var(--slate-900);
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-color: rgba(196, 162, 101, 0.55);
+  text-underline-offset: 3px;
+}
+
+.seo-related-list a:hover {
+  color: #8b6914;
+}

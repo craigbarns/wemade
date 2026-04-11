@@ -19,7 +19,7 @@ import {
 import { BrowserRouter, Routes, Route, Link, useParams } from "react-router-dom";
 import { BlogIndex, BlogPost } from "./Blog";
 import { content } from "./content";
-import { seoPages, seoPagesMap } from "./seoPages";
+import { getSeoPagesForHome, seoPagesMap } from "./seoPages";
 import "./App.css";
 
 function ensureMeta(selector, attrName, attrValue) {
@@ -105,9 +105,9 @@ export default function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<MainSite />} />
-        <Route path="/:slug" element={<SeoLandingPage />} />
         <Route path="/blog" element={<BlogIndex />} />
         <Route path="/blog/:slug" element={<BlogPost />} />
+        <Route path="/:slug" element={<SeoLandingPage />} />
       </Routes>
     </BrowserRouter>
   );
@@ -131,7 +131,19 @@ function SeoLandingPage() {
 
   return (
     <div style={{ minHeight: "100vh", background: "var(--bg-page)", color: "var(--slate-900)" }}>
-      <section className="container section" style={{ paddingTop: "7.5rem" }}>
+      <nav className="navbar" style={{ background: "rgba(10, 9, 8, 0.95)" }}>
+        <div className="navbar-inner" style={{ border: "none", boxShadow: "none" }}>
+          <div className="navbar-brand">
+            <Link to="/" style={{ color: "white", textDecoration: "none", fontWeight: 700, letterSpacing: "0.2em" }}>
+              WEMADE
+            </Link>
+          </div>
+          <Link to="/blog" style={{ color: "var(--slate-300)", textDecoration: "none", fontSize: "0.875rem" }}>
+            Blog
+          </Link>
+        </div>
+      </nav>
+      <section className="container section" style={{ paddingTop: "5rem" }}>
         <div className="section-label">Guide expert</div>
         <h1 className="section-title">{page.h1}</h1>
         <p className="section-description" style={{ maxWidth: "54rem" }}>{page.intro}</p>
@@ -142,13 +154,30 @@ function SeoLandingPage() {
             </div>
           ))}
         </div>
+        {page.relatedLinks?.length ? (
+          <div style={{ marginTop: "2rem", maxWidth: "42rem" }}>
+            <div className="section-label" style={{ marginBottom: "0.75rem" }}>
+              Pour aller plus loin
+            </div>
+            <ul className="seo-related-list">
+              {page.relatedLinks.map((link) => {
+                const to = link.href ?? `/${link.slug}`;
+                return (
+                  <li key={to + link.label}>
+                    <Link to={to}>{link.label}</Link>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+        ) : null}
         <div style={{ marginTop: "1.5rem", display: "flex", gap: "0.75rem", flexWrap: "wrap" }}>
           <a href="/#contact" className="btn-primary">
             Demander un audit gratuit <ArrowRight />
           </a>
-          <a href="/blog" className="btn-secondary">
+          <Link to="/blog" className="btn-secondary">
             Lire les analyses <ChevronRight />
-          </a>
+          </Link>
         </div>
       </section>
     </div>
@@ -546,13 +575,14 @@ function MainSite() {
       <section className="container" style={{ paddingBottom: "5rem" }}>
         <motion.div {...fadeUp}>
           <div className="section-label">Pages expertes</div>
-          <h2 className="section-title">Guides SEO par besoin et par ville</h2>
+          <h2 className="section-title">Guides sourcing : piliers, villes et sujets techniques</h2>
           <p className="section-description">
-            Ces pages répondent aux requêtes les plus recherchées pour maximiser votre visibilité Google.
+            Architecture pensée pour le référencement : trois piliers (agent sourcing, contrôle qualité, sourcing PME),
+            pages satellites liées entre elles, puis guides par ville et verticaux.
           </p>
         </motion.div>
         <div className="faq-grid" style={{ marginTop: "1.5rem" }}>
-          {seoPages.map((p) => (
+          {getSeoPagesForHome().map((p) => (
             <Link key={p.slug} to={`/${p.slug}`} style={{ textDecoration: "none", color: "inherit" }}>
               <motion.div {...fadeUp} className="faq-card" style={{ height: "100%" }}>
                 <div className="faq-question">{p.h1}</div>
