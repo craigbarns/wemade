@@ -445,6 +445,25 @@
   height: 1rem;
 }
 
+/* Pages SEO / fond clair : les boutons hero (texte blanc) ne sont pas lisibles */
+.seo-landing .btn-secondary {
+  color: var(--slate-900);
+  background: #fff;
+  border: 1px solid rgba(15, 23, 42, 0.14);
+  box-shadow: 0 4px 20px rgba(15, 23, 42, 0.08);
+  backdrop-filter: none;
+}
+
+.seo-landing .btn-secondary:hover {
+  background: var(--slate-50);
+  border-color: rgba(15, 23, 42, 0.22);
+  color: var(--slate-950);
+}
+
+.seo-landing .btn-secondary svg {
+  color: var(--slate-700);
+}
+
 /* ===== STATS GRID ===== */
 .stats-grid {
   margin-top: 2.5rem;

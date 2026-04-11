@@ -151,7 +151,7 @@ function SeoLandingPage() {
   if (!page) return <MainSite />;
 
   return (
-    <div style={{ minHeight: "100vh", background: "var(--bg-page)", color: "var(--slate-900)" }}>
+    <div className="seo-landing" style={{ minHeight: "100vh", background: "var(--bg-page)", color: "var(--slate-900)" }}>
       <nav className="navbar" style={{ background: "rgba(10, 9, 8, 0.95)" }}>
         <div className="navbar-inner" style={{ border: "none", boxShadow: "none" }}>
           <div className="navbar-brand">
