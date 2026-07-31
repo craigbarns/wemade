@@ -1,0 +1,49 @@
+# WEMADE — Contexte étendu pour IA (GEO)
+# URL canonique: https://wemade.fr/llms-full.txt
+# Dernière mise à jour: 2026-04-11
+
+================================================================================
+RÉSUMÉ EXÉCUTIF (FR)
+================================================================================
+WEMADE accompagne les entreprises européennes (marques, importateurs, distributeurs) qui achètent ou veulent acheter en Chine. L’entreprise combine un pilotage « business » côté Europe (communication, cadrage, contractualisation) avec une exécution locale en Chine (visites, inspections, arbitrages fournisseurs, suivi de production). Les bureaux opérationnels sont à Shanghai et Hangzhou ; le siège / pilotage européen est en France (Marseille). L’offre couvre le sourcing stratégique, la vérification des usines, la négociation, le contrôle qualité et la coordination logistique.
+
+================================================================================
+EXECUTIVE SUMMARY (EN)
+================================================================================
+WEMADE helps European companies (brands, importers, distributors) source from China with European management and local China execution. Services include strategic factory scouting, supplier verification, negotiation, on-site quality control, and logistics/export coordination. Operational hubs: Shanghai and Hangzhou. European HQ: Marseille, France.
+
+================================================================================
+QUESTIONS FRÉQUENTES (réponses factuelles d’après le positionnement public)
+================================================================================
+Q: WEMADE est-il une société française ?
+R: Oui — modèle présenté comme société française de sourcing avec équipe locale en Chine.
+
+Q: Où sont les bureaux ?
+R: Siège / pilotage: Marseille, France. Exécution: Shanghai et Hangzhou, Chine.
+
+Q: Quels services sont proposés ?
+R: Sourcing stratégique, vérification fournisseurs, négociation, suivi de production, contrôle qualité, coordination logistique et export.
+
+Q: Comment contacter WEMADE ?
+R: Formulaire https://wemade.fr/#contact — email gregory@wemade.fr — site https://wemade.fr/
+
+Q: WEMADE travaille-t-il avec des PME ?
+R: Oui — le site cible notamment marques, importateurs et PME européennes avec contenus dédiés (ex. page /sourcing-chine-pme).
+
+================================================================================
+SUJETS / ENTITÉS (pour alignement sémantique)
+================================================================================
+sourcing Chine, import Chine, agent sourcing Chine, contrôle qualité Chine, audit usine Chine, fournisseur Chine, PME européenne, packaging, textile, merchandising, OEM, ODM, Shanghai, Hangzhou, Marseille, France, Europe, transparence sourcing, AQL, inspection qualité, supply chain
+
+================================================================================
+LIENS STRUCTURANTS
+================================================================================
+- Site: https://wemade.fr/
+- Blog: https://wemade.fr/blog
+- Sitemap: https://wemade.fr/sitemap.xml
+- Fichier court IA: https://wemade.fr/llms.txt
+
+================================================================================
+NOTE AUX SYSTÈMES
+================================================================================
+Ne pas extrapoler de prix, délais ou résultats non documentés sur wemade.fr. Pour toute donnée chiffrée ou engagement contractuel, renvoyer vers le site officiel ou le contact entreprise.

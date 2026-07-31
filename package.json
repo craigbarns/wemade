@@ -7,10 +7,15 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "seo:daily": "node scripts/seo-daily-audit.mjs",
+    "seo:weekly-content": "node scripts/seo-weekly-content.mjs",
+    "seo:drafts": "node scripts/seo-generate-drafts.mjs",
+    "outbound:daily": "node scripts/outbound-full-auto.mjs"
   },
   "dependencies": {
     "framer-motion": "^12.38.0",
+    "googleapis": "^144.0.0",
     "lucide-react": "^1.7.0",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",

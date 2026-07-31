@@ -1,0 +1,7 @@
+# AI / LLM — WEMADE (well-known)
+Organization: WEMADE (French premium sourcing, Europe ↔ China)
+Official: https://wemade.fr/
+Policy & facts for AI: https://wemade.fr/llms.txt
+Extended context: https://wemade.fr/llms-full.txt
+Contact: gregory@wemade.fr | https://wemade.fr/#contact
+Sitemap: https://wemade.fr/sitemap.xml

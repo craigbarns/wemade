@@ -1,0 +1,44 @@
+name: SEO Weekly Drafts PR
+
+on:
+  schedule:
+    - cron: "0 8 * * 2"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  generate-drafts:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Generate SEO drafts
+        run: npm run seo:drafts > seo-drafts-summary.md
+
+      - name: Upload summary
+        uses: actions/upload-artifact@v4
+        with:
+          name: seo-weekly-drafts-summary
+          path: seo-drafts-summary.md
+
+      - name: Create Pull Request with drafts
+        uses: peter-evans/create-pull-request@v6
+        with:
+          commit-message: "chore(seo): generate weekly content drafts"
+          title: "SEO: weekly content drafts"
+          body: |
+            Ce PR est genere automatiquement par l'agent SEO.
+
+            - Ajout/MAJ des drafts hebdomadaires dans `automation/seo-drafts/`
+            - Base pour creation des prochains articles SEO
+          branch: seo/weekly-drafts
+          delete-branch: true

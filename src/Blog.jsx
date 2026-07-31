@@ -2,8 +2,167 @@ import { useEffect } from "react";
 import { Link, useParams, useSearchParams } from "react-router-dom";
 import { ArrowLeft, Clock, Calendar } from "lucide-react";
 
+function ensureMeta(selector, attrName, attrValue) {
+  let node = document.querySelector(selector);
+  if (!node) {
+    node = document.createElement("meta");
+    node.setAttribute(attrName, attrValue);
+    document.head.appendChild(node);
+  }
+  return node;
+}
+
+function upsertSeoTags({ title, description, canonicalUrl }) {
+  document.title = title;
+  document.querySelector('meta[name="description"]')?.setAttribute("content", description);
+  document.querySelector('meta[name="title"]')?.setAttribute("content", title);
+
+  let canonical = document.querySelector('link[rel="canonical"]');
+  if (!canonical) {
+    canonical = document.createElement("link");
+    canonical.rel = "canonical";
+    document.head.appendChild(canonical);
+  }
+  canonical.href = canonicalUrl;
+
+  ensureMeta('meta[property="og:title"]', "property", "og:title").setAttribute("content", title);
+  ensureMeta('meta[property="og:description"]', "property", "og:description").setAttribute("content", description);
+  ensureMeta('meta[property="og:url"]', "property", "og:url").setAttribute("content", canonicalUrl);
+  ensureMeta('meta[property="twitter:title"]', "property", "twitter:title").setAttribute("content", title);
+  ensureMeta('meta[property="twitter:description"]', "property", "twitter:description").setAttribute("content", description);
+}
+
 export const blogsData = {
   fr: [
+    {
+      slug: "sourcing-chine-pme-7-erreurs",
+      title: "Sourcing Chine PME : 7 erreurs qui coûtent cher (et comment les éviter)",
+      description:
+        "Les PME perdent marge et temps sur l'import Chine à cause de ces erreurs récurrentes. Méthode WEMADE : cadrage, fournisseur, qualité et coût rendu.",
+      date: "11 Avril 2026",
+      readTime: "8 min",
+      content: `
+        <h2>Pourquoi ce guide est structurant</h2>
+        <p>La requête <strong>sourcing Chine PME</strong> reflète une intention claire : structurer les achats sans dépendre uniquement d'un prix affiché sur un catalogue. Voici les sept erreurs que nous corrigeons le plus souvent avec nos clients européens.</p>
+
+        <h2>1. Négocier uniquement le prix unitaire</h2>
+        <p>Le prix usine n'est pas le coût réel. MOQ, outillage, emballage, Incoterms, contrôles qualité et imprévus logistiques bouleversent la marge. Exigez une vision <strong>coût rendu</strong> avant de valider.</p>
+
+        <h2>2. Sauter la préqualification documentaire</h2>
+        <p>Licence, périmètre d'activité, cohérence catalogue / capacité : sans ce filtrage, vous perdez des semaines avec des intermédiaires ou des usines mal dimensionnées. Complétez avec notre page <a href="/fournisseur-chine-fiable">fournisseur chinois fiable</a>.</p>
+
+        <h2>3. Croire qu'un échantillon suffit</h2>
+        <p>L'échantillon valide l'intention ; la série valide le process. Prévoyez des jalons qualité alignés sur votre risque produit, comme expliqué sur <a href="/controle-qualite-chine">contrôle qualité Chine</a>.</p>
+
+        <h2>4. Ignorer l'AQL et les critères d'acceptation</h2>
+        <p>Sans grille de défauts et sans échantillonnage, l'inspection devient subjective. Lisez <a href="/aql-inspection-chine">AQL inspection Chine</a> pour trancher sur un lot de façon défendable.</p>
+
+        <h2>5. Confondre agent gratuit et neutralité</h2>
+        <p>Si personne ne facture clairement, la rémunération se cache souvent dans la relation avec l'usine. Comparez les modèles sur <a href="/transparence-sourcing-chine">transparence sourcing Chine</a> et <a href="/agent-sourcing-chine-france">agent sourcing Chine en France</a>.</p>
+
+        <h2>6. Sous-estimer l'emballage et la conformité UE</h2>
+        <p>Retards et saisies douanières coûtent plus qu'une négociation agressive sur le FOB. Anticipez tôt, notamment sur <a href="/import-emballage-chine">import emballage Chine</a>.</p>
+
+        <h2>7. Aucun plan B avant l'acompte significatif</h2>
+        <p>Alternatives fournisseur, clauses, calendrier d'inspection : sécurisez avant de bloquer du cash. Un <a href="/audit-usine-chine">audit usine</a> réduit ce risque.</p>
+
+        <h2>La synthèse WEMADE</h2>
+        <p>Notre modèle <strong>France / Europe / Chine</strong> combine pilotage côté client et exécution à Shanghai et Hangzhou. Pour une vue d'ensemble des étapes, ouvrez aussi le guide <a href="/sourcing-chine-pme">sourcing Chine PME</a> et <a href="/import-chine-pme">import Chine PME</a>.</p>
+        <p><a href="/#contact">Demander un audit import gratuit (20 min)</a> — repartez avec un plan d'action concret.</p>
+      `,
+    },
+    {
+      slug: "checklist-agent-sourcing-chine-2026",
+      title: "Checklist 2026 : choisir un agent sourcing Chine (France / Europe)",
+      description:
+        "Questions à poser, documents à exiger, signaux d'alerte et critères de décision. Utilisez cette checklist avant de signer avec un agent sourcing Chine.",
+      date: "11 Avril 2026",
+      readTime: "14 min",
+      content: `
+        <h2>Objectif de cette checklist</h2>
+        <p>Vous cherchez un <strong>agent sourcing Chine</strong> fiable depuis la France ou l'Europe. Ce texte vous donne une grille de lecture concrète — pas du marketing. La page pilier associée est le <a href="/agent-sourcing-chine-france">guide complet agent sourcing Chine en France</a> : lisez-la en parallèle pour le contexte.</p>
+
+        <h2>Bloc A — Modèle économique et neutralité</h2>
+        <ul>
+          <li>Comment êtes-vous facturé (forfait, temps passé, mission, résultat) ?</li>
+          <li>Existe-t-il une rémunération ou un avantage financier versé par l'usine ? Si oui, à quel montant et sous quelle forme ?</li>
+          <li>Le devis usine est-il traçable (lignes détaillées, version validée, historique des ajustements) ?</li>
+          <li>Qui signe contractuellement avec l'usine : vous, l'agent, une entité intermédiaire ?</li>
+        </ul>
+        <p>Si la transparence est refusée au motif que « c'est comme ça en Chine », documentez le refus et réévaluez le risque. Plus de détails sur <a href="/transparence-sourcing-chine">transparence sourcing Chine</a> et dans l'article <a href="/blog/honoraires-agent-sourcing-chine-risques">honoraires et risques</a>.</p>
+
+        <h2>Bloc B — Présence terrain et exécution</h2>
+        <ul>
+          <li>Où sont basées les équipes opérationnelles (villes, bureaux, sous-traitance d'inspection) ?</li>
+          <li>Combien de visites / inspections sont prévues dans votre scénario type (échantillon, préprod, ligne, final, chargement) ?</li>
+          <li>Quel est le délai de réaction en cas de non-conformité critique sur la ligne ?</li>
+          <li>Recevez-vous des comptes rendus datés, photos, vidéos, mesures — pas seulement des messages WeChat ?</li>
+        </ul>
+        <p>Un agent « 100 % distant » peut suffire pour de très petits achats à faible risque ; il est rarement suffisant pour des volumes récurrents ou des produits sensibles. WEMADE opère avec des hubs à <strong>Shanghai et Hangzhou</strong> précisément pour garder cette pression opérationnelle.</p>
+
+        <h2>Bloc C — Qualité et critères d'acceptation</h2>
+        <ul>
+          <li>Comment définissez-vous le golden sample et les tolérances (dimensions, finitions, couleurs, emballage) ?</li>
+          <li>Quelle logique d'inspection appliquez-vous (AQL, 100 % sur certaines lignes, tests spécifiques) ? Voir <a href="/aql-inspection-chine">AQL inspection Chine</a>.</li>
+          <li>Que se passe-t-il si le lot est limite ou refusé : renégociation, retouche, reproduction, stop production ?</li>
+          <li>À quel moment le paiement final est-il recommandé par rapport au rapport d'inspection ?</li>
+        </ul>
+        <p>Relisez aussi le guide <a href="/controle-qualite-chine">contrôle qualité Chine</a> pour aligner vocabulaire et attentes avec votre agent.</p>
+
+        <h2>Bloc D — Compétence produit et références</h2>
+        <ul>
+          <li>L'agent a-t-il déjà traité des dossiers comparables (même famille produit, ordres de grandeur de volumes, mêmes contraintes réglementaires) ?</li>
+          <li>Pouvez-vous parler à une référence client (même anonymisée) sur un cas proche ?</li>
+          <li>Comment l'agent gère-t-il la propriété intellectuelle, l'outillage, les moules si applicable ?</li>
+        </ul>
+
+        <h2>Bloc E — Contrat et sortie</h2>
+        <ul>
+          <li>Périmètre de mission, livrables, durée, résiliation, transfert des fichiers et des contacts fournisseurs.</li>
+          <li>Confidentialité, non-sollicitation raisonnable, et clause de transparence sur les flux financiers liés à l'usine.</li>
+        </ul>
+
+        <h2>Signaux d'alerte (red flags)</h2>
+        <p>Pression pour verser vite un gros acompte sans critères qualité écrits ; refus systématique de visite ou d'inspection indépendante ; prix usine « trop beau » sans explication des postes ; absence de trace documentaire ; promesse de zéro défaut sans méthode.</p>
+
+        <h2>Prochaine étape</h2>
+        <p>Si votre besoin est structurant, un <a href="/#contact">audit import gratuit (20 min)</a> permet de valider faisabilité, risques et feuille de route avec WEMADE.</p>
+      `,
+    },
+    {
+      slug: "honoraires-agent-sourcing-chine-risques",
+      title: "Honoraires agent sourcing Chine : modèles, commissions cachées et risques",
+      description:
+        "Forfait, pourcentage, gratuit payé par l'usine : comment lire chaque modèle. Protégez votre marge et votre neutralité lors du choix d'un agent.",
+      date: "11 Avril 2026",
+      readTime: "12 min",
+      content: `
+        <h2>Pourquoi le sujet des honoraires décide de tout</h2>
+        <p>Le coût apparent de l'agent est une ligne dans votre P&amp;L ; le coût caché est souvent dans le <strong>prix usine</strong>, le <strong>choix du fournisseur</strong> ou la <strong>qualité livrée</strong>. Comprendre les modèles de rémunération, c'est comprendre les incitations réelles. Page complémentaire : <a href="/agent-sourcing-chine-france">agent sourcing Chine en France</a>.</p>
+
+        <h2>Modèle 1 — Honoraires transparents côté client</h2>
+        <p>Forfait mission, abonnement, TJM ou mix : le client sait ce qu'il paie pour le service. L'avantage est la lisibilité ; le point de vigilance est de vérifier qu'aucune seconde rémunération ne vient de l'usine sans disclosure. Ce modèle s'aligne bien avec un <a href="/blog/sourcing-premium-vs-agents-chine">sourcing premium</a> où la marge du client est l'objectif principal.</p>
+
+        <h2>Modèle 2 — Pourcentage sur la facture fournisseur</h2>
+        <p>Un pourcentage n'est pas intrinsèquement mauvais s'il est transparent et si le prix de référence est audité. Le risque apparaît quand le pourcentage pousse à choisir un fournisseur plus cher ou à éviter des négociations agressives. Exigez la transparence sur la base de calcul et les versions de devis.</p>
+
+        <h2>Modèle 3 — « Gratuit pour vous », payé par l'usine</h2>
+        <p>C'est le plus trompeur en apparence et souvent le plus coûteux à long terme. L'usine rémunère l'agent ; l'agent n'est alors plus neutre. Les usines les plus rigoureuses peuvent refuser ces schémas, ce qui peut paradoxalement <strong>dégrader</strong> la qualité moyenne de votre panel si votre agent trie les usines selon la commission. Détaillez ce scénario sur <a href="/transparence-sourcing-chine">transparence sourcing Chine</a>.</p>
+
+        <h2>Modèle 4 — Marge sur produit / trading</h2>
+        <p>L'agent achète et revend. La question n'est pas morale mais de visibilité : connaissez-vous la chaîne de titre, les marges, et votre recours en cas de litige qualité ? Ce format peut convenir à certains flux B2B, mais exige une gouvernance contractuelle solide.</p>
+
+        <h2>Coût rendu vs prix FOB</h2>
+        <p>Même avec des honoraires « corrects », une mauvaise décision logistique, un mauvais Incoterm ou un défaut d'emballage peut exploser le coût rendu. Croisez toujours l'analyse honoraires avec <a href="/import-chine-pme">import Chine PME</a> et <a href="/sourcing-chine-pme">sourcing Chine PME</a>.</p>
+
+        <h2>Ce que WEMADE recommande en pratique</h2>
+        <p>Transparence totale sur la rémunération, alignement sur la qualité et le coût réel, exécution locale pour faire respecter le cahier des charges. Si vous hésitez entre deux offres, comparez d'abord les <strong>incitations</strong>, pas seulement les prix affichés.</p>
+
+        <h2>Checklist rapide avant signature</h2>
+        <p>Utilisez la <a href="/blog/checklist-agent-sourcing-chine-2026">checklist agent sourcing 2026</a> : elle reprend les questions à poser mot pour mot en réunion.</p>
+        <p><a href="/#contact">Demander un audit import gratuit</a> avec WEMADE.</p>
+      `,
+    },
     {
       slug: "comment-trouver-usine-fiable-chine",
       title: "Comment trouver une usine fiable en Chine ? (Guide 2026)",
@@ -24,6 +183,8 @@ export const blogsData = {
         <p>Une bonne usine ne dit pas "Oui" à tout. Elle challenge votre cahier des charges, propose des optimisations matérielles et anticipe les problèmes de production. WEMADE pilote cette communication pour s'assurer qu'aucun détail crucial n'est perdu dans la traduction.</p>
         
         <blockquote>Le sourcing ne s'arrête pas à trouver une ligne de production. Il s'agit de trouver un partenaire stratégique de long terme.</blockquote>
+        <h2>Liens utiles pour aller plus loin</h2>
+        <p>Consultez aussi nos ressources métier : <a href="/sourcing-chine-pme">sourcing Chine PME</a>, <a href="/fournisseur-chine-fiable">trouver un fournisseur fiable</a>, <a href="/audit-usine-chine">audit usine en Chine</a>, et <a href="/controle-qualite-chine">contrôle qualité avant expédition</a>.</p>
       `
     },
     {
@@ -46,6 +207,8 @@ export const blogsData = {
         
         <h2>Sécuriser ses achats internationaux</h2>
         <p>Passer d'un simple agent à un véritable bureau d'achat comme WEMADE, c'est reprendre le contrôle total de sa supply chain en Chine, garantissant conformité, qualité et délais face à l'Europe.</p>
+        <h2>Pages clés à consulter</h2>
+        <p>Pour comparer les approches, lisez nos pages : <a href="/agent-sourcing-chine-france">agent sourcing Chine en France</a>, <a href="/sourcing-chine-pme">sourcing Chine PME</a>, <a href="/transparence-sourcing-chine">transparence sourcing</a>, <a href="/import-chine-pme">import Chine PME</a> et <a href="/sourcing-chine-paris">sourcing Chine à Paris</a>.</p>
       `
     },
     {
@@ -69,10 +232,195 @@ export const blogsData = {
 
         <h2>4. Container Loading Monitoring (CLM)</h2>
         <p>Le dernier maillon de la chaîne : la supervision physique du chargement du container. Nous garantissons que le nombre de cartons est exact, que les produits sont manipulés avec soin et que scellé final (plomb) correspond aux documents douaniers.</p>
+        <h2>Compléments recommandés</h2>
+        <p>Approfondissez avec nos guides : <a href="/controle-qualite-chine">inspection qualité en Chine</a>, <a href="/import-emballage-chine">import emballage</a> et <a href="/sourcing-led-chine">sourcing LED</a>.</p>
+      `
+    },
+    {
+      slug: "how-to-find-factories-in-china",
+      title: "How to Find Factories in China: méthode terrain pour PME européennes",
+      description: "Guide opérationnel pour identifier des usines fiables en Chine : préqualification, audit terrain, tests qualité et négociation des conditions.",
+      date: "10 Avril 2026",
+      readTime: "6 min",
+      content: `
+        <h2>Pourquoi cette requête est stratégique</h2>
+        <p>La requête "how to find factories in china" est typique d'une intention d'achat concrète. Les entreprises qui la tapent veulent une méthode fiable, pas une simple liste de fournisseurs.</p>
+        <h2>Étape 1 : filtrer les usines avant contact</h2>
+        <p>Commencez par vérifier le type de société, l'ancienneté, les certifications, et la cohérence entre catalogue et capacité de production annoncée.</p>
+        <h2>Étape 2 : auditer la réalité opérationnelle</h2>
+        <p>Un audit usine évite les erreurs coûteuses. Il valide les équipements, la structure qualité, la traçabilité et la capacité à tenir vos délais.</p>
+        <h2>Étape 3 : négocier le coût complet</h2>
+        <p>Ne négociez pas uniquement le prix unitaire. Intégrez MOQ, qualité, délais, emballage, Incoterms et coûts logistiques pour un vrai coût rendu.</p>
+        <h2>Preuve terrain WEMADE</h2>
+        <p>Nos équipes basées à Shanghai et Hangzhou réalisent les vérifications opérationnelles directement sur place. Vous avancez avec des données concrètes, pas des promesses commerciales.</p>
+        <ul>
+          <li>Vérification documentaire fournisseur</li>
+          <li>Audit capacité + process qualité</li>
+          <li>Plan d'action achat sur 30 jours</li>
+        </ul>
+        <h2>CTA: sécurisez votre projet en 20 minutes</h2>
+        <p>Réservez un échange rapide et repartez avec une feuille de route claire : <a href="/#contact">demander un audit import gratuit</a>.</p>
+        <h2>Ressources WEMADE</h2>
+        <p>Pour sécuriser votre recherche : <a href="/fournisseur-chine-fiable">fournisseur fiable en Chine</a>, <a href="/audit-usine-chine">audit usine</a>, <a href="/agent-sourcing-chine-france">agent sourcing en France</a>.</p>
+      `
+    },
+    {
+      slug: "wemade-sourcing-france-china",
+      title: "WEMADE sourcing France / Chine : notre méthode pour sécuriser marge et qualité",
+      description: "Découvrez comment WEMADE structure le sourcing entre la France et la Chine pour les marques et importateurs : process, contrôle et exécution locale.",
+      date: "11 Avril 2026",
+      readTime: "5 min",
+      content: `
+        <h2>Un modèle conçu pour les décideurs européens</h2>
+        <p>WEMADE combine pilotage en France et exécution en Chine pour réduire les risques de sourcing, accélérer les décisions et fiabiliser les achats.</p>
+        <h2>Ce que nous sécurisons en priorité</h2>
+        <p>Nous cadrons les besoins, sélectionnons des usines pertinentes, négocions les conditions, puis contrôlons la qualité avant expédition.</p>
+        <h2>Résultat attendu</h2>
+        <p>Une meilleure visibilité coûts/délais/qualité, moins d'aléas opérationnels, et un meilleur contrôle de votre marge.</p>
+        <h2>Pourquoi les décideurs passent par WEMADE</h2>
+        <ul>
+          <li>Interlocuteur business en France</li>
+          <li>Exécution locale en Chine (Shanghai / Hangzhou)</li>
+          <li>Contrôle qualité avant paiement final</li>
+        </ul>
+        <h2>CTA: activez votre plan sourcing</h2>
+        <p>Vous pouvez lancer une première mission dès cette semaine via <a href="/#contact">notre formulaire de contact</a>.</p>
+        <h2>Aller plus loin</h2>
+        <p>Consultez nos pages business : <a href="/sourcing-chine-pme">sourcing Chine PME</a>, <a href="/import-chine-pme">import Chine PME</a>, <a href="/controle-qualite-chine">contrôle qualité Chine</a>, <a href="/aql-inspection-chine">AQL inspection</a>, <a href="/sourcing-chine-marseille">sourcing Chine Marseille</a>.</p>
       `
     }
   ],
   en: [
+    {
+      slug: "sourcing-chine-pme-7-erreurs",
+      title: "China sourcing for SMEs: 7 expensive mistakes (and how to avoid them)",
+      description:
+        "European SMEs lose margin and time on China imports through these recurring gaps. WEMADE method: framing, supplier validation, quality, and landed cost.",
+      date: "April 11, 2026",
+      readTime: "8 min",
+      content: `
+        <h2>Why this playbook matters</h2>
+        <p><strong>China sourcing for SMEs</strong> is not about finding the lowest quote. It is about building a repeatable buying system: specs, supplier proof, quality gates, and true landed cost.</p>
+
+        <h2>1. Negotiating unit price only</h2>
+        <p>Ex-factory price is not landed cost. MOQs, tooling, packaging, Incoterms, inspections, and logistics surprises destroy margin. Model the full picture before you commit.</p>
+
+        <h2>2. Skipping documentary pre-qualification</h2>
+        <p>License scope, business nature, and consistency between catalog and real capacity matter. See our <a href="/fournisseur-chine-fiable">reliable supplier framework</a>.</p>
+
+        <h2>3. Assuming the golden sample equals bulk quality</h2>
+        <p>Samples prove intent; bulk proves process. Align inspection milestones with product risk — start with <a href="/controle-qualite-chine">quality control in China</a>.</p>
+
+        <h2>4. Ignoring AQL and acceptance criteria</h2>
+        <p>Without defect classes and sampling logic, inspections become arguments. Read <a href="/aql-inspection-chine">AQL inspections in China</a> to make accept/reject decisions defensible.</p>
+
+        <h2>5. Confusing “free agent” with neutrality</h2>
+        <p>If fees are opaque, economics often hide inside the factory relationship. Compare models on <a href="/transparence-sourcing-chine">sourcing transparency</a> and <a href="/agent-sourcing-chine-france">China sourcing agents in France</a>.</p>
+
+        <h2>6. Underestimating packaging and EU compliance</h2>
+        <p>Delays and customs issues cost more than aggressive FOB discounts. Plan early, especially for <a href="/import-emballage-chine">packaging imports</a>.</p>
+
+        <h2>7. No plan B before a large deposit</h2>
+        <p>Backup suppliers, contract clauses, and inspection timing protect cash. An <a href="/audit-usine-chine">on-site factory audit</a> reduces this risk.</p>
+
+        <h2>WEMADE summary</h2>
+        <p>We combine European management with execution in <strong>Shanghai and Hangzhou</strong>. For the full SME journey, read <a href="/sourcing-chine-pme">China sourcing for SMEs</a> and <a href="/import-chine-pme">China import for SMEs</a>.</p>
+        <p><a href="/#contact">Request a free import audit (20 minutes)</a> and leave with a concrete action plan.</p>
+      `,
+    },
+    {
+      slug: "checklist-agent-sourcing-chine-2026",
+      title: "2026 checklist: choose a China sourcing agent (France / Europe)",
+      description:
+        "Questions to ask, documents to require, red flags, and decision criteria. Use this checklist before signing with a China sourcing agent.",
+      date: "April 11, 2026",
+      readTime: "14 min",
+      content: `
+        <h2>What this checklist is for</h2>
+        <p>You are evaluating a <strong>China sourcing agent</strong> from France or Europe. This is a practical scorecard — not vendor hype. Read it alongside our pillar page: <a href="/agent-sourcing-chine-france">China sourcing agents in France — full guide</a>.</p>
+
+        <h2>Block A — Economics and neutrality</h2>
+        <ul>
+          <li>How are you charged (retainer, time &amp; materials, milestone, success fee)?</li>
+          <li>Is any compensation paid by the factory? If yes, how much and in what form?</li>
+          <li>Is the factory quote traceable (line items, approved revisions, change log)?</li>
+          <li>Who contracts with the factory: you, the agent, or a third entity?</li>
+        </ul>
+        <p>If transparency is refused, treat it as a material risk. See <a href="/transparence-sourcing-chine">sourcing transparency</a> and <a href="/blog/honoraires-agent-sourcing-chine-risques">fees and risk models</a>.</p>
+
+        <h2>Block B — Field presence and execution</h2>
+        <ul>
+          <li>Where are operational teams based (cities, offices, subcontracted inspectors)?</li>
+          <li>How many visits/inspections are planned for a typical flow (sample, pre-production, inline, final, loading)?</li>
+          <li>What is the response time if a critical defect appears on the line?</li>
+          <li>Do you receive dated reports with photos, videos, and measurements — not only chat messages?</li>
+        </ul>
+        <p>A fully remote agent may work for tiny, low-risk buys; it is rarely enough for recurring volume or sensitive categories. WEMADE runs <strong>Shanghai and Hangzhou</strong> hubs to keep operational pressure where production happens.</p>
+
+        <h2>Block C — Quality and acceptance criteria</h2>
+        <ul>
+          <li>How is the golden sample defined (dimensions, finishes, colors, packaging tolerances)?</li>
+          <li>What inspection logic is used (AQL, 100% checks on critical attributes, special tests)? See <a href="/aql-inspection-chine">AQL in China</a>.</li>
+          <li>If a lot is borderline or failed: rework, sorting, rerun, stop-ship — who decides and how fast?</li>
+          <li>When should final payment happen relative to the inspection report?</li>
+        </ul>
+        <p>Cross-check with <a href="/controle-qualite-chine">quality control in China</a> so your vocabulary matches your agent's process.</p>
+
+        <h2>Block D — Product competence and references</h2>
+        <ul>
+          <li>Has the agent delivered comparable categories, volumes, and compliance constraints?</li>
+          <li>Can you speak with a reference client on a similar case (even anonymized)?</li>
+          <li>How are IP, tooling, and molds handled when applicable?</li>
+        </ul>
+
+        <h2>Block E — Contract and exit</h2>
+        <ul>
+          <li>Scope, deliverables, duration, termination, handover of files and supplier contacts.</li>
+          <li>NDA / confidentiality and reasonable non-solicitation.</li>
+          <li>Written transparency on any factory-side compensation.</li>
+        </ul>
+
+        <h2>Red flags</h2>
+        <p>Heavy upfront deposits without written quality criteria; systematic refusal of visits or independent inspections; “too good” pricing with no line-item explanation; no paper trail; zero-defect promises with no method.</p>
+
+        <h2>Next step</h2>
+        <p><a href="/#contact">Book a free 20-minute import audit</a> to validate feasibility, risks, and next steps with WEMADE.</p>
+      `,
+    },
+    {
+      slug: "honoraires-agent-sourcing-chine-risques",
+      title: "China sourcing agent fees: models, hidden commissions, and risks",
+      description:
+        "Retainer, percentage, “free” paid by the factory: how to read each model. Protect margin and neutrality when choosing an agent.",
+      date: "April 11, 2026",
+      readTime: "12 min",
+      content: `
+        <h2>Why fee structure is everything</h2>
+        <p>The visible agent cost is a P&amp;L line; the hidden cost is often in <strong>factory price</strong>, <strong>supplier selection</strong>, or <strong>shipped quality</strong>. Pair this article with <a href="/agent-sourcing-chine-france">China sourcing agents in France — guide</a>.</p>
+
+        <h2>Model 1 — Transparent client-side fees</h2>
+        <p>Retainer, subscription, day-rate, or hybrid: you know what you pay for the service. The vigilance point is to confirm there is no undisclosed factory-side compensation. This aligns well with <a href="/blog/sourcing-premium-vs-agents-chine">premium sourcing vs classic agents</a> when margin protection is the goal.</p>
+
+        <h2>Model 2 — Percentage on supplier invoice</h2>
+        <p>Not automatically bad if transparent and if the reference price is auditable. Risk appears when the percentage incentivizes a more expensive factory or softer negotiation. Require clarity on the calculation basis and quote versions.</p>
+
+        <h2>Model 3 — “Free for you”, paid by the factory</h2>
+        <p>Often the most misleading headline and sometimes the most expensive long term. The factory pays the agent; neutrality is compromised. Stronger factories may refuse these schemes, which can paradoxically <strong>lower</strong> average supplier quality in your funnel. Read <a href="/transparence-sourcing-chine">sourcing transparency</a>.</p>
+
+        <h2>Model 4 — Product margin / trading</h2>
+        <p>The agent buys and resells. The question is visibility: do you know title flow, margins, and recourse on quality disputes? It can work for some B2B flows but needs strong contractual governance.</p>
+
+        <h2>Landed cost vs FOB</h2>
+        <p>Even with “fair” fees, bad logistics choices, weak Incoterms, or packaging defects can explode landed cost. Always combine fee analysis with <a href="/import-chine-pme">China import for SMEs</a> and <a href="/sourcing-chine-pme">China sourcing for SMEs</a>.</p>
+
+        <h2>What WEMADE recommends</h2>
+        <p>Full transparency on compensation, alignment on true cost and quality, and local execution to enforce specifications. When comparing two offers, compare <strong>incentives</strong> first — not only headline prices.</p>
+
+        <h2>Quick checklist before you sign</h2>
+        <p>Use the <a href="/blog/checklist-agent-sourcing-chine-2026">2026 sourcing agent checklist</a> in your next meeting.</p>
+        <p><a href="/#contact">Request a free import audit</a> with WEMADE.</p>
+      `,
+    },
     {
       slug: "comment-trouver-usine-fiable-chine",
       title: "How to find a reliable factory in China? (2026 Guide)",
@@ -93,6 +441,8 @@ export const blogsData = {
         <p>A good factory doesn't say "Yes" to everything. They challenge your specifications, suggest material optimizations, and anticipate production issues. WEMADE leads this communication to ensure no crucial detail is lost in translation.</p>
         
         <blockquote>Sourcing doesn't stop at finding a production line. It's about finding a long-term strategic partner.</blockquote>
+        <h2>Useful links</h2>
+        <p>Explore our related resources: <a href="/sourcing-chine-pme">China sourcing for SMEs</a>, <a href="/fournisseur-chine-fiable">reliable China supplier guide</a>, <a href="/audit-usine-chine">factory audit</a>, and <a href="/controle-qualite-chine">quality control in China</a>.</p>
       `
     },
     {
@@ -115,6 +465,8 @@ export const blogsData = {
         
         <h2>Securing international purchases</h2>
         <p>Moving from a simple agent to a true buying office like WEMADE means taking full control of your supply chain in China, guaranteeing compliance, quality, and deadlines for Europe.</p>
+        <h2>Related pages</h2>
+        <p>Read more on <a href="/agent-sourcing-chine-france">China sourcing agent in France</a>, <a href="/sourcing-chine-pme">China sourcing for SMEs</a>, <a href="/transparence-sourcing-chine">sourcing transparency</a>, <a href="/import-chine-pme">China import for SMEs</a>, and <a href="/sourcing-chine-paris">China sourcing in Paris</a>.</p>
       `
     },
     {
@@ -138,6 +490,61 @@ export const blogsData = {
 
         <h2>4. Container Loading Monitoring (CLM)</h2>
         <p>The last link in the chain: physical supervision of container loading. We guarantee that the number of boxes is exact, that products are handled with care, and that the final seal (lead) matches customs documents.</p>
+        <h2>Recommended next reads</h2>
+        <p>See also <a href="/controle-qualite-chine">quality control in China</a>, <a href="/import-emballage-chine">packaging import</a>, and <a href="/sourcing-led-chine">LED sourcing</a>.</p>
+      `
+    },
+    {
+      slug: "how-to-find-factories-in-china",
+      title: "How to Find Factories in China (2026 Playbook for European SMEs)",
+      description: "Actionable framework to find reliable Chinese factories: filtering, on-site audits, quality validation, and total landed cost negotiation.",
+      date: "April 10, 2026",
+      readTime: "6 min",
+      content: `
+        <h2>Why this query matters</h2>
+        <p>The query "how to find factories in china" reflects high commercial intent. Buyers are looking for a reliable process, not random supplier lists.</p>
+        <h2>Step 1: pre-qualify before contacting</h2>
+        <p>Check company type, age, certifications, and whether the product portfolio matches actual manufacturing capability.</p>
+        <h2>Step 2: validate on-site operations</h2>
+        <p>An on-site factory audit confirms machinery, QA system, traceability, and operational discipline before financial commitment.</p>
+        <h2>Step 3: negotiate total landed cost</h2>
+        <p>Negotiate beyond unit price: MOQs, quality thresholds, lead times, packaging, Incoterms, and logistics costs.</p>
+        <h2>WEMADE field proof</h2>
+        <p>Our Shanghai and Hangzhou teams run on-site checks, so decisions are based on operational facts rather than supplier promises.</p>
+        <ul>
+          <li>Supplier documentation validation</li>
+          <li>Capacity and QA audit</li>
+          <li>30-day sourcing action plan</li>
+        </ul>
+        <h2>CTA: get a fast sourcing review</h2>
+        <p>Book a short call and leave with a concrete roadmap: <a href="/#contact">request a free import audit</a>.</p>
+        <h2>WEMADE resources</h2>
+        <p>Start with <a href="/fournisseur-chine-fiable">reliable supplier framework</a>, <a href="/audit-usine-chine">factory audit guide</a>, and <a href="/agent-sourcing-chine-france">China sourcing agent criteria</a>.</p>
+      `
+    },
+    {
+      slug: "wemade-sourcing-france-china",
+      title: "WEMADE France / China sourcing model: secure margin and quality",
+      description: "How WEMADE structures sourcing between France and China for brands and importers: qualification, negotiation, quality control, and execution.",
+      date: "April 11, 2026",
+      readTime: "5 min",
+      content: `
+        <h2>A model built for European decision-makers</h2>
+        <p>WEMADE combines European management and China execution to reduce sourcing risk, speed up decisions, and improve buying reliability.</p>
+        <h2>What we secure first</h2>
+        <p>We define specs, shortlist relevant factories, negotiate core terms, then enforce quality checks before shipment.</p>
+        <h2>Expected outcome</h2>
+        <p>Better visibility on costs, lead times, and quality, with fewer operational surprises and stronger margins.</p>
+        <h2>Why decision-makers choose WEMADE</h2>
+        <ul>
+          <li>Business management from France</li>
+          <li>Local execution in China (Shanghai / Hangzhou)</li>
+          <li>Quality control before final payment</li>
+        </ul>
+        <h2>CTA: launch your sourcing plan</h2>
+        <p>You can start this week through <a href="/#contact">our contact form</a>.</p>
+        <h2>Business pages</h2>
+        <p>See <a href="/sourcing-chine-pme">China sourcing for SMEs</a>, <a href="/import-chine-pme">China import for SMEs</a>, <a href="/controle-qualite-chine">quality control in China</a>, <a href="/aql-inspection-chine">AQL inspections</a>, and <a href="/sourcing-chine-marseille">China sourcing Marseille</a>.</p>
       `
     }
   ]
@@ -149,20 +556,12 @@ export function BlogIndex() {
   const blogs = blogsData[lang];
 
   useEffect(() => {
-    document.title = lang === "fr" ? "WEMADE | Le Blog Sourcing Europe / Chine" : "WEMADE | Sourcing Europe / China Blog";
-    const desc = lang === "fr" 
+    const title = lang === "fr" ? "WEMADE | Blog sourcing Europe / Chine" : "WEMADE | Sourcing Europe / China Blog";
+    const desc = lang === "fr"
       ? "Articles et analyses exclusifs de WEMADE sur le sourcing, l'import et l'industrie en Chine face au marché européen."
       : "Exclusive insights from WEMADE on sourcing, importing, and industry in China for the European market.";
-    document.querySelector('meta[name="description"]')?.setAttribute("content", desc);
-    
-    // Dynamic Canonical
-    let canonical = document.querySelector('link[rel="canonical"]');
-    if (!canonical) {
-      canonical = document.createElement("link");
-      canonical.rel = "canonical";
-      document.head.appendChild(canonical);
-    }
-    canonical.href = lang === "fr" ? "https://wemade.fr/blog" : "https://wemade.fr/blog?lang=en";
+    const canonicalUrl = lang === "fr" ? "https://wemade.fr/blog" : "https://wemade.fr/blog?lang=en";
+    upsertSeoTags({ title, description: desc, canonicalUrl });
 
     window.scrollTo(0, 0);
   }, [lang]);
@@ -215,20 +614,15 @@ export function BlogPost() {
 
   useEffect(() => {
     if (post) {
-      document.title = post.title + " | WEMADE";
-      document.querySelector('meta[name="description"]')?.setAttribute("content", post.description);
-      window.scrollTo(0, 0);
-
-      // Dynamic Canonical
-      let canonical = document.querySelector('link[rel="canonical"]');
-      if (!canonical) {
-        canonical = document.createElement("link");
-        canonical.rel = "canonical";
-        document.head.appendChild(canonical);
-      }
-      canonical.href = lang === "fr" 
-        ? `https://wemade.fr/blog/${slug}` 
+      const canonicalUrl = lang === "fr"
+        ? `https://wemade.fr/blog/${slug}`
         : `https://wemade.fr/blog/${slug}?lang=en`;
+      upsertSeoTags({
+        title: `${post.title} | WEMADE`,
+        description: post.description,
+        canonicalUrl,
+      });
+      window.scrollTo(0, 0);
 
       // Inject dynamically JSON-LD for the Article logic (GEO focus)
       let ldJson = document.getElementById("json-ld-article");
@@ -255,7 +649,7 @@ export function BlogPost() {
         "datePublished": "2025-10-01",
         "mainEntityOfPage": {
           "@type": "WebPage",
-          "@id": `https://wemade.fr/blog/${slug}?lang=${lang}`
+          "@id": canonicalUrl
         }
       });
     }
@@ -295,6 +689,19 @@ export function BlogPost() {
           style={{ fontSize: "1.125rem", lineHeight: 1.8, color: "var(--slate-800)" }}
           dangerouslySetInnerHTML={{ __html: post.content }} 
         />
+        <div style={{ marginTop: "2rem", padding: "1.25rem", borderRadius: "0.9rem", background: "#fff", border: "1px solid var(--slate-200)" }}>
+          <h2 style={{ fontSize: "1.35rem", marginBottom: "0.75rem", color: "#111" }}>
+            {lang === "fr" ? "Prêt à sécuriser vos achats en Chine ?" : "Ready to secure your China sourcing?"}
+          </h2>
+          <p style={{ marginBottom: "1rem", color: "var(--slate-700)" }}>
+            {lang === "fr"
+              ? "Parlez-nous de votre besoin en 2 minutes, nous revenons avec un plan clair."
+              : "Tell us your sourcing need in 2 minutes and we will come back with a clear plan."}
+          </p>
+          <a href={`/#contact${lang === "en" ? "?lang=en" : ""}`} className="btn-primary">
+            {lang === "fr" ? "Demander un audit gratuit" : "Request a free audit"}
+          </a>
+        </div>
       </article>
 
       <style>{`
@@ -303,6 +710,7 @@ export function BlogPost() {
         .blog-content blockquote { padding-left: 1.5rem; border-left: 4px solid var(--accent-500); font-style: italic; color: var(--slate-600); margin: 2rem 0; font-size: 1.25rem; }
         .blog-content ol { padding-left: 1.5rem; margin-bottom: 1.5rem; }
         .blog-content li { margin-bottom: 0.5rem; }
+        .blog-content ul { padding-left: 1.5rem; margin-bottom: 1.5rem; }
       `}</style>
     </div>
   );

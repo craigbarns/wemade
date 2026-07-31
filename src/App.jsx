@@ -16,13 +16,43 @@ import {
   TimerReset,
   UserRound
 } from "lucide-react";
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Link, useParams } from "react-router-dom";
 import { BlogIndex, BlogPost } from "./Blog";
-import { SeoLandingPage } from "./components/SeoLandingPage";
 import { SourcingSimulator } from "./components/SourcingSimulator";
 import { CaseStudies } from "./components/CaseStudies";
 import { content } from "./content";
+import { getSeoPagesForHome, seoPagesMap } from "./seoPages";
 import "./App.css";
+
+function ensureMeta(selector, attrName, attrValue) {
+  let node = document.querySelector(selector);
+  if (!node) {
+    node = document.createElement("meta");
+    node.setAttribute(attrName, attrValue);
+    document.head.appendChild(node);
+  }
+  return node;
+}
+
+function upsertSeoTags({ title, description, canonicalUrl }) {
+  document.title = title;
+  document.querySelector('meta[name="description"]')?.setAttribute("content", description);
+  document.querySelector('meta[name="title"]')?.setAttribute("content", title);
+
+  let canonical = document.querySelector('link[rel="canonical"]');
+  if (!canonical) {
+    canonical = document.createElement("link");
+    canonical.rel = "canonical";
+    document.head.appendChild(canonical);
+  }
+  canonical.href = canonicalUrl;
+
+  ensureMeta('meta[property="og:title"]', "property", "og:title").setAttribute("content", title);
+  ensureMeta('meta[property="og:description"]', "property", "og:description").setAttribute("content", description);
+  ensureMeta('meta[property="og:url"]', "property", "og:url").setAttribute("content", canonicalUrl);
+  ensureMeta('meta[property="twitter:title"]', "property", "twitter:title").setAttribute("content", title);
+  ensureMeta('meta[property="twitter:description"]', "property", "twitter:description").setAttribute("content", description);
+}
 
 /* ===== Animation Variants ===== */
 const fadeUp = {
@@ -79,11 +109,134 @@ export default function App() {
         <Route path="/" element={<MainSite />} />
         <Route path="/blog" element={<BlogIndex />} />
         <Route path="/blog/:slug" element={<BlogPost />} />
-        
-        {/* Dedicated SEO & GEO Landing Page Routes */}
         <Route path="/:slug" element={<SeoLandingPage />} />
       </Routes>
     </BrowserRouter>
+  );
+}
+
+function SeoLandingPage() {
+  const { slug } = useParams();
+  const page = seoPagesMap[slug || ""];
+
+  useEffect(() => {
+    if (!page) return;
+    upsertSeoTags({
+      title: page.title,
+      description: page.description,
+      canonicalUrl: `https://wemade.fr/${page.slug}`,
+    });
+    window.scrollTo(0, 0);
+  }, [page]);
+
+  useEffect(() => {
+    document.getElementById("json-ld-pillar-faq")?.remove();
+    if (!page?.pillarFaqs?.length) return;
+    const node = document.createElement("script");
+    node.type = "application/ld+json";
+    node.id = "json-ld-pillar-faq";
+    node.textContent = JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: page.pillarFaqs.map((item) => ({
+        "@type": "Question",
+        name: item.q,
+        acceptedAnswer: { "@type": "Answer", text: item.a },
+      })),
+    });
+    document.head.appendChild(node);
+    return () => {
+      document.getElementById("json-ld-pillar-faq")?.remove();
+    };
+  }, [page]);
+
+  if (!page) return <MainSite />;
+
+  return (
+    <div className="seo-landing" style={{ minHeight: "100vh", background: "var(--bg-page)", color: "var(--slate-900)" }}>
+      <nav className="navbar" style={{ background: "rgba(10, 9, 8, 0.95)" }}>
+        <div className="navbar-inner" style={{ border: "none", boxShadow: "none" }}>
+          <div className="navbar-brand">
+            <Link to="/" style={{ color: "white", textDecoration: "none", fontWeight: 700, letterSpacing: "0.2em" }}>
+              WEMADE
+            </Link>
+          </div>
+          <Link to="/blog" style={{ color: "var(--slate-300)", textDecoration: "none", fontSize: "0.875rem" }}>
+            Blog
+          </Link>
+        </div>
+      </nav>
+      <section className="container section" style={{ paddingTop: "5rem" }}>
+        <div className="section-label">Guide expert</div>
+        <h1 className="section-title">{page.h1}</h1>
+        <p className="section-description" style={{ maxWidth: "54rem" }}>{page.intro}</p>
+        <div className="faq-grid" style={{ marginTop: "1.5rem" }}>
+          {page.points.map((item) => (
+            <div key={item} className="faq-card">
+              <div className="faq-answer">{item}</div>
+            </div>
+          ))}
+        </div>
+
+        {/* Interactive Simulator Component */}
+        <div style={{ marginTop: "3rem" }}>
+          <SourcingSimulator lang="fr" />
+        </div>
+
+        {page.deepSections?.length ? (
+          <article className="seo-deep-content" style={{ maxWidth: "48rem", marginTop: "2.75rem" }}>
+            {page.deepSections.map((sec) => (
+              <div key={sec.h2} className="seo-deep-block">
+                <h2>{sec.h2}</h2>
+                {sec.paragraphs.map((para, idx) => (
+                  <p key={idx}>{para}</p>
+                ))}
+              </div>
+            ))}
+          </article>
+        ) : null}
+
+        {page.pillarFaqs?.length ? (
+          <div style={{ marginTop: "3rem", maxWidth: "48rem" }}>
+            <div className="section-label" style={{ marginBottom: "1rem" }}>FAQ Dédiée</div>
+            <div className="faq-grid">
+              {page.pillarFaqs.map((faq) => (
+                <div key={faq.q} className="faq-card">
+                  <div className="faq-question">{faq.q}</div>
+                  <div className="faq-answer">{faq.a}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        ) : null}
+
+        {page.relatedLinks?.length ? (
+          <div style={{ marginTop: "2rem", maxWidth: "42rem" }}>
+            <div className="section-label" style={{ marginBottom: "0.75rem" }}>
+              Pour aller plus loin
+            </div>
+            <ul className="seo-related-list">
+              {page.relatedLinks.map((link) => {
+                const to = link.href ?? `/${link.slug}`;
+                return (
+                  <li key={to + link.label}>
+                    <Link to={to}>{link.label}</Link>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+        ) : null}
+        <div style={{ marginTop: "1.5rem", display: "flex", gap: "0.75rem", flexWrap: "wrap" }}>
+          <a href="/#contact" className="btn-primary">
+            Demander un audit gratuit <ArrowRight />
+          </a>
+          <Link to="/blog" className="btn-secondary">
+            Lire les analyses <ChevronRight />
+          </Link>
+        </div>
+      </section>
+    </div>
   );
 }
 
@@ -104,24 +257,47 @@ function MainSite() {
   useEffect(() => {
     // Dynamic SEO / GEO updates
     document.documentElement.lang = lang;
-    
-    if (lang === "en") {
-      document.title = "WEMADE | Premium Sourcing (France / Europe / China)";
-      document.querySelector('meta[name="description"]')?.setAttribute("content", "WEMADE is a French premium sourcing company. With 15 years of experience, we support European brands with our local teams in Shanghai and Hangzhou. Buy better in China.");
-    } else {
-      document.title = "WEMADE | Sourcing Premium (France / Europe / China)";
-      document.querySelector('meta[name="description"]')?.setAttribute("content", "WEMADE est une société française de sourcing premium. Forts de 15 ans d'expérience, nous accompagnons les marques européennes avec nos équipes locales à Shanghai et Hangzhou.");
+
+    const isEn = lang === "en";
+    upsertSeoTags({
+      title: isEn
+        ? "WEMADE | Premium Sourcing (France / Europe / China)"
+        : "WEMADE | Sourcing Premium (France / Europe / Chine)",
+      description: isEn
+        ? "French sourcing company helping European brands secure factories, negotiate costs, and control quality in China with teams in Shanghai and Hangzhou."
+        : "Société française de sourcing premium : sélection d'usines, négociation des coûts, contrôle qualité et pilotage opérationnel en Chine pour les marques européennes.",
+      canonicalUrl: isEn ? "https://wemade.fr/?lang=en" : "https://wemade.fr/",
+    });
+  }, [lang]);
+
+  useEffect(() => {
+    // FAQ schema for GEO/AI engines
+    let faqScript = document.getElementById("json-ld-faq");
+    if (!faqScript) {
+      faqScript = document.createElement("script");
+      faqScript.type = "application/ld+json";
+      faqScript.id = "json-ld-faq";
+      document.head.appendChild(faqScript);
     }
 
-    // Dynamic Canonical
-    let canonical = document.querySelector('link[rel="canonical"]');
-    if (!canonical) {
-      canonical = document.createElement("link");
-      canonical.rel = "canonical";
-      document.head.appendChild(canonical);
-    }
-    canonical.href = lang === "fr" ? "https://wemade.fr/" : "https://wemade.fr/?lang=en";
-  }, [lang]);
+    faqScript.textContent = JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": t.faqs.map((item) => ({
+        "@type": "Question",
+        "name": item.q,
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": item.a,
+        },
+      })),
+    });
+
+    return () => {
+      const node = document.getElementById("json-ld-faq");
+      if (node) node.remove();
+    };
+  }, [lang, t.faqs]);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 40);
@@ -462,6 +638,41 @@ function MainSite() {
             </div>
           </motion.div>
         </div>
+
+        {t.brands_section ? (
+          <motion.div {...fadeUp} className="positioning-card" style={{ marginTop: "1.25rem" }}>
+            <div className="section-label">{t.brands_section.label}</div>
+            <h2 className="section-title">{t.brands_section.title}</h2>
+            <p className="section-description">{t.brands_section.intro}</p>
+            <div className="trust-grid">
+              {t.brands_section.items.map((brand) => (
+                <div key={brand} className="trust-item">{brand}</div>
+              ))}
+            </div>
+          </motion.div>
+        ) : null}
+      </section>
+
+      {/* ===== SEO LANDING PAGES ===== */}
+      <section className="container" style={{ paddingBottom: "5rem" }}>
+        <motion.div {...fadeUp}>
+          <div className="section-label">Pages expertes</div>
+          <h2 className="section-title">Guides sourcing : piliers, villes et sujets techniques</h2>
+          <p className="section-description">
+            Architecture pensée pour le référencement : trois piliers (agent sourcing, contrôle qualité, sourcing PME),
+            pages satellites liées entre elles, puis guides par ville et verticaux.
+          </p>
+        </motion.div>
+        <div className="faq-grid" style={{ marginTop: "1.5rem" }}>
+          {getSeoPagesForHome().map((p) => (
+            <Link key={p.slug} to={`/${p.slug}`} style={{ textDecoration: "none", color: "inherit" }}>
+              <motion.div {...fadeUp} className="faq-card" style={{ height: "100%" }}>
+                <div className="faq-question">{p.h1}</div>
+                <div className="faq-answer">{p.description}</div>
+              </motion.div>
+            </Link>
+          ))}
+        </div>
       </section>
 
       {/* ===== FAQ ===== */}
@@ -482,6 +693,26 @@ function MainSite() {
           </div>
         </div>
       </section>
+
+      {/* ===== OFFER ===== */}
+      {t.offer_section ? (
+        <section className="container section">
+          <motion.div {...fadeUp} className="positioning-card" style={{ background: "linear-gradient(135deg,#fff,#f7f5ef)" }}>
+            <div className="section-label">{t.offer_section.label}</div>
+            <h2 className="section-title">{t.offer_section.title}</h2>
+            <p className="section-description">{t.offer_section.desc}</p>
+            <div className="trust-grid">
+              {t.offer_section.bullets.map((item) => (
+                <div key={item} className="trust-item">{item}</div>
+              ))}
+            </div>
+            <a href="#contact" className="btn-primary" style={{ marginTop: "1.25rem", display: "inline-flex" }}>
+              {t.offer_section.cta}
+              <ArrowRight />
+            </a>
+          </motion.div>
+        </section>
+      ) : null}
 
       {/* ===== CONTACT ===== */}
       <section className="container section" id="contact">
@@ -519,14 +750,12 @@ function MainSite() {
                     <label>Don’t fill this out if you're human: <input name="bot-field" /></label>
                   </p>
                   <input className="contact-input" placeholder={t.contact_section.form.name} name="name" required />
-                  <input className="contact-input" placeholder={t.contact_section.form.company} name="company" />
                   <input className="contact-input" placeholder={t.contact_section.form.email} type="email" name="email" required />
                   <input className="contact-input" placeholder={t.contact_section.form.phone} type="tel" name="phone" />
                   <textarea
                     className="contact-input contact-textarea"
                     placeholder={t.contact_section.form.message}
                     name="message"
-                    required
                   />
                   <button type="submit" className="btn-submit">
                     {t.contact_section.form.submit}
