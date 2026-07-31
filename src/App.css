@@ -387,6 +387,12 @@
 }
 
 /* ===== BUTTONS ===== */
+button.btn-primary,
+button.btn-secondary {
+  font-family: inherit;
+  text-decoration: none;
+}
+
 .btn-primary {
   display: inline-flex;
   align-items: center;
@@ -1398,4 +1404,220 @@
 
 .seo-deep-block p:last-child {
   margin-bottom: 0;
+}
+
+/* ===== CONVERSION — microcopy, bandeau confiance, barre sticky, 404 ===== */
+
+.cta-microcopy {
+  font-size: 0.8125rem;
+  color: var(--slate-400);
+  margin-top: 0.75rem;
+  margin-bottom: 0;
+  letter-spacing: 0.01em;
+}
+
+.hero .cta-microcopy {
+  color: var(--slate-300);
+}
+
+.hero-audit-note {
+  font-size: 0.875rem;
+  color: var(--accent-500);
+  font-weight: 500;
+  margin-top: 0.35rem;
+  margin-bottom: 0;
+}
+
+.hero-phone-line {
+  margin-top: 0.5rem;
+  margin-bottom: 0;
+}
+
+.hero-phone-line a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: #fff;
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none;
+}
+
+.hero-phone-line a:hover {
+  color: var(--accent-500);
+}
+
+.navbar-phone {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: var(--accent-500) !important;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+/* --- Bandeau "Ils nous font confiance" (sous le hero) --- */
+.trust-band {
+  background: var(--slate-950);
+  border-top: 1px solid rgba(196, 162, 101, 0.18);
+  border-bottom: 1px solid rgba(196, 162, 101, 0.12);
+  padding: 1.5rem 0;
+}
+
+.trust-band-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.85rem;
+  text-align: center;
+}
+
+.trust-band-label {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  color: var(--accent-500);
+  font-weight: 600;
+}
+
+.trust-band-items {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem 1.75rem;
+}
+
+.trust-band-item {
+  font-family: "Outfit", sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  color: rgba(200, 197, 190, 0.55);
+  white-space: nowrap;
+}
+
+/* --- Barre sticky mobile "Être rappelé sous 24h" --- */
+.sticky-callback-bar {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  body {
+    padding-bottom: 64px; /* compensation pour ne pas écraser le contenu mobile */
+  }
+
+  .sticky-callback-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 110;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.65rem 0.9rem calc(0.65rem + env(safe-area-inset-bottom, 0px));
+    background: rgba(10, 9, 8, 0.96);
+    border-top: 1px solid rgba(196, 162, 101, 0.35);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  .sticky-callback-btn {
+    flex: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.7rem 1rem;
+    border-radius: 0.75rem;
+    border: none;
+    background: linear-gradient(135deg, #c4a265, #e6d3af);
+    color: #0a0908;
+    font-weight: 700;
+    font-size: 0.9rem;
+    cursor: pointer;
+  }
+
+  .sticky-callback-phone {
+    color: var(--accent-500);
+    font-weight: 600;
+    font-size: 0.85rem;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+}
+
+/* --- Footer contact --- */
+.footer-contact a {
+  color: var(--slate-300);
+  text-decoration: none;
+}
+
+.footer-contact a:hover {
+  color: var(--accent-500);
+}
+
+/* --- Lien contact-info cliquable --- */
+a.contact-info-item {
+  text-decoration: none;
+  color: inherit;
+  transition: color 0.2s ease;
+}
+
+a.contact-info-item:hover {
+  color: var(--accent-600);
+}
+
+/* --- Page 404 --- */
+.notfound-page {
+  min-height: 100vh;
+  background: var(--slate-950);
+  color: var(--slate-100);
+}
+
+.notfound-content {
+  padding-top: 10rem;
+  padding-bottom: 6rem;
+  max-width: 46rem;
+}
+
+.notfound-title {
+  font-size: clamp(2rem, 5vw, 3.25rem);
+  font-weight: 700;
+  line-height: 1.15;
+  margin: 0.75rem 0 1rem;
+  color: #fff;
+}
+
+.notfound-text {
+  color: var(--slate-300);
+  font-size: 1.05rem;
+  line-height: 1.7;
+  margin-bottom: 2rem;
+}
+
+.notfound-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 2.5rem;
+}
+
+.notfound-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.notfound-links a {
+  color: var(--accent-500);
+  text-decoration: none;
+  font-size: 0.95rem;
+}
+
+.notfound-links a:hover {
+  text-decoration: underline;
 }

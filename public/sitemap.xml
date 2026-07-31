@@ -2,162 +2,269 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
 
-  <!-- Home -->
   <url>
     <loc>https://wemade.fr/</loc>
-    <lastmod>2026-04-12</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>2026-07-31</lastmod>
     <priority>1.0</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://wemade.fr/?lang=en" />
     <xhtml:link rel="alternate" hreflang="fr" href="https://wemade.fr/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://wemade.fr/en/" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://wemade.fr/" />
   </url>
-
-  <!-- Blog Index -->
+  <url>
+    <loc>https://wemade.fr/en/</loc>
+    <lastmod>2026-07-31</lastmod>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://wemade.fr/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://wemade.fr/en/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wemade.fr/" />
+  </url>
   <url>
     <loc>https://wemade.fr/blog</loc>
-    <lastmod>2026-04-12</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>2026-07-31</lastmod>
     <priority>0.85</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://wemade.fr/blog?lang=en" />
     <xhtml:link rel="alternate" hreflang="fr" href="https://wemade.fr/blog" />
-  </url>
-
-  <!-- GEO / LLM Context -->
-  <url>
-    <loc>https://wemade.fr/llms.txt</loc>
-    <lastmod>2026-04-11</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://wemade.fr/en/blog" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wemade.fr/blog" />
   </url>
   <url>
-    <loc>https://wemade.fr/llms-full.txt</loc>
-    <lastmod>2026-04-11</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.45</priority>
+    <loc>https://wemade.fr/en/blog</loc>
+    <lastmod>2026-07-31</lastmod>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://wemade.fr/blog" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://wemade.fr/en/blog" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wemade.fr/blog" />
   </url>
-  <url>
-    <loc>https://wemade.fr/ai.txt</loc>
-    <lastmod>2026-04-11</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.45</priority>
-  </url>
-
-  <!-- Blog posts -->
   <url>
     <loc>https://wemade.fr/blog/sourcing-chine-pme-7-erreurs</loc>
-    <lastmod>2026-04-11</lastmod>
+    <lastmod>2026-07-31</lastmod>
     <priority>0.75</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://wemade.fr/blog/sourcing-chine-pme-7-erreurs?lang=en" />
     <xhtml:link rel="alternate" hreflang="fr" href="https://wemade.fr/blog/sourcing-chine-pme-7-erreurs" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://wemade.fr/en/blog/sourcing-chine-pme-7-erreurs" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wemade.fr/blog/sourcing-chine-pme-7-erreurs" />
   </url>
   <url>
     <loc>https://wemade.fr/blog/checklist-agent-sourcing-chine-2026</loc>
-    <lastmod>2026-04-11</lastmod>
-    <priority>0.78</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://wemade.fr/blog/checklist-agent-sourcing-chine-2026?lang=en" />
+    <lastmod>2026-07-31</lastmod>
+    <priority>0.75</priority>
     <xhtml:link rel="alternate" hreflang="fr" href="https://wemade.fr/blog/checklist-agent-sourcing-chine-2026" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://wemade.fr/en/blog/checklist-agent-sourcing-chine-2026" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wemade.fr/blog/checklist-agent-sourcing-chine-2026" />
   </url>
   <url>
     <loc>https://wemade.fr/blog/honoraires-agent-sourcing-chine-risques</loc>
-    <lastmod>2026-04-11</lastmod>
-    <priority>0.78</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://wemade.fr/blog/honoraires-agent-sourcing-chine-risques?lang=en" />
+    <lastmod>2026-07-31</lastmod>
+    <priority>0.75</priority>
     <xhtml:link rel="alternate" hreflang="fr" href="https://wemade.fr/blog/honoraires-agent-sourcing-chine-risques" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://wemade.fr/en/blog/honoraires-agent-sourcing-chine-risques" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wemade.fr/blog/honoraires-agent-sourcing-chine-risques" />
   </url>
   <url>
     <loc>https://wemade.fr/blog/comment-trouver-usine-fiable-chine</loc>
-    <lastmod>2025-10-14</lastmod>
-    <priority>0.7</priority>
+    <lastmod>2026-07-31</lastmod>
+    <priority>0.75</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://wemade.fr/blog/comment-trouver-usine-fiable-chine" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://wemade.fr/en/blog/comment-trouver-usine-fiable-chine" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wemade.fr/blog/comment-trouver-usine-fiable-chine" />
   </url>
   <url>
     <loc>https://wemade.fr/blog/sourcing-premium-vs-agents-chine</loc>
-    <lastmod>2025-10-28</lastmod>
-    <priority>0.7</priority>
+    <lastmod>2026-07-31</lastmod>
+    <priority>0.75</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://wemade.fr/blog/sourcing-premium-vs-agents-chine" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://wemade.fr/en/blog/sourcing-premium-vs-agents-chine" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wemade.fr/blog/sourcing-premium-vs-agents-chine" />
   </url>
   <url>
     <loc>https://wemade.fr/blog/controle-qualite-securiser-production-chine</loc>
-    <lastmod>2025-11-05</lastmod>
-    <priority>0.7</priority>
+    <lastmod>2026-07-31</lastmod>
+    <priority>0.75</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://wemade.fr/blog/controle-qualite-securiser-production-chine" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://wemade.fr/en/blog/controle-qualite-securiser-production-chine" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wemade.fr/blog/controle-qualite-securiser-production-chine" />
   </url>
-
-  <!-- SEO pillars & satellites -->
+  <url>
+    <loc>https://wemade.fr/blog/how-to-find-factories-in-china</loc>
+    <lastmod>2026-07-31</lastmod>
+    <priority>0.75</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://wemade.fr/blog/how-to-find-factories-in-china" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://wemade.fr/en/blog/how-to-find-factories-in-china" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wemade.fr/blog/how-to-find-factories-in-china" />
+  </url>
+  <url>
+    <loc>https://wemade.fr/blog/wemade-sourcing-france-china</loc>
+    <lastmod>2026-07-31</lastmod>
+    <priority>0.75</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://wemade.fr/blog/wemade-sourcing-france-china" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://wemade.fr/en/blog/wemade-sourcing-france-china" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wemade.fr/blog/wemade-sourcing-france-china" />
+  </url>
+  <url>
+    <loc>https://wemade.fr/en/blog/sourcing-chine-pme-7-erreurs</loc>
+    <lastmod>2026-07-31</lastmod>
+    <priority>0.75</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://wemade.fr/blog/sourcing-chine-pme-7-erreurs" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://wemade.fr/en/blog/sourcing-chine-pme-7-erreurs" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wemade.fr/blog/sourcing-chine-pme-7-erreurs" />
+  </url>
+  <url>
+    <loc>https://wemade.fr/en/blog/checklist-agent-sourcing-chine-2026</loc>
+    <lastmod>2026-07-31</lastmod>
+    <priority>0.75</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://wemade.fr/blog/checklist-agent-sourcing-chine-2026" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://wemade.fr/en/blog/checklist-agent-sourcing-chine-2026" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wemade.fr/blog/checklist-agent-sourcing-chine-2026" />
+  </url>
+  <url>
+    <loc>https://wemade.fr/en/blog/honoraires-agent-sourcing-chine-risques</loc>
+    <lastmod>2026-07-31</lastmod>
+    <priority>0.75</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://wemade.fr/blog/honoraires-agent-sourcing-chine-risques" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://wemade.fr/en/blog/honoraires-agent-sourcing-chine-risques" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wemade.fr/blog/honoraires-agent-sourcing-chine-risques" />
+  </url>
+  <url>
+    <loc>https://wemade.fr/en/blog/comment-trouver-usine-fiable-chine</loc>
+    <lastmod>2026-07-31</lastmod>
+    <priority>0.75</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://wemade.fr/blog/comment-trouver-usine-fiable-chine" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://wemade.fr/en/blog/comment-trouver-usine-fiable-chine" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wemade.fr/blog/comment-trouver-usine-fiable-chine" />
+  </url>
+  <url>
+    <loc>https://wemade.fr/en/blog/sourcing-premium-vs-agents-chine</loc>
+    <lastmod>2026-07-31</lastmod>
+    <priority>0.75</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://wemade.fr/blog/sourcing-premium-vs-agents-chine" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://wemade.fr/en/blog/sourcing-premium-vs-agents-chine" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wemade.fr/blog/sourcing-premium-vs-agents-chine" />
+  </url>
+  <url>
+    <loc>https://wemade.fr/en/blog/controle-qualite-securiser-production-chine</loc>
+    <lastmod>2026-07-31</lastmod>
+    <priority>0.75</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://wemade.fr/blog/controle-qualite-securiser-production-chine" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://wemade.fr/en/blog/controle-qualite-securiser-production-chine" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wemade.fr/blog/controle-qualite-securiser-production-chine" />
+  </url>
+  <url>
+    <loc>https://wemade.fr/en/blog/how-to-find-factories-in-china</loc>
+    <lastmod>2026-07-31</lastmod>
+    <priority>0.75</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://wemade.fr/blog/how-to-find-factories-in-china" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://wemade.fr/en/blog/how-to-find-factories-in-china" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wemade.fr/blog/how-to-find-factories-in-china" />
+  </url>
+  <url>
+    <loc>https://wemade.fr/en/blog/wemade-sourcing-france-china</loc>
+    <lastmod>2026-07-31</lastmod>
+    <priority>0.75</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://wemade.fr/blog/wemade-sourcing-france-china" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://wemade.fr/en/blog/wemade-sourcing-france-china" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wemade.fr/blog/wemade-sourcing-france-china" />
+  </url>
   <url>
     <loc>https://wemade.fr/agent-sourcing-chine-france</loc>
-    <lastmod>2026-04-12</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.95</priority>
+    <lastmod>2026-07-31</lastmod>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://wemade.fr/agent-sourcing-chine-france" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wemade.fr/agent-sourcing-chine-france" />
   </url>
   <url>
     <loc>https://wemade.fr/controle-qualite-chine</loc>
-    <lastmod>2026-04-12</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
+    <lastmod>2026-07-31</lastmod>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://wemade.fr/controle-qualite-chine" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wemade.fr/controle-qualite-chine" />
   </url>
   <url>
     <loc>https://wemade.fr/sourcing-chine-pme</loc>
-    <lastmod>2026-04-12</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
+    <lastmod>2026-07-31</lastmod>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://wemade.fr/sourcing-chine-pme" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wemade.fr/sourcing-chine-pme" />
   </url>
   <url>
     <loc>https://wemade.fr/transparence-sourcing-chine</loc>
-    <lastmod>2026-04-12</lastmod>
-    <changefreq>monthly</changefreq>
+    <lastmod>2026-07-31</lastmod>
     <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://wemade.fr/transparence-sourcing-chine" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wemade.fr/transparence-sourcing-chine" />
   </url>
   <url>
     <loc>https://wemade.fr/aql-inspection-chine</loc>
-    <lastmod>2026-04-12</lastmod>
-    <changefreq>monthly</changefreq>
+    <lastmod>2026-07-31</lastmod>
     <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://wemade.fr/aql-inspection-chine" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wemade.fr/aql-inspection-chine" />
   </url>
   <url>
     <loc>https://wemade.fr/sourcing-chine-marseille</loc>
-    <lastmod>2026-04-12</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <lastmod>2026-07-31</lastmod>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://wemade.fr/sourcing-chine-marseille" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wemade.fr/sourcing-chine-marseille" />
   </url>
   <url>
     <loc>https://wemade.fr/sourcing-chine-lyon</loc>
-    <lastmod>2026-04-12</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <lastmod>2026-07-31</lastmod>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://wemade.fr/sourcing-chine-lyon" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wemade.fr/sourcing-chine-lyon" />
   </url>
   <url>
     <loc>https://wemade.fr/sourcing-chine-paris</loc>
-    <lastmod>2026-04-12</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <lastmod>2026-07-31</lastmod>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://wemade.fr/sourcing-chine-paris" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wemade.fr/sourcing-chine-paris" />
   </url>
   <url>
     <loc>https://wemade.fr/import-chine-pme</loc>
-    <lastmod>2026-04-12</lastmod>
-    <changefreq>monthly</changefreq>
+    <lastmod>2026-07-31</lastmod>
     <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://wemade.fr/import-chine-pme" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wemade.fr/import-chine-pme" />
   </url>
   <url>
     <loc>https://wemade.fr/audit-usine-chine</loc>
-    <lastmod>2026-04-12</lastmod>
-    <changefreq>monthly</changefreq>
+    <lastmod>2026-07-31</lastmod>
     <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://wemade.fr/audit-usine-chine" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wemade.fr/audit-usine-chine" />
   </url>
   <url>
     <loc>https://wemade.fr/fournisseur-chine-fiable</loc>
-    <lastmod>2026-04-12</lastmod>
-    <changefreq>monthly</changefreq>
+    <lastmod>2026-07-31</lastmod>
     <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://wemade.fr/fournisseur-chine-fiable" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wemade.fr/fournisseur-chine-fiable" />
   </url>
   <url>
     <loc>https://wemade.fr/import-emballage-chine</loc>
-    <lastmod>2026-04-12</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <lastmod>2026-07-31</lastmod>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://wemade.fr/import-emballage-chine" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wemade.fr/import-emballage-chine" />
   </url>
   <url>
     <loc>https://wemade.fr/sourcing-led-chine</loc>
-    <lastmod>2026-04-12</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <lastmod>2026-07-31</lastmod>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://wemade.fr/sourcing-led-chine" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wemade.fr/sourcing-led-chine" />
+  </url>
+  <url>
+    <loc>https://wemade.fr/verifier-fournisseur-alibaba</loc>
+    <lastmod>2026-07-31</lastmod>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://wemade.fr/verifier-fournisseur-alibaba" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wemade.fr/verifier-fournisseur-alibaba" />
+  </url>
+  <url>
+    <loc>https://wemade.fr/tarif-agent-sourcing-chine</loc>
+    <lastmod>2026-07-31</lastmod>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://wemade.fr/tarif-agent-sourcing-chine" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wemade.fr/tarif-agent-sourcing-chine" />
   </url>
 </urlset>

@@ -10,49 +10,29 @@ import {
   LayoutGrid,
   Menu,
   PackageCheck,
+  PhoneCall,
   X,
   Globe,
-  MapPin,
-  TimerReset,
-  UserRound
+  MapPin
 } from "lucide-react";
-import { BrowserRouter, Routes, Route, Link, useParams } from "react-router-dom";
+import { Routes, Route, Link, useParams, useNavigate } from "react-router-dom";
 import { BlogIndex, BlogPost } from "./Blog";
 import { SourcingSimulator } from "./components/SourcingSimulator";
 import { CaseStudies } from "./components/CaseStudies";
+import { NotFound } from "./components/NotFound";
+import {
+  CALLBACK_LABEL,
+  CALLBACK_MESSAGE,
+  CALLBACK_INTENT_KEY,
+  PREFILL_MESSAGE_KEY,
+  StickyCallbackBar
+} from "./components/CallbackCta";
 import { content } from "./content";
 import { getSeoPagesForHome, seoPagesMap } from "./seoPages";
+import { upsertSeoTags } from "./seo-utils";
+import { HOME_TITLE, HOME_DESCRIPTION } from "./routes-manifest";
+import { SITE } from "./config";
 import "./App.css";
-
-function ensureMeta(selector, attrName, attrValue) {
-  let node = document.querySelector(selector);
-  if (!node) {
-    node = document.createElement("meta");
-    node.setAttribute(attrName, attrValue);
-    document.head.appendChild(node);
-  }
-  return node;
-}
-
-function upsertSeoTags({ title, description, canonicalUrl }) {
-  document.title = title;
-  document.querySelector('meta[name="description"]')?.setAttribute("content", description);
-  document.querySelector('meta[name="title"]')?.setAttribute("content", title);
-
-  let canonical = document.querySelector('link[rel="canonical"]');
-  if (!canonical) {
-    canonical = document.createElement("link");
-    canonical.rel = "canonical";
-    document.head.appendChild(canonical);
-  }
-  canonical.href = canonicalUrl;
-
-  ensureMeta('meta[property="og:title"]', "property", "og:title").setAttribute("content", title);
-  ensureMeta('meta[property="og:description"]', "property", "og:description").setAttribute("content", description);
-  ensureMeta('meta[property="og:url"]', "property", "og:url").setAttribute("content", canonicalUrl);
-  ensureMeta('meta[property="twitter:title"]', "property", "twitter:title").setAttribute("content", title);
-  ensureMeta('meta[property="twitter:description"]', "property", "twitter:description").setAttribute("content", description);
-}
 
 /* ===== Animation Variants ===== */
 const fadeUp = {
@@ -102,16 +82,22 @@ function Particles() {
   );
 }
 
-export default function App() {
+/**
+ * App : uniquement des Routes.
+ * Le Router est fourni par main.jsx (BrowserRouter, client) ou entry-server.jsx (StaticRouter, SSG).
+ */
+export default function App({ initialLang }) {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<MainSite />} />
-        <Route path="/blog" element={<BlogIndex />} />
-        <Route path="/blog/:slug" element={<BlogPost />} />
-        <Route path="/:slug" element={<SeoLandingPage />} />
-      </Routes>
-    </BrowserRouter>
+    <Routes>
+      <Route path="/" element={<MainSite initialLang={initialLang} />} />
+      <Route path="/en" element={<MainSite initialLang="en" />} />
+      <Route path="/blog" element={<BlogIndex />} />
+      <Route path="/en/blog" element={<BlogIndex />} />
+      <Route path="/blog/:slug" element={<BlogPost />} />
+      <Route path="/en/blog/:slug" element={<BlogPost />} />
+      <Route path="/:slug" element={<SeoLandingPage />} />
+      <Route path="*" element={<NotFound />} />
+    </Routes>
   );
 }
 
@@ -150,7 +136,7 @@ function SeoLandingPage() {
     };
   }, [page]);
 
-  if (!page) return <MainSite />;
+  if (!page) return <NotFound />;
 
   return (
     <div className="seo-landing" style={{ minHeight: "100vh", background: "var(--bg-page)", color: "var(--slate-900)" }}>
@@ -235,22 +221,33 @@ function SeoLandingPage() {
             Lire les analyses <ChevronRight />
           </Link>
         </div>
+        <p className="cta-microcopy">Réponse sous 24h ouvrées</p>
       </section>
+      <StickyCallbackBar lang="fr" />
     </div>
   );
 }
 
 /* ===== Main Component ===== */
-function MainSite() {
+function MainSite({ initialLang }) {
+  const navigate = useNavigate();
+
   const getInitialLang = () => {
-    const params = new URLSearchParams(window.location.search);
-    return params.get("lang") === "en" ? "en" : "fr";
+    if (initialLang === "en" || initialLang === "fr") return initialLang;
+    if (typeof window !== "undefined") {
+      const { pathname, search } = window.location;
+      if (pathname === "/en" || pathname.startsWith("/en/")) return "en";
+      const params = new URLSearchParams(search);
+      return params.get("lang") === "en" ? "en" : "fr";
+    }
+    return "fr";
   };
 
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [lang, setLang] = useState(getInitialLang);
+  const [lang] = useState(getInitialLang);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [message, setMessage] = useState("");
 
   const t = content[lang];
 
@@ -260,15 +257,21 @@ function MainSite() {
 
     const isEn = lang === "en";
     upsertSeoTags({
-      title: isEn
-        ? "WEMADE | Premium Sourcing (France / Europe / China)"
-        : "WEMADE | Sourcing Premium (France / Europe / Chine)",
-      description: isEn
-        ? "French sourcing company helping European brands secure factories, negotiate costs, and control quality in China with teams in Shanghai and Hangzhou."
-        : "Société française de sourcing premium : sélection d'usines, négociation des coûts, contrôle qualité et pilotage opérationnel en Chine pour les marques européennes.",
-      canonicalUrl: isEn ? "https://wemade.fr/?lang=en" : "https://wemade.fr/",
+      title: HOME_TITLE[lang],
+      description: HOME_DESCRIPTION[lang],
+      canonicalUrl: isEn ? "https://wemade.fr/en/" : "https://wemade.fr/",
     });
   }, [lang]);
+
+  useEffect(() => {
+    // Redirection douce : l'ancien paramètre ?lang=en sur / bascule vers la vraie URL /en/
+    if (
+      window.location.pathname === "/" &&
+      new URLSearchParams(window.location.search).get("lang") === "en"
+    ) {
+      navigate("/en/", { replace: true });
+    }
+  }, [navigate]);
 
   useEffect(() => {
     // FAQ schema for GEO/AI engines
@@ -305,14 +308,53 @@ function MainSite() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {
+    // Consomme les intentions stockées par les landings / simulateur (sessionStorage)
+    let pendingMessage = "";
+    let wantsCallback = false;
+    try {
+      pendingMessage = sessionStorage.getItem(PREFILL_MESSAGE_KEY) || "";
+      wantsCallback = sessionStorage.getItem(CALLBACK_INTENT_KEY) === "1";
+      if (pendingMessage) sessionStorage.removeItem(PREFILL_MESSAGE_KEY);
+      if (wantsCallback) sessionStorage.removeItem(CALLBACK_INTENT_KEY);
+    } catch {
+      /* sessionStorage indisponible */
+    }
+
+    let combined = "";
+    if (wantsCallback) {
+      const callbackMsg = CALLBACK_MESSAGE[lang] || CALLBACK_MESSAGE.fr;
+      combined = pendingMessage ? `${callbackMsg}\n\n${pendingMessage}` : callbackMsg;
+    } else if (pendingMessage) {
+      combined = pendingMessage;
+    }
+    if (combined) setMessage(combined);
+
+    const shouldScroll = Boolean(combined) || window.location.hash === "#contact";
+    if (shouldScroll) {
+      setTimeout(() => {
+        document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
+        if (wantsCallback) {
+          document.querySelector('#contact input[name="phone"]')?.focus({ preventScroll: true });
+        }
+      }, 150);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const closeMobileMenu = () => setMobileMenuOpen(false);
 
   const toggleLang = () => {
-    const newLang = lang === "fr" ? "en" : "fr";
-    setLang(newLang);
-    const newUrl = new URL(window.location);
-    newUrl.searchParams.set("lang", newLang);
-    window.history.pushState({}, "", newUrl);
+    // Bascule vers la vraie URL localisée (le composant est remonté avec la bonne langue)
+    navigate(lang === "fr" ? "/en/" : "/");
+  };
+
+  const handleCallbackRequest = () => {
+    setMessage(CALLBACK_MESSAGE[lang] || CALLBACK_MESSAGE.fr);
+    document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
+    setTimeout(() => {
+      document.querySelector('#contact input[name="phone"]')?.focus({ preventScroll: true });
+    }, 600);
   };
 
   const handleFormSubmit = (e) => {
@@ -360,8 +402,13 @@ function MainSite() {
             <a href="#simulator">{lang === "fr" ? "Simulateur" : "Simulator"}</a>
             <a href="#cases">{lang === "fr" ? "Cas Clients" : "Cases"}</a>
             <a href="#faq">{t.nav.faq}</a>
-            <Link to={`/blog?lang=${lang}`}>{t.nav.blog}</Link>
+            <Link to={lang === "en" ? "/en/blog" : "/blog"}>{t.nav.blog}</Link>
             <a href="#contact">{t.nav.contact}</a>
+            {SITE.phone ? (
+              <a className="navbar-phone" href={`tel:${SITE.phone}`}>
+                <PhoneCall size={15} /> {SITE.phoneDisplay || SITE.phone}
+              </a>
+            ) : null}
             <button className="lang-toggle-btn" onClick={toggleLang} aria-label="Toggle language">
               <Globe size={16} />
               {lang === "fr" ? "EN" : "FR"}
@@ -390,7 +437,7 @@ function MainSite() {
         <a href="#simulator" onClick={closeMobileMenu}>{lang === "fr" ? "Simulateur" : "Simulator"}</a>
         <a href="#cases" onClick={closeMobileMenu}>{lang === "fr" ? "Cas Clients" : "Cases"}</a>
         <a href="#faq" onClick={closeMobileMenu}>{t.nav.faq}</a>
-        <Link to={`/blog?lang=${lang}`} onClick={closeMobileMenu}>{t.nav.blog}</Link>
+        <Link to={lang === "en" ? "/en/blog" : "/blog"} onClick={closeMobileMenu}>{t.nav.blog}</Link>
         <a href="#contact" onClick={closeMobileMenu}>{t.nav.contact}</a>
         <button className="lang-toggle-btn-mobile" onClick={() => { toggleLang(); closeMobileMenu(); }}>
           <Globe size={20} /> Switch to {lang === "fr" ? "English" : "Français"}
@@ -422,11 +469,30 @@ function MainSite() {
                 {t.hero.btn_primary}
                 <ArrowRight />
               </a>
+              <button type="button" className="btn-secondary" onClick={handleCallbackRequest}>
+                {CALLBACK_LABEL[lang] || CALLBACK_LABEL.fr}
+                <PhoneCall />
+              </button>
               <a href="#simulator" className="btn-secondary">
                 {lang === "fr" ? "Simulateur Sourcing" : "Sourcing Simulator"}
                 <ChevronRight />
               </a>
             </div>
+            <p className="cta-microcopy">
+              {lang === "fr" ? "Réponse sous 24h ouvrées" : "Reply within 24 business hours"}
+            </p>
+            <p className="hero-audit-note">
+              {lang === "fr"
+                ? "🎯 Premier audit import gratuit (20 min) — sans engagement"
+                : "🎯 Free first import audit (20 min) — no commitment"}
+            </p>
+            {SITE.phone ? (
+              <p className="hero-phone-line">
+                <a href={`tel:${SITE.phone}`}>
+                  <PhoneCall size={15} /> {SITE.phoneDisplay || SITE.phone}
+                </a>
+              </p>
+            ) : null}
 
             <div className="stats-grid">
               {t.stats.map((item, i) => (
@@ -488,6 +554,20 @@ function MainSite() {
         </div>
       </section>
 
+      {/* ===== BANDEAU CONFIANCE (juste sous le hero) ===== */}
+      <section className="trust-band">
+        <div className="container trust-band-inner">
+          <span className="trust-band-label">
+            {lang === "fr" ? "Ils nous font confiance" : "They trust us"}
+          </span>
+          <div className="trust-band-items">
+            {t.brands_section.items.map((brand) => (
+              <span key={brand} className="trust-band-item">{brand}</span>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ===== SERVICES ===== */}
       <section className="section container" id="services">
         <motion.div {...fadeUp} style={{ maxWidth: "48rem" }}>
@@ -524,7 +604,13 @@ function MainSite() {
           </p>
         </motion.div>
 
-        <SourcingSimulator lang={lang} />
+        <SourcingSimulator
+          lang={lang}
+          onSelectResult={(msg) => {
+            setMessage(msg);
+            document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
+          }}
+        />
       </section>
 
       {/* ===== CASE STUDIES SECTION ===== */}
@@ -710,6 +796,9 @@ function MainSite() {
               {t.offer_section.cta}
               <ArrowRight />
             </a>
+            <p className="cta-microcopy">
+              {lang === "fr" ? "Réponse sous 24h ouvrées — sans engagement" : "Reply within 24 business hours — no commitment"}
+            </p>
           </motion.div>
         </section>
       ) : null}
@@ -726,13 +815,28 @@ function MainSite() {
               <div className="contact-info-grid">
                 {t.contactInfo.map((item) => {
                   const Icon = item.icon;
-                  return (
-                    <div key={item.text} className="contact-info-item">
+                  const inner = (
+                    <>
                       <Icon />
                       {item.text}
+                    </>
+                  );
+                  return item.href ? (
+                    <a key={item.text} className="contact-info-item" href={item.href}>
+                      {inner}
+                    </a>
+                  ) : (
+                    <div key={item.text} className="contact-info-item">
+                      {inner}
                     </div>
                   );
                 })}
+                {SITE.phone ? (
+                  <a className="contact-info-item" href={`tel:${SITE.phone}`}>
+                    <PhoneCall />
+                    {SITE.phoneDisplay || SITE.phone}
+                  </a>
+                ) : null}
               </div>
             </div>
 
@@ -756,11 +860,16 @@ function MainSite() {
                     className="contact-input contact-textarea"
                     placeholder={t.contact_section.form.message}
                     name="message"
+                    value={message}
+                    onChange={(e) => setMessage(e.target.value)}
                   />
                   <button type="submit" className="btn-submit">
                     {t.contact_section.form.submit}
                     <ArrowRight />
                   </button>
+                  <p className="cta-microcopy" style={{ textAlign: "center", marginTop: "0.75rem" }}>
+                    {lang === "fr" ? "Réponse sous 24h ouvrées" : "Reply within 24 business hours"}
+                  </p>
                 </form>
               )}
             </div>
@@ -776,11 +885,22 @@ function MainSite() {
             <div style={{ display: "flex", flexDirection: "column", gap: "0.15rem" }}>
               <span><strong>WEMADE</strong> — wemade.fr</span>
               <span className="footer-tagline">{t.footer_tag}</span>
+              <span className="footer-contact">
+                <a href={`mailto:${SITE.email}`}>{SITE.email}</a>
+                {SITE.phone ? (
+                  <>
+                    {" • "}
+                    <a href={`tel:${SITE.phone}`}>{SITE.phoneDisplay || SITE.phone}</a>
+                  </>
+                ) : null}
+              </span>
             </div>
           </div>
           <div className="footer-legal">{t.footer}</div>
         </div>
       </footer>
+
+      <StickyCallbackBar lang={lang} onRequest={handleCallbackRequest} />
     </div>
   );
 }

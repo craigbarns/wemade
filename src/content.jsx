@@ -25,8 +25,8 @@ export const content = {
     },
     hero: {
       badge: "Société française de sourcing avec équipe locale en Chine",
-      title_1: "Le partenaire sourcing des marques",
-      title_2: " et importateurs européens.",
+      title_1: "Sourcing Chine sans les risques :",
+      title_2: " usines vérifiées, qualité contrôlée, marge protégée.",
       desc: "WEMADE accompagne les entreprises qui veulent acheter mieux en Chine grâce à un pilotage structuré en France et une exécution locale à Shanghai et Hangzhou.",
       btn_primary: "Demander un échange",
       btn_secondary: "Découvrir WEMADE"
@@ -174,8 +174,8 @@ export const content = {
       "Entreprises ayant besoin d'un pont fiable entre l'Europe et la Chine"
     ],
     contactInfo: [
-      { icon: Mail, text: "gregory@wemade.fr" },
-      { icon: Globe2, text: "wemade.fr" },
+      { icon: Mail, text: "gregory@wemade.fr", href: "mailto:gregory@wemade.fr" },
+      { icon: Globe2, text: "wemade.fr", href: "https://wemade.fr" },
       { icon: MapPin, text: "Siège : Marseille, France" },
       { icon: MapPin, text: "Bureaux : Shanghai & Hangzhou" }
     ]
@@ -193,8 +193,8 @@ export const content = {
     },
     hero: {
       badge: "French sourcing company with a local team in China",
-      title_1: "The sourcing partner for European",
-      title_2: " brands and importers.",
+      title_1: "China sourcing without the risk:",
+      title_2: " verified factories, controlled quality, protected margins.",
       desc: "WEMADE supports companies who demand better purchasing in China through structured European management and direct local execution in Shanghai and Hangzhou.",
       btn_primary: "Request a Meeting",
       btn_secondary: "Discover WEMADE"
@@ -342,8 +342,8 @@ export const content = {
       "Businesses needing a reliable bridge between Europe and China"
     ],
     contactInfo: [
-      { icon: Mail, text: "gregory@wemade.fr" },
-      { icon: Globe2, text: "wemade.fr" },
+      { icon: Mail, text: "gregory@wemade.fr", href: "mailto:gregory@wemade.fr" },
+      { icon: Globe2, text: "wemade.fr", href: "https://wemade.fr" },
       { icon: MapPin, text: "HQ: Marseille, France" },
       { icon: MapPin, text: "Offices: Shanghai & Hangzhou" }
     ]

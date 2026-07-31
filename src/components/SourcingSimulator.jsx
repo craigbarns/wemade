@@ -1,8 +1,11 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Calculator, ShieldCheck, Factory, TrendingUp, ArrowRight, CheckCircle2, RefreshCw } from "lucide-react";
+import { PREFILL_MESSAGE_KEY } from "./CallbackCta";
 
 export function SourcingSimulator({ lang = "fr", onSelectResult }) {
+  const navigate = useNavigate();
   const [step, setStep] = useState(1);
   const [category, setCategory] = useState("packaging");
   const [volume, setVolume] = useState("medium");
@@ -72,13 +75,25 @@ export function SourcingSimulator({ lang = "fr", onSelectResult }) {
       : `[WEMADE Sourcing Diagnostic]\nCategory: ${result.categoryName}\nVolume: ${result.volumeName}\nPriority: ${result.priorityName}\nCurrent Challenge: ${result.challengeName}\nRecommendation: ${result.inspectionType}`;
 
     if (onSelectResult) {
+      // Home : le parent pré-remplit le formulaire (état React contrôlé) et scrolle.
       onSelectResult(messageText);
+      return;
+    }
+    // NB : on scope sur #contact car le formulaire Netlify caché d'index.html
+    // contient lui aussi un textarea[name="message"] présent sur toutes les pages.
+    const formTextarea = document.querySelector('#contact textarea[name="message"]');
+    if (formTextarea) {
+      formTextarea.value = messageText;
+      document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
     } else {
-      const formTextarea = document.querySelector('textarea[name="message"]');
-      if (formTextarea) {
-        formTextarea.value = messageText;
-        document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
+      // Pas de formulaire sur cette page (landing SEO) : on stocke le diagnostic
+      // et on navigue vers le formulaire de la home, qui le lira au mount.
+      try {
+        sessionStorage.setItem(PREFILL_MESSAGE_KEY, messageText);
+      } catch {
+        /* sessionStorage indisponible : on navigue quand même */
       }
+      navigate("/#contact");
     }
   };
 

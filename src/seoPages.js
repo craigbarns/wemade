@@ -1,9 +1,12 @@
 /**
  * Pages SEO (piliers + satellites) + maillage interne (relatedLinks).
  * Piliers : agent sourcing, contrôle qualité, sourcing PME.
+ * Les satellites de src/data/newSeoPages.js sont fusionnés à l'export principal.
  */
 
-export const seoPages = [
+import { newSeoPages } from "./data/newSeoPages.js";
+
+const baseSeoPages = [
   /* --- Pilier : agent sourcing --- */
   {
     slug: "agent-sourcing-chine-france",
@@ -377,6 +380,9 @@ export const seoPages = [
   },
 ];
 
+/** Export principal : pages historiques + satellites fusionnées (pas de doublon d'import). */
+export const seoPages = [...baseSeoPages, ...newSeoPages];
+
 /** Ordre d'affichage homepage : piliers d'abord, puis satellites, puis local/vertical */
 export const seoPagesHomeOrder = [
   "agent-sourcing-chine-france",
@@ -392,6 +398,8 @@ export const seoPagesHomeOrder = [
   "sourcing-chine-paris",
   "sourcing-chine-lyon",
   "sourcing-chine-marseille",
+  "verifier-fournisseur-alibaba",
+  "tarif-agent-sourcing-chine",
 ];
 
 export const seoPagesMap = Object.fromEntries(seoPages.map((p) => [p.slug, p]));

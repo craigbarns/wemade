@@ -14,11 +14,15 @@
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://wemade.fr/" />
-    <meta property="og:title" content="WEMADE | Le partenaire sourcing des marques européennes" />
+    <meta property="og:title" content="WEMADE | Sourcing Chine sans les risques : usines vérifiées, qualité contrôlée, marge protégée" />
     <meta property="og:description" content="Pilotage européen, exécution chinoise. Nous sécurisons vos achats, le contrôle qualité et la logistique depuis Shanghai et Hangzhou." />
     <meta property="og:site_name" content="WEMADE" />
     <meta property="og:locale" content="fr_FR" />
     <meta property="og:locale:alternate" content="en_US" />
+    <meta property="og:image" content="https://wemade.fr/og-image.jpg" />
+    <meta property="og:image:width" content="2048" />
+    <meta property="og:image:height" content="1152" />
+    <meta property="og:image:type" content="image/jpeg" />
     
     <!-- Internationalization - SEO -->
     <link rel="alternate" hreflang="fr" href="https://wemade.fr/" />
@@ -30,6 +34,7 @@
     <meta property="twitter:url" content="https://wemade.fr/" />
     <meta property="twitter:title" content="WEMADE | Sourcing Premium (France / Europe / China)" />
     <meta property="twitter:description" content="Achetez mieux en Chine grâce à un pilotage structuré en France et une exécution locale." />
+    <meta property="twitter:image" content="https://wemade.fr/og-image.jpg" />
 
     <!-- GEO: fichiers dédiés assistants IA (citation & contexte) -->
     <link rel="alternate" type="text/plain" title="WEMADE — contexte IA (court)" href="https://wemade.fr/llms.txt" />
@@ -134,7 +139,7 @@
     <!-- Font Optimization -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@600;700&display=swap" rel="stylesheet" />
     
     <style>
       /* Pre-render optimization to prevent FOUC (Flash of unstyled content) */
@@ -172,17 +177,18 @@
     </noscript>
     <script type="module" src="/src/main.jsx"></script>
 
-    <!--Start of Tawk.to Script-->
+    <!--Start of Tawk.to Script (chargé après window.load pour ne pas bloquer le rendu)-->
     <script type="text/javascript">
-    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-    (function(){
-    var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-    s1.async=true;
-    s1.src='https://embed.tawk.to/69cd033223fbbf1c367ee55f/1jl4d902l';
-    s1.charset='UTF-8';
-    s1.setAttribute('crossorigin','*');
-    s0.parentNode.insertBefore(s1,s0);
-    })();
+    window.addEventListener('load', function () {
+      var Tawk_API = window.Tawk_API || {}, Tawk_LoadStart = new Date();
+      window.Tawk_API = Tawk_API;
+      var s1 = document.createElement("script");
+      s1.async = true;
+      s1.src = 'https://embed.tawk.to/69cd033223fbbf1c367ee55f/1jl4d902l';
+      s1.charset = 'UTF-8';
+      s1.setAttribute('crossorigin', '*');
+      document.body.appendChild(s1);
+    });
     </script>
     <!--End of Tawk.to Script-->
   </body>
