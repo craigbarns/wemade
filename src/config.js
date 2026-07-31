@@ -7,13 +7,11 @@
  *
  *  - phone        : format international pour les liens tel: (ex: "+33612345678")
  *  - phoneDisplay : format lisible pour l'affichage (ex: "06 12 34 56 78")
- *
- *  TANT QUE phone EST VIDE, AUCUNE UI TÉLÉPHONE NE S'AFFICHE.
  * ============================================================
  */
 export const SITE = {
-  phone: "",
-  phoneDisplay: "",
+  phone: "+33617182979",
+  phoneDisplay: "06 17 18 29 79",
   email: "gregory@wemade.fr",
   calendly: ""
 };
