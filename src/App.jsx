@@ -18,6 +18,9 @@ import {
 } from "lucide-react";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import { BlogIndex, BlogPost } from "./Blog";
+import { SeoLandingPage } from "./components/SeoLandingPage";
+import { SourcingSimulator } from "./components/SourcingSimulator";
+import { CaseStudies } from "./components/CaseStudies";
 import { content } from "./content";
 import "./App.css";
 
@@ -76,6 +79,9 @@ export default function App() {
         <Route path="/" element={<MainSite />} />
         <Route path="/blog" element={<BlogIndex />} />
         <Route path="/blog/:slug" element={<BlogPost />} />
+        
+        {/* Dedicated SEO & GEO Landing Page Routes */}
+        <Route path="/:slug" element={<SeoLandingPage />} />
       </Routes>
     </BrowserRouter>
   );
@@ -175,6 +181,8 @@ function MainSite() {
             <a href="#services">{t.nav.services}</a>
             <a href="#why">{t.nav.why}</a>
             <a href="#process">{t.nav.process}</a>
+            <a href="#simulator">{lang === "fr" ? "Simulateur" : "Simulator"}</a>
+            <a href="#cases">{lang === "fr" ? "Cas Clients" : "Cases"}</a>
             <a href="#faq">{t.nav.faq}</a>
             <Link to={`/blog?lang=${lang}`}>{t.nav.blog}</Link>
             <a href="#contact">{t.nav.contact}</a>
@@ -203,6 +211,8 @@ function MainSite() {
         <a href="#services" onClick={closeMobileMenu}>{t.nav.services}</a>
         <a href="#why" onClick={closeMobileMenu}>{t.nav.why}</a>
         <a href="#process" onClick={closeMobileMenu}>{t.nav.process}</a>
+        <a href="#simulator" onClick={closeMobileMenu}>{lang === "fr" ? "Simulateur" : "Simulator"}</a>
+        <a href="#cases" onClick={closeMobileMenu}>{lang === "fr" ? "Cas Clients" : "Cases"}</a>
         <a href="#faq" onClick={closeMobileMenu}>{t.nav.faq}</a>
         <Link to={`/blog?lang=${lang}`} onClick={closeMobileMenu}>{t.nav.blog}</Link>
         <a href="#contact" onClick={closeMobileMenu}>{t.nav.contact}</a>
@@ -236,8 +246,8 @@ function MainSite() {
                 {t.hero.btn_primary}
                 <ArrowRight />
               </a>
-              <a href="#services" className="btn-secondary">
-                {t.hero.btn_secondary}
+              <a href="#simulator" className="btn-secondary">
+                {lang === "fr" ? "Simulateur Sourcing" : "Sourcing Simulator"}
                 <ChevronRight />
               </a>
             </div>
@@ -325,6 +335,26 @@ function MainSite() {
           })}
         </motion.div>
       </section>
+
+      {/* ===== SOURCING SIMULATOR SECTION ===== */}
+      <section className="container section" id="simulator">
+        <motion.div {...fadeUp} style={{ textAlign: "center", maxWidth: "48rem", margin: "0 auto 2rem" }}>
+          <div className="section-label">{lang === "fr" ? "Outil de Diagnostic" : "Diagnostic Tool"}</div>
+          <h2 className="section-title">{lang === "fr" ? "Simulez votre Opération de Sourcing" : "Simulate Your Sourcing Operation"}</h2>
+          <p className="section-description" style={{ margin: "1rem auto 0" }}>
+            {lang === "fr"
+              ? "Obtenez une recommandation de protocole d'inspection et une estimation d'optimisation en 30 secondes."
+              : "Get an inspection protocol recommendation and optimization estimate in 30 seconds."}
+          </p>
+        </motion.div>
+
+        <SourcingSimulator lang={lang} />
+      </section>
+
+      {/* ===== CASE STUDIES SECTION ===== */}
+      <div id="cases">
+        <CaseStudies lang={lang} />
+      </div>
 
       {/* ===== WHY SECTION ===== */}
       <section className="why-section" id="why">
