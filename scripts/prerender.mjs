@@ -85,8 +85,9 @@ function applyTemplate(route, appHtml) {
 function outPathFor(url) {
   if (url === "/") return path.join(distDir, "index.html");
   if (url === "/404") return path.join(distDir, "404.html");
-  const clean = url.replace(/\/+$/, "");
-  return path.join(distDir, clean, "index.html");
+  let clean = url.replace(/\/+$/, "");
+  if (clean.startsWith("/")) clean = clean.substring(1);
+  return path.join(distDir, `${clean}.html`);
 }
 
 /* ---------- Sitemap ---------- */

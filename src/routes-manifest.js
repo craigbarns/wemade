@@ -96,20 +96,20 @@ export function getPrerenderRoutes() {
     canonical: `${SITE_URL}/`,
     ogType: "website",
     ogLocale: "fr_FR",
-    hreflang: hreflangLinks({ fr: "/", en: "/en/" }),
+    hreflang: hreflangLinks({ fr: "/", en: "/en" }),
     jsonLd: []
   });
 
   routes.push({
-    url: "/en/",
+    url: "/en",
     lang: "en",
     type: "home",
     title: HOME_TITLE.en,
     description: HOME_DESCRIPTION.en,
-    canonical: `${SITE_URL}/en/`,
+    canonical: `${SITE_URL}/en`,
     ogType: "website",
     ogLocale: "en_US",
-    hreflang: hreflangLinks({ fr: "/", en: "/en/" }),
+    hreflang: hreflangLinks({ fr: "/", en: "/en" }),
     jsonLd: []
   });
 

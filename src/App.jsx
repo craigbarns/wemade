@@ -259,17 +259,17 @@ function MainSite({ initialLang }) {
     upsertSeoTags({
       title: HOME_TITLE[lang],
       description: HOME_DESCRIPTION[lang],
-      canonicalUrl: isEn ? "https://wemade.fr/en/" : "https://wemade.fr/",
+      canonicalUrl: isEn ? "https://wemade.fr/en" : "https://wemade.fr/",
     });
   }, [lang]);
 
   useEffect(() => {
-    // Redirection douce : l'ancien paramètre ?lang=en sur / bascule vers la vraie URL /en/
+    // Redirection douce : l'ancien paramètre ?lang=en sur / bascule vers la vraie URL /en
     if (
       window.location.pathname === "/" &&
       new URLSearchParams(window.location.search).get("lang") === "en"
     ) {
-      navigate("/en/", { replace: true });
+      navigate("/en", { replace: true });
     }
   }, [navigate]);
 
@@ -346,7 +346,7 @@ function MainSite({ initialLang }) {
 
   const toggleLang = () => {
     // Bascule vers la vraie URL localisée (le composant est remonté avec la bonne langue)
-    navigate(lang === "fr" ? "/en/" : "/");
+    navigate(lang === "fr" ? "/en" : "/");
   };
 
   const handleCallbackRequest = () => {
