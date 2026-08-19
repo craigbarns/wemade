@@ -266,5 +266,92 @@ export const newSeoPages = [
       { slug: "agent-sourcing-chine-france", label: "Agent sourcing avec pilotage européen" },
       { slug: "audit-usine-chine", label: "Audit des usines textiles" }
     ]
+  },
+  {
+    slug: "sourcing-electronique-chine",
+    title: "Sourcing Électronique Chine : composants, assemblage, normes | WEMADE",
+    description: "Sourcing électronique en Chine pour les entreprises européennes : PCB, assemblage PCBA, sourcing de composants, boîtiers plastiques et certifications CE/RoHS.",
+    h1: "Sourcing Électronique en Chine : Sécurisez votre chaîne de production",
+    intro: "Le sourcing électronique requiert une précision technique absolue. Qu'il s'agisse de sourcer des composants spécifiques (IC, connecteurs), de fabriquer des circuits imprimés (PCB) ou de gérer l'assemblage complet (PCBA) et l'injection plastique des boîtiers, la moindre erreur de spécification peut ruiner un lot entier. WEMADE vous accompagne de Shenzhen à l'Europe avec des ingénieurs qualité spécialisés.",
+    points: [
+      "Audits d'usines EMS (Electronic Manufacturing Services) spécialisées",
+      "Contrôle strict de la nomenclature (BOM) et lutte contre les composants contrefaits",
+      "Inspections de fonctionnalités sur banc de test (FCT) et AOI",
+      "Accompagnement à la conformité réglementaire (marquage CE, directives RoHS, RED)"
+    ],
+    deepSections: [
+      {
+        h2: "L'écosystème de Shenzhen : l'épicentre de l'électronique mondiale",
+        paragraphs: [
+          "Sourcer de l'électronique en Chine passe inévitablement par le pôle industriel de Shenzhen et de la province du Guangdong. Cependant, naviguer dans cet écosystème demande de différencier les véritables usines d'assemblage des courtiers en composants (brokers).",
+          "Notre bureau vérifie non seulement les capacités de CMS (Composants Montés en Surface) de l'usine, mais s'assure également de la fiabilité de leur propre chaîne d'approvisionnement en matières premières."
+        ]
+      },
+      {
+        h2: "Tests, Qualité et Protection de la Propriété Intellectuelle (IP)",
+        paragraphs: [
+          "L'un des risques majeurs du sourcing électronique est la fuite de la propriété intellectuelle. Nous sécurisons vos fichiers Gerber et codes sources via des accords de non-divulgation (NNN) robustes avant tout développement.",
+          "Lors de la production, nous validons chaque étape : inspection des PCB nus, tests in-situ (ICT) après assemblage, et tests de fonctionnement complets (FCT) selon vos protocoles stricts avant que la marchandise ne quitte l'usine."
+        ]
+      }
+    ],
+    pillarFaqs: [
+      {
+        q: "Comment éviter les composants contrefaits en Chine ?",
+        a: "La clé est la traçabilité. Nous exigeons de nos usines partenaires qu'elles s'approvisionnent uniquement auprès de distributeurs agréés pour les puces critiques (Tier 1), et nous effectuons des contrôles documentaires stricts sur les lots de composants reçus."
+      },
+      {
+        q: "Gérez-vous également la production des boîtiers (plastique ou métal) ?",
+        a: "Oui. L'intégration finale nécessite souvent de l'injection plastique ou de l'usinage CNC pour le boîtier. Nous sélectionnons des usines capables de gérer l'assemblage final complet du produit fini (box build) et son packaging."
+      }
+    ],
+    relatedLinks: [
+      { slug: "audit-usine-chine", label: "Faire auditer une usine électronique" },
+      { slug: "controle-qualite-chine", label: "Inspections qualité FCT et AOI" },
+      { slug: "fournisseur-chine-fiable", label: "Éviter les trading companies électroniques" }
+    ]
+  },
+  {
+    slug: "sourcing-emballage-chine",
+    title: "Sourcing Emballage et Packaging en Chine | WEMADE",
+    description: "Sourcing de packaging en Chine : emballages sur-mesure, boîtes rigides, e-commerce, matériaux éco-responsables. Obtenez le meilleur coût unitaire.",
+    h1: "Sourcing Emballage en Chine : Valorisez vos produits au meilleur coût",
+    intro: "Le packaging est le premier point de contact physique entre votre marque et votre client. Pourtant, sourcer des emballages de qualité européenne à des prix compétitifs reste un défi. Que vous cherchiez des coffrets rigides premium, des packagings d'expédition optimisés pour le e-commerce, ou des solutions éco-conçues, WEMADE sélectionne les meilleures imprimeries et cartonneries chinoises.",
+    points: [
+      "Sourcing de coffrets rigides, étuis pliants, pochons et calages thermoformés",
+      "Développement sur-mesure : pantones, gaufrage, marquage à chaud, soft-touch",
+      "Optimisation logistique : réduction du poids volumétrique pour le fret",
+      "Solutions durables : carton FSC, encres végétales, plastiques recyclés (PCR)"
+    ],
+    deepSections: [
+      {
+        h2: "De la conception à la production de masse",
+        paragraphs: [
+          "Le développement d'un packaging en Chine commence toujours par un échantillon blanc (white sample) pour valider les dimensions et le calage de votre produit, suivi d'un échantillon imprimé pour valider le rendu colorimétrique (Pantone/CMJN) et les finitions spéciales.",
+          "Une fois le « golden sample » validé, la production en série nécessite un suivi pointu de la colorimétrie et de la qualité du collage pour éviter les mauvaises surprises au déballage."
+        ]
+      },
+      {
+        h2: "Optimisation du coût de transport : le vrai nerf de la guerre",
+        paragraphs: [
+          "L'emballage prend beaucoup de place. Importer des boîtes vides d'Asie peut vite devenir prohibitif si le transport n'est pas optimisé. Nous concevons avec nos usines des packagings livrés à plat (flat-pack) ou empilables (nestable) pour maximiser le taux de remplissage des conteneurs, réduisant ainsi drastiquement votre coût unitaire rendu."
+        ]
+      }
+    ],
+    pillarFaqs: [
+      {
+        q: "Quelles sont les quantités minimales (MOQ) pour du packaging sur-mesure ?",
+        a: "Le MOQ standard pour des boîtes imprimées sur-mesure ou des coffrets rigides se situe généralement entre 1000 et 3000 unités. Pour des packagings plus standards avec simple impression de logo, les quantités peuvent être négociées à la baisse."
+      },
+      {
+        q: "Proposez-vous du packaging éco-responsable (FSC, biodégradable) ?",
+        a: "Absolument. La Chine a considérablement avancé sur les matériaux verts. Nous sourçons régulièrement du carton recyclé, des papiers certifiés FSC, des calages en pulpe moulée (bagasse de canne à sucre) ou des bioplastiques (PLA)."
+      }
+    ],
+    relatedLinks: [
+      { slug: "import-emballage-chine", label: "Guide détaillé : Import emballage Chine" },
+      { slug: "sourcing-chine-pme", label: "Sourcing global pour les PME" },
+      { slug: "agent-sourcing-chine-france", label: "Contactez votre agent français" }
+    ]
   }
 ];
