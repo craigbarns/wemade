@@ -5,6 +5,30 @@
 export const blogsData = {
   fr: [
     {
+      slug: "import-emballage-chine-delais",
+      title: "Import emballage Chine : sécuriser vos délais d'approvisionnement",
+      description: "Retards de livraison, contrôle qualité et logistique des packagings sourcés en Chine. Les 3 leviers pour sécuriser votre chaîne d'approvisionnement.",
+      date: "20 Août 2026",
+      readTime: "5 min",
+      content: `
+        <h2>L'emballage : le grain de sable qui grippe la chaîne</h2>
+        <p>Il est fréquent de voir des importateurs recevoir leurs produits finis parfaitement à l'heure, mais être incapables de les expédier à cause d'un retard sur... le packaging. Qu'il s'agisse de coffrets rigides, de pochons ou de boîtes d'expédition e-commerce, sourcer son <strong>emballage en Chine</strong> exige une synchronisation logistique parfaite avec votre usine de production principale.</p>
+
+        <h2>1. Anticiper le développement du Golden Sample</h2>
+        <p>Le développement d'un emballage sur-mesure (gabarit, calage, impression Pantone) prend du temps. Contrairement au produit fini où les ajustements peuvent être itératifs, l'emballage nécessite la création d'outillages (moules de thermoformage, plaques d'impression, matrices de découpe). Chaque modification demande un nouvel échantillon physique. <strong>Sécurisez un Golden Sample signé au moins 6 semaines avant le lancement de la production de masse.</strong></p>
+
+        <h2>2. L'inspection qualité : couleurs et résistance</h2>
+        <p>La non-conformité d'un packaging a des conséquences désastreuses : un carton qui s'écrase pendant le transport, une couleur de marque non respectée (le fameux rouge qui vire au orange), ou un collage qui lâche. Nos inspecteurs à Shanghai et Shenzhen contrôlent l'épaisseur du carton (grammage), effectuent des tests de chute (drop tests) et vérifient la colorimétrie avec des chartes chromatiques étalonnées avant de valider le lot final.</p>
+
+        <h2>3. Optimisation Logistique : Flat-pack et consolidation</h2>
+        <p>Le transport d'air coûte cher. Si vous importez des coffrets montés, vous paierez le fret au poids volumétrique, ce qui peut ruiner la rentabilité de votre importation. La solution réside dans l'ingénierie du packaging : conception pliable (flat-pack) ou empilable (nestable). Ensuite, consolidez la livraison de vos emballages directement chez le fabricant de votre produit fini pour qu'il procède à la mise en boîte sur place. Vous ne paierez ainsi qu'un seul fret maritime consolidé.</p>
+
+        <h2>La méthode WEMADE pour l'emballage</h2>
+        <p>Ne laissez pas un simple bout de carton compromettre vos délais de commercialisation (Time to Market). Pour découvrir comment nous optimisons l'importation de packagings pour nos clients marques et e-commerçants, consultez notre page dédiée <a href="/sourcing-emballage-chine">Sourcing Emballage en Chine</a>.</p>
+        <p><a href="/#contact">Demander un audit import gratuit (20 min)</a> — analysez votre chaîne logistique avec nos experts locaux.</p>
+      `,
+    },
+    {
       slug: "sourcing-chine-pme-7-erreurs",
       title: "Sourcing Chine PME : 7 erreurs qui coûtent cher (et comment les éviter)",
       description:
@@ -261,6 +285,30 @@ export const blogsData = {
     }
   ],
   en: [
+    {
+      slug: "import-emballage-chine-delais",
+      title: "China packaging imports: how to secure your supply chain lead times",
+      description: "Delivery delays, quality control, and logistics of packaging sourced in China. The 3 levers to secure your supply chain.",
+      date: "August 20, 2026",
+      readTime: "5 min",
+      content: `
+        <h2>Packaging: the grain of sand that jams the chain</h2>
+        <p>It is common to see importers receive their finished products perfectly on time, but be unable to ship them due to a delay on... the packaging. Whether it is rigid gift boxes, pouches, or e-commerce mailers, sourcing your <strong>packaging in China</strong> requires perfect logistical synchronization with your main production factory.</p>
+
+        <h2>1. Anticipate the Golden Sample development</h2>
+        <p>Developing custom packaging (die-cuts, inserts, Pantone printing) takes time. Unlike finished products where adjustments can be iterative, packaging requires the creation of tooling (thermoforming molds, printing plates, cutting dies). Every modification requires a new physical sample. <strong>Secure a signed Golden Sample at least 6 weeks before mass production starts.</strong></p>
+
+        <h2>2. Quality inspection: colors and resistance</h2>
+        <p>Packaging non-compliance has disastrous consequences: a carton that crushes during transport, an off-brand color (the famous red that turns orange), or glue that fails. Our inspectors in Shanghai and Shenzhen check the cardboard thickness (grammage), perform drop tests, and verify colorimetry with calibrated chromatic charts before validating the final batch.</p>
+
+        <h2>3. Logistics Optimization: Flat-pack and consolidation</h2>
+        <p>Shipping air is expensive. If you import assembled boxes, you will pay freight on volumetric weight, which can ruin the profitability of your import. The solution lies in packaging engineering: foldable (flat-pack) or stackable (nestable) designs. Then, consolidate the delivery of your packaging directly to the manufacturer of your finished product so they can pack it on-site. You will only pay for a single consolidated ocean freight.</p>
+
+        <h2>The WEMADE method for packaging</h2>
+        <p>Do not let a simple piece of cardboard compromise your Time to Market. To discover how we optimize packaging imports for our brand and e-commerce clients, visit our dedicated page <a href="/en/sourcing-emballage-chine">Sourcing Packaging in China</a>.</p>
+        <p><a href="/en/#contact">Request a free import audit (20 min)</a> — analyze your supply chain with our local experts.</p>
+      `,
+    },
     {
       slug: "sourcing-chine-pme-7-erreurs",
       title: "China sourcing for SMEs: 7 expensive mistakes (and how to avoid them)",
