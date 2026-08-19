@@ -69,15 +69,18 @@ function stripTags(html) {
 }
 
 function extractMetaContent(html, nameOrProperty, value) {
+  // Matches content attribute enclosed in double quotes (allowing single quotes inside) or single quotes
   const byName = new RegExp(
-    `<meta[^>]*${nameOrProperty}=["']${value}["'][^>]*content=["']([^"']*)["'][^>]*>`,
+    `<meta[^>]*${nameOrProperty}=["']${value}["'][^>]*content=(?:"([^"]*)"|'([^']*)')[^>]*>`,
     "i",
   );
   const byContentFirst = new RegExp(
-    `<meta[^>]*content=["']([^"']*)["'][^>]*${nameOrProperty}=["']${value}["'][^>]*>`,
+    `<meta[^>]*content=(?:"([^"]*)"|'([^']*)')[^>]*${nameOrProperty}=["']${value}["'][^>]*>`,
     "i",
   );
-  return html.match(byName)?.[1]?.trim() || html.match(byContentFirst)?.[1]?.trim() || "";
+  const matchByName = html.match(byName);
+  const matchByContentFirst = html.match(byContentFirst);
+  return matchByName?.[1] || matchByName?.[2] || matchByContentFirst?.[1] || matchByContentFirst?.[2] || "";
 }
 
 function extractTitle(html) {
