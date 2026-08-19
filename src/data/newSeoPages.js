@@ -223,4 +223,48 @@ export const newSeoPages = [
       { href: "/blog/honoraires-agent-sourcing-chine-risques", label: "Article : honoraires, commissions et risques" },
     ],
   },
+  {
+    slug: "sourcing-textile-chine",
+    title: "Sourcing Textile Chine : usines vérifiées, qualité premium | WEMADE",
+    description: "Sourcing textile en Chine pour marques européennes : sélection d'usines certifiées, contrôle qualité sur chaîne, et logistique (sportswear, premium, mode).",
+    h1: "Sourcing Textile en Chine : sécuriser la qualité et les délais",
+    intro: "Le textile est l'une des industries les plus complexes à sourcer en Chine : la moindre variation de matière, de coupe ou de couleur impacte immédiatement la perception de votre marque. Avec des clients comme Zadig & Voltaire, Ekoi et Sweet Pants, WEMADE possède une véritable expertise dans le sourcing textile, de la pré-production au contrôle qualité final.",
+    points: [
+      "Sélection d'usines textiles spécialisées (sportswear, prêt-à-porter, accessoires)",
+      "Gestion rigoureuse des échantillons et golden samples",
+      "Contrôles qualité poussés : inspection sur chaîne et finale (AQL)",
+      "Prise en charge des normes européennes et éco-certifications (Oeko-Tex, etc.)"
+    ],
+    deepSections: [
+      {
+        h2: "Les spécificités du sourcing textile en Chine",
+        paragraphs: [
+          "Le succès d'une collection repose sur l'alignement parfait entre votre cahier des charges stylistique et la réalité de la production. En Chine, l'écosystème textile est immense et très spécialisé par région. Une usine excellente pour de la doudoune technique ne sera pas forcément compétente pour de la maille fine ou du sportswear seamless.",
+          "Notre travail consiste d'abord à identifier le fabricant dont le parc machine, le savoir-faire et l'historique de production correspondent exactement à votre type de vêtement et à vos volumes (MOQ)."
+        ]
+      },
+      {
+        h2: "Contrôle Qualité Textile : l'intransigeance avant expédition",
+        paragraphs: [
+          "Les défauts dans le textile pardonnent peu (fils tirés, asymétries, variations de bain de teinture, mauvais grammage). C'est pourquoi nous mettons en place des inspections rigoureuses à chaque jalon : contrôle des matières premières à réception, inspection en cours de production (DUPRO) pour corriger les dérives sur les premières séries, et inspection finale stricte avant la mise en carton.",
+          "Nous appliquons les normes d'inspection AQL avec un focus particulier sur les mesures, la résistance des coutures, et le respect du cahier des charges (labelling, packaging)."
+        ]
+      }
+    ],
+    pillarFaqs: [
+      {
+        q: "Quels sont les MOQ (Minimum de commande) habituels pour le textile en Chine ?",
+        a: "Cela dépend fortement du type de vêtement et de matière (si tissu sur stock ou développé sur mesure). Généralement, les usines qualitatives demandent entre 500 et 1000 pièces par modèle/couleur, mais nous négocions ces seuils selon vos prévisionnels annuels."
+      },
+      {
+        q: "Comment garantissez-vous la conformité des matières et teintures ?",
+        a: "Nous exigeons des rapports de tests laboratoires (certifications Oeko-Tex, REACH) et nous effectuons des prélèvements aléatoires sur la chaîne de production pour vérifier la composition et la solidité des couleurs au lavage/frottement."
+      }
+    ],
+    relatedLinks: [
+      { slug: "controle-qualite-chine", label: "Méthodologie de contrôle qualité Chine" },
+      { slug: "agent-sourcing-chine-france", label: "Agent sourcing avec pilotage européen" },
+      { slug: "audit-usine-chine", label: "Audit des usines textiles" }
+    ]
+  }
 ];
