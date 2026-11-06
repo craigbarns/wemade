@@ -70,7 +70,7 @@ function articleLd(post, lang, canonicalPath) {
     headline: post.title,
     description: post.description,
     inLanguage: lang === "en" ? "en-US" : "fr-FR",
-    author: { "@type": "Organization", name: "WEMADE Sourcing" },
+    author: { "@type": "Person", name: "Gregory Baranes", jobTitle: "Fondateur, WEMADE Sourcing", url: "https://www.linkedin.com/in/gregorybaranes/" },
     publisher: {
       "@type": "Organization",
       name: "WEMADE",
@@ -157,7 +157,7 @@ export function getPrerenderRoutes() {
         jsonLd: [
           articleLd(post, lang, path),
           breadcrumbLd([
-            { name: lang === "en" ? "Home" : "Accueil", path: lang === "en" ? "/en/" : "/" },
+            { name: lang === "en" ? "Home" : "Accueil", path: lang === "en" ? "/en" : "/" },
             { name: "Blog", path: lang === "en" ? "/en/blog" : "/blog" },
             { name: post.title, path }
           ])

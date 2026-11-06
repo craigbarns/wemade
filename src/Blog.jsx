@@ -12,7 +12,7 @@ function useBlogLang() {
   return searchParams.get("lang") === "en" ? "en" : "fr";
 }
 
-const homePath = (lang) => (lang === "en" ? "/en/" : "/");
+const homePath = (lang) => (lang === "en" ? "/en" : "/");
 const blogPath = (lang) => (lang === "en" ? "/en/blog" : "/blog");
 const postPath = (lang, slug) => (lang === "en" ? `/en/blog/${slug}` : `/blog/${slug}`);
 
@@ -102,10 +102,7 @@ export function BlogPost() {
         "@type": "Article",
         "headline": post.title,
         "description": post.description,
-        "author": {
-          "@type": "Organization",
-          "name": "WEMADE Sourcing"
-        },
+        "author": { "@type": "Person", "name": "Gregory Baranes", "jobTitle": "Fondateur, WEMADE Sourcing", "url": "https://www.linkedin.com/in/gregorybaranes/" },
         "publisher": {
           "@type": "Organization",
           "name": "WEMADE",
@@ -147,6 +144,15 @@ export function BlogPost() {
           <div style={{ display: "flex", gap: "1.5rem", color: "var(--slate-500)", fontSize: "0.875rem", borderBottom: "1px solid var(--slate-200)", paddingBottom: "2rem" }}>
             <span style={{ display: "flex", alignItems: "center", gap: "0.35rem" }}><Calendar size={16} /> {post.date}</span>
             <span style={{ display: "flex", alignItems: "center", gap: "0.35rem" }}><Clock size={16} /> {post.readTime}</span>
+          </div>
+
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginTop: '1.5rem', fontSize: '0.875rem', color: 'var(--slate-600)' }}>
+            <div style={{ width: '36px', height: '36px', borderRadius: '50%', background: 'var(--slate-900)', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 700, fontSize: '0.75rem' }}>GB</div>
+            <div>
+              <strong style={{ color: 'var(--slate-900)' }}>Gregory Baranes</strong>
+              <span style={{ color: 'var(--slate-500)' }}>{lang === 'fr' ? ' — Fondateur, WEMADE Sourcing' : ' — Founder, WEMADE Sourcing'}</span>
+              <div><a href='https://www.linkedin.com/in/gregorybaranes/' target='_blank' rel='noopener' style={{ color: 'var(--accent)', fontSize: '0.8rem' }}>LinkedIn</a></div>
+            </div>
           </div>
         </div>
 
