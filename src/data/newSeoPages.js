@@ -7,7 +7,7 @@
 export const newSeoPages = [
   {
     slug: "verifier-fournisseur-alibaba",
-    title: "Vérifier un fournisseur Alibaba : méthode | WEMADE",
+    title: "Vérifier un fournisseur Alibaba : 5 contrôles avant de payer | WEMADE",
     description:
       "Vérifier un fournisseur Alibaba avant le premier paiement : licence, usine réelle ou trading, audit, échantillons. Méthode et checklist en 12 points.",
     h1: "Vérifier un fournisseur Alibaba : la méthode qui protège votre premier paiement",
@@ -129,9 +129,9 @@ export const newSeoPages = [
 
   {
     slug: "tarif-agent-sourcing-chine",
-    title: "Tarif agent sourcing Chine : prix, commission | WEMADE",
+    title: "Prix agent de sourcing Chine : tarifs et commissions 2026 | WEMADE",
     description:
-      "Combien coûte un agent sourcing en Chine ? Commission, forfait ou mixte : fourchettes réelles, marges cachées à détecter, ROI. Devis avant mission.",
+      "Quel est le prix d'un agent de sourcing en Chine ? Commissions, forfaits, fourchettes réelles 2026 et marges cachées à détecter. Le guide des tarifs.",
     h1: "Tarif d'un agent sourcing en Chine : le vrai prix de la transparence",
     intro:
       "Combien coûte un agent sourcing en Chine ? La plupart des acteurs évitent la question. Chez WEMADE, nous la posons en premier — parce que la structure de rémunération de votre agent détermine ses incitations, et donc la qualité de vos achats. Voici les modèles du marché, leurs fourchettes réelles, les pièges à détecter et la méthode pour vérifier que vous ne payez pas deux fois.",

@@ -289,11 +289,62 @@ const baseSeoPages = [
       "Inspection qualité avant paiement final",
       "Livraison et conformité documentaire",
     ],
+    deepSections: [
+      {
+        h2: "Calculer le coût rendu : le seul chiffre qui compte",
+        paragraphs: [
+          "Le prix usine n'est pas votre coût. Le coût rendu intègre le fret (maritime, aérien ou express), l'assurance, les droits de douane selon le code SH de votre produit, la TVA à l'importation, les frais de dédouanement, le transport final, et le coût du contrôle qualité. Deux devis au même prix FOB peuvent différer de 20 % une fois rendus dans votre entrepôt.",
+          "Construisez ce calcul avant de négocier : c'est lui qui définit votre marge réelle, et c'est lui qui révèle où vaut la peine de négocier (souvent le fret et les MOQ, rarement le prix unitaire seul).",
+        ],
+      },
+      {
+        h2: "Les étapes d'un import Chine sans surprise",
+        paragraphs: [
+          "La séquence robuste : cahier des charges écrit (spécifications, tolérances, emballage, marquage) puis sélection et vérification des fournisseurs, échantillons et golden sample signé, négociation (prix, MOQ, Incoterms, délais, pénalités), production avec points de contrôle, inspection finale avant solde, expédition et dédouanement, réception et contrôle à l'arrivée.",
+          "Chaque étape sautée déplace le risque sur l'étape suivante, où il coûte plus cher. Le cahier des charges écrit et le golden sample sont les deux documents qui préviennent le plus de litiges pour le moins d'effort.",
+        ],
+      },
+      {
+        h2: "Douanes, TVA et conformité UE : les bases à verrouiller",
+        paragraphs: [
+          "Trois vérifications obligatoires avant commande : le code SH exact de votre produit (il détermine le droit de douane), les exigences de conformité de votre catégorie (marquage CE, sécurité des consommateurs, REACH/RoHS selon le produit), et le marquage d'origine exigé sur le produit et l'emballage. Les certificats du fournisseur doivent être à jour, au nom de l'entité qui produit réellement, et couvrir votre référence précise.",
+          "Une non-conformité détectée à la douane ou par une plateforme de vente coûte infiniment plus cher que la vérification en amont : blocage du lot, retours clients, voire sanctions. C'est un poste où l'économie de contrôle ne se discute pas.",
+        ],
+      },
+      {
+        h2: "Logistique : express, aérien ou maritime ?",
+        paragraphs: [
+          "Express (3-6 jours porte-à-porte) pour les échantillons et les urgences légères, mais cher au kilo. Aérien (5-10 jours) pour les valeurs légères en coût au kilo. Maritime (30-45 jours porte-à-porte selon la destination) pour les volumes : c'est le standard du coût rendu, à condition d'anticiper — le vrai coût du maritime est le délai de planification, pas le prix.",
+          "Deux réflexes qui économisent beaucoup : consolider vos envois quand c'est possible (moins de frais fixes par expédition), et valider les dimensions et poids volumétriques réels de l'emballage export avec l'usine avant de chiffrer le fret.",
+        ],
+      },
+      {
+        h2: "Les erreurs qui coûtent le plus cher aux PME",
+        paragraphs: [
+          "1) Négocier uniquement le prix unitaire sans vision du coût rendu. 2) Verser le solde avant inspection. 3) Sous-estimer les délais réels : échantillons, outillage, pics de production, et fêtes chinoises — le Nouvel An chinois paralyse les usines deux à quatre semaines. La méthode complète est détaillée dans notre guide sourcing Chine PME, et la validation des fournisseurs dans notre page fournisseur fiable.",
+        ],
+      },
+    ],
+    pillarFaqs: [
+      {
+        q: "Quels documents faut-il pour importer de Chine ?",
+        a: "Au minimum : facture commerciale, liste de colisage, connaissement (B/L) ou lettre de transport aérien, certificat d'origine selon destination, et les certificats de conformité de votre catégorie (CE, tests laboratoire). Votre transitaire gère la déclaration, mais les certificats produit sont votre responsabilité en tant qu'importateur.",
+      },
+      {
+        q: "Comment calculer le coût réel d'une importation de Chine ?",
+        a: "Additionnez au prix usine : fret, assurance, droits de douane (selon code SH), TVA à l'import, frais de dédouanement et transport final, coût du contrôle qualité — puis divisez par le nombre d'unités. C'est le coût rendu, le seul chiffre à comparer entre fournisseurs.",
+      },
+      {
+        q: "Faut-il une société pour importer de Chine ?",
+        a: "Pour importer régulièrement et commercialement en Europe, oui : il faut un numéro EORI pour le dédouanement, et la responsabilité conformité produit (importateur légal) repose sur une entité. Des imports ponctuels via un tiers sont possibles mais transfèrent le risque et la marge.",
+      },
+    ],
     relatedLinks: [
       { slug: "sourcing-chine-pme", label: "Sourcing Chine PME (guide stratégique)" },
       { slug: "fournisseur-chine-fiable", label: "Trouver un fournisseur fiable" },
       { slug: "controle-qualite-chine", label: "Contrôle qualité Chine" },
       { slug: "agent-sourcing-chine-france", label: "Agent sourcing en France" },
+      { slug: "tarif-agent-sourcing-chine", label: "Prix d'un agent de sourcing" },
     ],
   },
   {
@@ -319,19 +370,95 @@ const baseSeoPages = [
   },
   {
     slug: "fournisseur-chine-fiable",
-    title: "Trouver un fournisseur fiable en Chine : guide 2026 | WEMADE",
+    title: "Trouver un fournisseur fiable en Chine : méthode complète 2026 | WEMADE",
     description:
-      "Comment identifier un fournisseur fiable en Chine : documents, audit, tests qualité et négociation.",
-    h1: "Fournisseur chinois fiable : méthode de validation",
+      "Comment trouver un fournisseur fiable en Chine : vérification de licence, usine réelle ou trading, échantillons, audit, paiements sécurisés. Méthode complète 2026.",
+    h1: "Fournisseur chinois fiable : la méthode de validation en 6 filtres",
     intro:
-      "Le bon fournisseur n'est pas celui qui promet le prix le plus bas, mais celui qui tient la qualité et les délais.",
+      "Le bon fournisseur n'est pas celui qui promet le prix le plus bas, mais celui qui tient la qualité et les délais lot après lot. La plupart des litiges d'import ne viennent pas d'une malveillance, mais d'une sélection faite trop vite : un profil séduisant, un devis attractif, un acompte payé — et six semaines plus tard, une production non conforme. Cette page détaille les six filtres que nous appliquons avant de confier une production à un fournisseur chinois, dans l'ordre où ils doivent être appliqués.",
     points: [
-      "Vérification licence et structure de l'entreprise",
-      "Échantillons et validation technique",
-      "Historique de production et références",
-      "Mécanismes contractuels de protection",
+      "Filtre 1 — Existence légale : licence, portée d'activité, capital, année de création",
+      "Filtre 2 — Nature réelle : usine, trading company ou simple intermédiaire",
+      "Filtre 3 — Capacité technique : échantillons, golden sample, validation de série",
+      "Filtre 4 — Vérification terrain : audit ou visite d'usine quand l'enjeu le justifie",
+      "Filtre 5 — Preuves commerciales : historique, références export, cohérence catalogue",
+      "Filtre 6 — Protection contractuelle : acompte, balance, pénalités, plan B",
+    ],
+    deepSections: [
+      {
+        h2: "Usine réelle, trading company ou agent : qui est vraiment derrière le profil ?",
+        paragraphs: [
+          "La première question n'est pas « ce fournisseur est-il fiable ? » mais « qui est-ce, exactement ? ». Sur les plateformes comme Alibaba, une part importante des profils sont des trading companies : elles revendent la production d'usines tierces, souvent sans en contrôler la qualité, et empilent leur marge sur le prix. Ce n'est pas toujours un problème — certaines trading companies apportent une vraie valeur en coordination — mais il faut le savoir avant de décider, car la chaîne de responsabilité n'est pas la même.",
+          "Les signaux qui permettent de trancher : la portée d'activité inscrite sur la licence (fabrication vs commerce de gros), l'adresse (zone industrielle vs immeuble de bureaux), la demande de visites (une usine accueille, un intermédiaire tergiverse), la cohérence entre les photos affichées et ce que montre un appel vidéo en direct depuis l'atelier. Un profil qui mélange des photos de lignes de production de trois industries différentes est rarement une usine.",
+        ],
+      },
+      {
+        h2: "La vérification documentaire : licence, portée d'activité, capital",
+        paragraphs: [
+          "Chaque entreprise chinoise dispose d'une licence commerciale unifiée consultable sur les registres officiels. Trois vérifications minimales : l'objet social correspond-il à la fabrication de votre catégorie de produits ? Le capital enregistré est-il cohérent avec les volumes annoncés (une usine qui prétend produire 500 000 pièces/mois avec un capital de 100 000 RMB est un signal d'alerte) ? L'année de création et l'historique des noms d'entreprise révèlent-ils des changements fréquents, souvent associés à des fuites derrière des litiges qualité ?",
+          "Ces vérifications prennent moins d'une journée et éliminent une part importante des profils à risque avant même le premier échange commercial. Elles ne remplacent pas un audit terrain, mais elles évitent de payer un audit pour une entreprise qui n'aurait jamais dû être retenue.",
+        ],
+      },
+      {
+        h2: "Échantillon : ce qu'il prouve, et ce qu'il ne prouve pas",
+        paragraphs: [
+          "Un échantillon valide l'intention et la compétence d'ingénierie sur une pièce. Il ne valide pas la capacité à produire 20 000 pièces avec la même qualité. Les écarts apparaissent presque toujours en série : matières substituées, tolérances relâchées, finitions accélérées pour tenir un délai. C'est pour cela que la validation d'un fournisseur fiable ne s'arrête pas à l'échantillon : elle inclut la définition d'un golden sample signé par les deux parties, et des points de contrôle alignés sur ce standard pendant la production.",
+          "Un bon test intermédiaire quand les enjeux le justifient : commander un petit lot pilote (quelques centaines de pièces plutôt que quelques dizaines d'échantillons). Le coût marginal est faible, et il révèle la vraie discipline de production de l'usine bien mieux qu'une série d'échantillons unitaires.",
+        ],
+      },
+      {
+        h2: "Audit ou visite d'usine : quand y aller, et quoi regarder",
+        paragraphs: [
+          "Tous les fournisseurs ne méritent pas un audit. La règle que nous appliquons : l'enjeu financier de la première commande et la récurrence prévisible de la relation déterminent l'investissement de vérification. Un audit complet (capacité, process qualité, conformité documentaire, conditions de travail) se justifie dès que la relation dépasse quelques milliers d'euros ou qu'elle doit durer. Pour des commandes plus modestes, une visite courte ou un audit documentaire renforcé suffit.",
+          "Ce qu'un audit utile regarde au-delà des photos : la cohérence entre les lignes de production visitées et le produit qu'on vous vend (une usine d'assemblage qui sous-traite tout et n'assemble que l'emballage n'est pas ce que son catalogue suggère), le système qualité interne (enregistrements, gestion des non-conformités, formation des opérateurs), et la gestion des matières premières (traçabilité, stock, sous-traitants déclarés).",
+        ],
+      },
+      {
+        h2: "Historique de production et références : vérifier sans se faire berner",
+        paragraphs: [
+          "Demandez des références export récentes et comparables à votre produit, puis vérifiez ce qui est vérifiable : cohérence des clients annoncés avec le segment de marché, présence de certificats produit à jour pour votre catégorie (CE, FDA, CPC selon le cas), mentions légales sur des documents d'expédition. Un fournisseur fiable répond précisément ; un profil qui répond en généralités (« nous travaillons avec beaucoup de clients européens ») sans un seul élément vérifiable mérite votre méfiance.",
+          "Attention au piège inverse : des certificats anciens, au nom d'une autre entité, ou couvrant un modèle différent du vôtre ne valent rien pour votre commande. Chaque certificat doit être rattaché à votre référence précise et dater de moins de ce que votre marché exige.",
+        ],
+      },
+      {
+        h2: "Paiements : acompte, balance et protection contractuelle",
+        paragraphs: [
+          "Le standard du marché est 30 % d'acompte / 70 % avant expédition. Ce solde avant expédition est votre seul levier réel : c'est lui qui finance l'inspection finale. Ne versez jamais le solde avant que le contrôle qualité (interne ou tiers) ait été réalisé sur le lot complet, selon des critères écrits et un échantillonnage défini à l'avance. Un fournisseur qui exige 100 % avant production, ou qui refuse toute inspection avant solde, vous dit quelque chose d'important.",
+          "Côté contrat, les clauses qui changent réellement la donne : définition du golden sample comme référence contractuelle, pénalités de retard à taux réaliste, droit d'inspection à tout moment, et procédure de non-conformité (tri, retouche, remplacement ou remboursement). Un contrat en anglais signé par l'entité juridique exacte — pas une société sœur — vaut mieux qu'un long contrat signé par la mauvaise entité.",
+        ],
+      },
+      {
+        h2: "Plan B : la règle d'or — toujours deux fournisseurs qualifiés",
+        paragraphs: [
+          "Le fournisseur le plus fiable peut dérailler : changement de direction, perte d'un opérateur clé, priorité donnée à un client plus gros, incendie d'atelier. La protection n'est pas la confiance, c'est la redondance. Qualifiez systématiquement un deuxième fournisseur pour chaque produit structurant : échantillons validés, prix comparés, process de lancement compris. Le coût de cette double qualification est dérisoire comparé au coût d'une rupture d'approvisionnement en pleine saison.",
+          "En pratique, cette discipline change aussi votre négociation : un fournisseur sait, sans qu'on le lui dise, qu'il n'est pas votre seule option. C'est le meilleur régulateur de comportement qui existe.",
+        ],
+      },
+    ],
+    pillarFaqs: [
+      {
+        q: "Comment vérifier qu'un fournisseur chinois existe légalement ?",
+        a: "Demandez la licence commerciale unifiée (18 chiffres) et vérifiez-la sur les registres officiels chinois : objet social, capital enregistré, adresse, année de création et historique des changements de nom. Complétez par un appel vidéo depuis les locaux. Ces vérifications prennent moins d'un jour.",
+      },
+      {
+        q: "Comment distinguer une usine d'une trading company sur Alibaba ?",
+        a: "Regardez la portée d'activité sur la licence (fabrication vs commerce), l'adresse (zone industrielle vs bureaux), la cohérence des photos de production avec votre catégorie, et la réaction à une demande de visite. Un profil qui prétend fabriquer plusieurs catégories de produits sans lien entre elles est rarement une usine.",
+      },
+      {
+        q: "Quel acompte payer à un fournisseur en Chine ?",
+        a: "Le standard est 30 % à la commande et 70 % avant expédition. Ne versez le solde qu'après une inspection qualité réalisée sur le lot complet, selon des critères écrits définis à l'avance. Méfiance envers tout fournisseur qui exige 100 % avant production ou refuse l'inspection avant solde.",
+      },
+      {
+        q: "Faut-il visiter l'usine avant de commander en série ?",
+        a: "Dès que l'enjeu financier de la relation dépasse quelques milliers d'euros ou qu'elle doit durer, oui — en personne ou via un audit par un tiers local. Un audit vérifie ce que les photos ne montrent pas : cohérence des lignes de production, système qualité interne, traçabilité des matières.",
+      },
+      {
+        q: "Un échantillon conforme garantit-il une série conforme ?",
+        a: "Non. L'échantillon valide la compétence d'ingénierie, pas la discipline de production. Les écarts apparaissent en série : matières substituées, tolérances relâchées. D'où l'importance d'un golden sample signé et de points de contrôle pendant la production, pas seulement à la fin.",
+      },
     ],
     relatedLinks: [
+      { slug: "verifier-fournisseur-alibaba", label: "Vérifier un fournisseur Alibaba avant de payer" },
       { slug: "audit-usine-chine", label: "Audit usine en Chine" },
       { slug: "sourcing-chine-pme", label: "Sourcing Chine PME" },
       { slug: "import-chine-pme", label: "Import Chine PME" },
